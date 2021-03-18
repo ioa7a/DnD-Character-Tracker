@@ -3,29 +3,83 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270A08FA25A48165006B3D57 /* DiceRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A08F925A48165006B3D57 /* DiceRollViewController.swift */; };
+		270A090025A49B49006B3D57 /* DiceRollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A08FF25A49B49006B3D57 /* DiceRollCollectionViewCell.swift */; };
+		273BD60525A5DF8300270C7A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273BD60425A5DF8300270C7A /* CustomButton.swift */; };
+		273BD60A25A655BC00270C7A /* ClassInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273BD60925A6558500270C7A /* ClassInfoTableViewCell.swift */; };
+		275391EE25A9F74D00260440 /* BackgroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275391ED25A9F74D00260440 /* BackgroundTableViewCell.swift */; };
+		275391F025AB96EB00260440 /* CharacterListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275391EF25AB96EB00260440 /* CharacterListTableViewCell.swift */; };
+		2757D959259C8C5B00CFF270 /* StartUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757D958259C8C5B00CFF270 /* StartUpViewController.swift */; };
+		2757D95B259C97E600CFF270 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757D95A259C97E600CFF270 /* LogInViewController.swift */; };
+		2757D95D259CA0C100CFF270 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757D95C259CA0C100CFF270 /* SignUpViewController.swift */; };
+		2757D95F259CA65100CFF270 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2757D95E259CA65100CFF270 /* GoogleService-Info.plist */; };
+		275E3A79259DD0FB0045E8E8 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E3A78259DD0FB0045E8E8 /* Character.swift */; };
+		275EC109259CA96F007A2521 /* FireBaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275EC108259CA96F007A2521 /* FireBaseAuthManager.swift */; };
+		276007CC259F401F003B8B1A /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276007CB259F401F003B8B1A /* StatsViewController.swift */; };
+		276007D0259F7628003B8B1A /* BackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276007CF259F7628003B8B1A /* BackgroundViewController.swift */; };
+		27679A0D252866E0006984FA /* CharacterListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27679A0C252866E0006984FA /* CharacterListVC.swift */; };
+		27679A0F252866F0006984FA /* ClassVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27679A0E252866F0006984FA /* ClassVC.swift */; };
+		27679A1125286702006984FA /* RaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27679A1025286702006984FA /* RaceVC.swift */; };
+		27679A13252868E9006984FA /* InfoSelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27679A12252868E9006984FA /* InfoSelectTableViewCell.swift */; };
+		276850C225F947ED008A2C70 /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276850C125F947ED008A2C70 /* Spell.swift */; };
+		276850C425F9694F008A2C70 /* SpellListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276850C325F9694F008A2C70 /* SpellListViewController.swift */; };
+		276850C625F96A60008A2C70 /* SpellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276850C525F96A5F008A2C70 /* SpellTableViewCell.swift */; };
 		276D23CD252798A400242C8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276D23CC252798A400242C8B /* AppDelegate.swift */; };
 		276D23CF252798A400242C8B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276D23CE252798A400242C8B /* SceneDelegate.swift */; };
-		276D23D1252798A400242C8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276D23D0252798A400242C8B /* ViewController.swift */; };
+		276D23D1252798A400242C8B /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276D23D0252798A400242C8B /* NavigationViewController.swift */; };
 		276D23D4252798A400242C8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276D23D2252798A400242C8B /* Main.storyboard */; };
 		276D23D7252798A500242C8B /* DnD_Character_Tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 276D23D5252798A500242C8B /* DnD_Character_Tracker.xcdatamodeld */; };
 		276D23D9252798AD00242C8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 276D23D8252798AD00242C8B /* Assets.xcassets */; };
 		276D23DC252798AD00242C8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276D23DA252798AD00242C8B /* LaunchScreen.storyboard */; };
+		276E023725FEB9820079517D /* AllCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276E023625FEB9820079517D /* AllCharactersViewController.swift */; };
+		276E023A25FEBB210079517D /* AllCharactersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276E023925FEBB210079517D /* AllCharactersTableViewCell.swift */; };
+		278E79A025F3BFA80058EABF /* GeneralInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */; };
+		27EB5D2D25AE63C200087983 /* CharacterProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */; };
+		5E976D36914D9207511DD8A5 /* Pods_DnD_Character_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B8FBA4C903CD898BC56C39 /* Pods_DnD_Character_Tracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01B8FBA4C903CD898BC56C39 /* Pods_DnD_Character_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DnD_Character_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A8E89DE57B4B224EF4C5BE4 /* Pods-DnD Character Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DnD Character Tracker.debug.xcconfig"; path = "Target Support Files/Pods-DnD Character Tracker/Pods-DnD Character Tracker.debug.xcconfig"; sourceTree = "<group>"; };
+		19F05F94CB22FF2F7D69D462 /* Pods-DnD Character Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DnD Character Tracker.release.xcconfig"; path = "Target Support Files/Pods-DnD Character Tracker/Pods-DnD Character Tracker.release.xcconfig"; sourceTree = "<group>"; };
+		270A08F925A48165006B3D57 /* DiceRollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollViewController.swift; sourceTree = "<group>"; };
+		270A08FF25A49B49006B3D57 /* DiceRollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollCollectionViewCell.swift; sourceTree = "<group>"; };
+		273BD60425A5DF8300270C7A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		273BD60925A6558500270C7A /* ClassInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassInfoTableViewCell.swift; sourceTree = "<group>"; };
+		275391ED25A9F74D00260440 /* BackgroundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTableViewCell.swift; sourceTree = "<group>"; };
+		275391EF25AB96EB00260440 /* CharacterListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListTableViewCell.swift; sourceTree = "<group>"; };
+		2757D958259C8C5B00CFF270 /* StartUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpViewController.swift; sourceTree = "<group>"; };
+		2757D95A259C97E600CFF270 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		2757D95C259CA0C100CFF270 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		2757D95E259CA65100CFF270 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		275E3A78259DD0FB0045E8E8 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Character.swift; path = ../Character.swift; sourceTree = "<group>"; };
+		275EC108259CA96F007A2521 /* FireBaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuthManager.swift; sourceTree = "<group>"; };
+		276007CB259F401F003B8B1A /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		276007CF259F7628003B8B1A /* BackgroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundViewController.swift; sourceTree = "<group>"; };
+		27679A0C252866E0006984FA /* CharacterListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListVC.swift; sourceTree = "<group>"; };
+		27679A0E252866F0006984FA /* ClassVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassVC.swift; sourceTree = "<group>"; };
+		27679A1025286702006984FA /* RaceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceVC.swift; sourceTree = "<group>"; };
+		27679A12252868E9006984FA /* InfoSelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSelectTableViewCell.swift; sourceTree = "<group>"; };
+		276850C125F947ED008A2C70 /* Spell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spell.swift; sourceTree = "<group>"; };
+		276850C325F9694F008A2C70 /* SpellListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListViewController.swift; sourceTree = "<group>"; };
+		276850C525F96A5F008A2C70 /* SpellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellTableViewCell.swift; sourceTree = "<group>"; };
 		276D23C9252798A400242C8B /* DnD Character Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DnD Character Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		276D23CC252798A400242C8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		276D23CE252798A400242C8B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		276D23D0252798A400242C8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		276D23D0252798A400242C8B /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		276D23D3252798A400242C8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		276D23D6252798A500242C8B /* DnD_Character_Tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DnD_Character_Tracker.xcdatamodel; sourceTree = "<group>"; };
 		276D23D8252798AD00242C8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		276D23DB252798AD00242C8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		276D23DD252798AD00242C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		276E023625FEB9820079517D /* AllCharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCharactersViewController.swift; sourceTree = "<group>"; };
+		276E023925FEBB210079517D /* AllCharactersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCharactersTableViewCell.swift; sourceTree = "<group>"; };
+		278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoTableViewController.swift; sourceTree = "<group>"; };
+		27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +87,80 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E976D36914D9207511DD8A5 /* Pods_DnD_Character_Tracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24ADE115451CA1A0F238E7EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				01B8FBA4C903CD898BC56C39 /* Pods_DnD_Character_Tracker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		273BD60625A5E16300270C7A /* Dice */ = {
+			isa = PBXGroup;
+			children = (
+				270A08F925A48165006B3D57 /* DiceRollViewController.swift */,
+				270A08FF25A49B49006B3D57 /* DiceRollCollectionViewCell.swift */,
+			);
+			path = Dice;
+			sourceTree = "<group>";
+		};
+		273BD60725A5E1B600270C7A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				273BD60425A5DF8300270C7A /* CustomButton.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		273BD60825A5E1D800270C7A /* data structure */ = {
+			isa = PBXGroup;
+			children = (
+				276850C125F947ED008A2C70 /* Spell.swift */,
+				275E3A78259DD0FB0045E8E8 /* Character.swift */,
+			);
+			path = "data structure";
+			sourceTree = "<group>";
+		};
+		275EC10A259CC104007A2521 /* autentificare */ = {
+			isa = PBXGroup;
+			children = (
+				2757D95A259C97E600CFF270 /* LogInViewController.swift */,
+				275EC108259CA96F007A2521 /* FireBaseAuthManager.swift */,
+				2757D958259C8C5B00CFF270 /* StartUpViewController.swift */,
+				2757D95C259CA0C100CFF270 /* SignUpViewController.swift */,
+			);
+			path = autentificare;
+			sourceTree = "<group>";
+		};
+		276007CA259F3824003B8B1A /* character creation */ = {
+			isa = PBXGroup;
+			children = (
+				276007CB259F401F003B8B1A /* StatsViewController.swift */,
+				27679A12252868E9006984FA /* InfoSelectTableViewCell.swift */,
+				273BD60925A6558500270C7A /* ClassInfoTableViewCell.swift */,
+				276007CF259F7628003B8B1A /* BackgroundViewController.swift */,
+				27679A0E252866F0006984FA /* ClassVC.swift */,
+				27679A1025286702006984FA /* RaceVC.swift */,
+				275391ED25A9F74D00260440 /* BackgroundTableViewCell.swift */,
+			);
+			name = "character creation";
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		276D23C0252798A400242C8B = {
 			isa = PBXGroup;
 			children = (
 				276D23CB252798A400242C8B /* DnD Character Tracker */,
 				276D23CA252798A400242C8B /* Products */,
+				A0C2FC1D23951C28BF03D4CF /* Pods */,
+				24ADE115451CA1A0F238E7EB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,9 +175,16 @@
 		276D23CB252798A400242C8B /* DnD Character Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				276E023825FEB9CD0079517D /* database */,
+				27EB5D2B25AE31B600087983 /* navigation */,
+				273BD60825A5E1D800270C7A /* data structure */,
+				273BD60725A5E1B600270C7A /* UI */,
+				273BD60625A5E16300270C7A /* Dice */,
+				276007CA259F3824003B8B1A /* character creation */,
+				275EC10A259CC104007A2521 /* autentificare */,
+				2757D95E259CA65100CFF270 /* GoogleService-Info.plist */,
 				276D23CC252798A400242C8B /* AppDelegate.swift */,
 				276D23CE252798A400242C8B /* SceneDelegate.swift */,
-				276D23D0252798A400242C8B /* ViewController.swift */,
 				276D23D2252798A400242C8B /* Main.storyboard */,
 				276D23D8252798AD00242C8B /* Assets.xcassets */,
 				276D23DA252798AD00242C8B /* LaunchScreen.storyboard */,
@@ -70,6 +194,39 @@
 			path = "DnD Character Tracker";
 			sourceTree = "<group>";
 		};
+		276E023825FEB9CD0079517D /* database */ = {
+			isa = PBXGroup;
+			children = (
+				278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */,
+				276E023625FEB9820079517D /* AllCharactersViewController.swift */,
+				276E023925FEBB210079517D /* AllCharactersTableViewCell.swift */,
+				276850C325F9694F008A2C70 /* SpellListViewController.swift */,
+				276850C525F96A5F008A2C70 /* SpellTableViewCell.swift */,
+				275391EF25AB96EB00260440 /* CharacterListTableViewCell.swift */,
+				27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */,
+			);
+			path = database;
+			sourceTree = "<group>";
+		};
+		27EB5D2B25AE31B600087983 /* navigation */ = {
+			isa = PBXGroup;
+			children = (
+				276D23D0252798A400242C8B /* NavigationViewController.swift */,
+				27679A0C252866E0006984FA /* CharacterListVC.swift */,
+			);
+			name = navigation;
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
+		A0C2FC1D23951C28BF03D4CF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0A8E89DE57B4B224EF4C5BE4 /* Pods-DnD Character Tracker.debug.xcconfig */,
+				19F05F94CB22FF2F7D69D462 /* Pods-DnD Character Tracker.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +234,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 276D23E0252798AD00242C8B /* Build configuration list for PBXNativeTarget "DnD Character Tracker" */;
 			buildPhases = (
+				E2A888E933A21A18667DF7F8 /* [CP] Check Pods Manifest.lock */,
 				276D23C5252798A400242C8B /* Sources */,
 				276D23C6252798A400242C8B /* Frameworks */,
 				276D23C7252798A400242C8B /* Resources */,
+				9D30B1298D6FFF43BBEC3AA2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				276D23DC252798AD00242C8B /* LaunchScreen.storyboard in Resources */,
+				2757D95F259CA65100CFF270 /* GoogleService-Info.plist in Resources */,
 				276D23D9252798AD00242C8B /* Assets.xcassets in Resources */,
 				276D23D4252798A400242C8B /* Main.storyboard in Resources */,
 			);
@@ -136,15 +296,81 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9D30B1298D6FFF43BBEC3AA2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DnD Character Tracker/Pods-DnD Character Tracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DnD Character Tracker/Pods-DnD Character Tracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DnD Character Tracker/Pods-DnD Character Tracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2A888E933A21A18667DF7F8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DnD Character Tracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		276D23C5252798A400242C8B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				276D23D1252798A400242C8B /* ViewController.swift in Sources */,
+				276850C625F96A60008A2C70 /* SpellTableViewCell.swift in Sources */,
+				275E3A79259DD0FB0045E8E8 /* Character.swift in Sources */,
+				2757D95D259CA0C100CFF270 /* SignUpViewController.swift in Sources */,
+				273BD60525A5DF8300270C7A /* CustomButton.swift in Sources */,
+				27679A1125286702006984FA /* RaceVC.swift in Sources */,
+				275EC109259CA96F007A2521 /* FireBaseAuthManager.swift in Sources */,
+				270A08FA25A48165006B3D57 /* DiceRollViewController.swift in Sources */,
+				27EB5D2D25AE63C200087983 /* CharacterProfileViewController.swift in Sources */,
+				276007CC259F401F003B8B1A /* StatsViewController.swift in Sources */,
+				278E79A025F3BFA80058EABF /* GeneralInfoTableViewController.swift in Sources */,
+				276E023A25FEBB210079517D /* AllCharactersTableViewCell.swift in Sources */,
+				276D23D1252798A400242C8B /* NavigationViewController.swift in Sources */,
+				2757D959259C8C5B00CFF270 /* StartUpViewController.swift in Sources */,
+				27679A0F252866F0006984FA /* ClassVC.swift in Sources */,
+				270A090025A49B49006B3D57 /* DiceRollCollectionViewCell.swift in Sources */,
+				275391F025AB96EB00260440 /* CharacterListTableViewCell.swift in Sources */,
+				276850C225F947ED008A2C70 /* Spell.swift in Sources */,
+				275391EE25A9F74D00260440 /* BackgroundTableViewCell.swift in Sources */,
+				27679A0D252866E0006984FA /* CharacterListVC.swift in Sources */,
 				276D23CD252798A400242C8B /* AppDelegate.swift in Sources */,
 				276D23CF252798A400242C8B /* SceneDelegate.swift in Sources */,
+				273BD60A25A655BC00270C7A /* ClassInfoTableViewCell.swift in Sources */,
 				276D23D7252798A500242C8B /* DnD_Character_Tracker.xcdatamodeld in Sources */,
+				276007D0259F7628003B8B1A /* BackgroundViewController.swift in Sources */,
+				276E023725FEB9820079517D /* AllCharactersViewController.swift in Sources */,
+				2757D95B259C97E600CFF270 /* LogInViewController.swift in Sources */,
+				27679A13252868E9006984FA /* InfoSelectTableViewCell.swift in Sources */,
+				276850C425F9694F008A2C70 /* SpellListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +512,7 @@
 		};
 		276D23E1252798AD00242C8B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A8E89DE57B4B224EF4C5BE4 /* Pods-DnD Character Tracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -295,7 +522,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ibojinca.DnD-Character-Tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ibojinca.DnD-Character-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -304,6 +531,7 @@
 		};
 		276D23E2252798AD00242C8B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19F05F94CB22FF2F7D69D462 /* Pods-DnD Character Tracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -313,7 +541,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ibojinca.DnD-Character-Tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ibojinca.DnD-Character-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

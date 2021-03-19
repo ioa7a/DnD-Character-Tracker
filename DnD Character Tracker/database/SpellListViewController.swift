@@ -17,10 +17,13 @@ class SpellListViewController: UIViewController, UITableViewDelegate, UITableVie
     var expandCell: Bool = false
     var indexOfExpandedCell: Int = -1
     @IBOutlet weak var classPickerView: UIPickerView!
-    var pickerDataSource: [String] = ["Any", "Bard", "Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Warlock", "Wizard"]
+    var classPickerDataSource: [String] = ["Any Class", "Bard", "Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Warlock", "Wizard"]
+    var levelPickerDataSource: [String] = ["Any Level", "Cantrip", "Level 1", "Level 2",
+                                           "Level 3", "Level 4", "Level 5", "Level 6", "Level 7", "Level 8", "Level 9"]
     var textFilter: String = ""
     var dataSource: [Spell] = []
-    var filteredClass: String = "Any"
+    var filteredClass: String = "Any Class"
+    var filteredLevel: String = "Any Level"
     @IBOutlet weak var filterButton: UIButton!
     
     
@@ -59,9 +62,9 @@ class SpellListViewController: UIViewController, UITableViewDelegate, UITableVie
                         let higher_level =  result?["higher_level"] as! String
                         let level =  result?["level"] as! String
                         let casting_time =  result?["casting_time"] as! String
-                        if (name.lowercased().contains(self.textFilter.lowercased()) || self.textFilter == "") && (dndClass.lowercased().contains(self.filteredClass.lowercased()) || self.filteredClass == "Any") {
+                        if (name.lowercased().contains(self.textFilter.lowercased()) || self.textFilter == "") && (dndClass.lowercased().contains(self.filteredClass.lowercased()) || self.filteredClass == "Any Class") && (self.filteredLevel == "Any Level" || level.lowercased().contains(self.filteredLevel.lowercased())) {
                             let spell = Spell(name: name, desc: desc, higher_level: higher_level, range: range, components: components, material: materials, duration: duration, casting_time: casting_time, level: level,  dnd_class: dndClass)
-                          //  let spell = Spell(name: name , desc: desc, dnd_class: dndClass)
+                            //  let spell = Spell(name: name , desc: desc, dnd_class: dndClass)
                             self.dataSource.append(spell)
                             
                         }
@@ -99,11 +102,11 @@ class SpellListViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if expandCell && indexPath.row == indexOfExpandedCell {
             if let cell = spellTableView.cellForRow(at: indexPath) as? SpellTableViewCell {
-                return cell.descriptionLabel.bounds.size.height + 70.0
+                return cell.descriptionLabel.bounds.size.height + 80.0
             }
             return 300.0
         }
-        return 60.0
+        return 70.0
     }
     
     
@@ -116,37 +119,55 @@ class SpellListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerDataSource.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerDataSource[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        filteredClass = pickerDataSource[row]
-    }
-    
-    
-    @IBAction func didPressFilterButton(_ sender: Any) {
-        textFilter = searchBar.text ?? ""
-
-        dataSource = []
-        spellTableView.reloadData()
-        
-        fetchData { (dict, error) in
-            DispatchQueue.main.async {
-                self.dataSource.sort(by: {$0.name < $1.name} )
-                self.dataSource.removeDuplicates()
-                self.spellTableView.reloadData()
-            }
+        if component == 0 {
+            return classPickerDataSource.count }
+        else {
+            return levelPickerDataSource.count
         }
     }
     
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if component == 0 {
+            return classPickerDataSource[row] }
+        else {
+            return levelPickerDataSource[row]
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component == 0 {
+            filteredClass = classPickerDataSource[row]
+        }
+        else {
+            if row > 1 {
+                filteredLevel = levelPickerDataSource[row].components(separatedBy: " ")[1]
+            } else {
+                filteredLevel = levelPickerDataSource[row]
+            }
+        }
+     
+    }
+
+
+@IBAction func didPressFilterButton(_ sender: Any) {
+    textFilter = searchBar.text ?? ""
+    
+    dataSource = []
+    spellTableView.reloadData()
+    
+    fetchData { (dict, error) in
+        DispatchQueue.main.async {
+            self.dataSource.sort(by: {$0.name < $1.name} )
+            self.dataSource.removeDuplicates()
+            self.spellTableView.reloadData()
+        }
+    }
+}
+
 }
 
 extension Array where Element: Equatable {

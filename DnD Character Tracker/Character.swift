@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Character {
+struct Character {
     var user: String = ""
     var name: String = ""
     var race: String = ""
@@ -85,38 +85,12 @@ class Stats {
     }
 }
 
-enum SpellSchool {
-    case Conjuration
-    case Necromancy
-    case Evocation
-    case Abjuration
-    case Transmutation
-    case Divination
-    case Enchantment
-    case Illusion
-}
 
-enum DamageType {
-    case Slashing
-    case Piercing
-    case Bludgeoning
-    case Cold
-    case Poison
-    case Acid
-    case Psychic
-    case Fire
-    case Necrotic
-    case Radiant
-    case Force
-    case Thunder
-    case Lightning
-}
-
-struct Results: Codable {
-    var index: String?
-    var name: String?
-    var url: String?
-}
+//struct Results: Codable {
+//    var index: String?
+//    var name: String?
+//    var url: String?
+//}
 
 class ClassDetails  {
     var name: String?

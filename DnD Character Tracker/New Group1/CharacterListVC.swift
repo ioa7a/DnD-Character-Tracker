@@ -46,7 +46,6 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     override func viewDidAppear(_ animated: Bool){
-        //  super.viewDidAppear(true)
         self.characterListTableView.reloadData()
     }
     
@@ -73,6 +72,7 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CharacterProfileVC") as! CharacterProfileViewController
+        vc.isOwnCharacter = true
         vc.raceName = character[indexPath.row].race
         vc.className = character[indexPath.row].charClass
         vc.level = Int(character[indexPath.row].level) ?? 1

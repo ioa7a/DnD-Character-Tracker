@@ -14,10 +14,9 @@ class CharacterProfileViewController: UIViewController {
     var ref: DatabaseReference = Database.database().reference()
     var charNumber: Int = 0
     
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
-    @IBOutlet weak var raceLabel: UILabel!
-    @IBOutlet weak var classLabel: UILabel!
+    @IBOutlet weak var characterInfoLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var progressbar: UIProgressView!
     @IBOutlet weak var expToAddTextField: UITextField!
     @IBOutlet weak var addExpButton: UIButton!
@@ -25,8 +24,8 @@ class CharacterProfileViewController: UIViewController {
     @IBOutlet weak var levelUpButton: UIButton!
     @IBOutlet var abilityScoreLabel: [UILabel]!
     @IBOutlet var abilityModifierLabel: [UILabel]!
+    @IBOutlet weak var messageUserButton: CustomButton!
     
-    @IBOutlet weak var backgroundLabel: UILabel!
     
     
     var experienceToLevelUp: [Int] = [300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000]
@@ -36,13 +35,12 @@ class CharacterProfileViewController: UIViewController {
     var raceName: String = ""
     var stats: [String: String] = [:]
     var background: String = ""
+    var isOwnCharacter: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        classLabel.text = className
-        raceLabel.text = raceName
-        levelLabel.text = "\(level)"
-        backgroundLabel.text = "Background: \(background)"
+        characterInfoLabel.text = "\(raceName) \(className), \(background) Background"
+        levelLabel.text = "Level \(level)"
         currentExperienceLabel.text = "\(currentExp)/\(experienceToLevelUp[level-1])"
         
         progressbar.progress = Float(currentExp)/Float(experienceToLevelUp[level-1])
@@ -55,6 +53,14 @@ class CharacterProfileViewController: UIViewController {
         abilityScoreLabel[3].text = stats["INT"]
         abilityScoreLabel[4].text = stats["STR"]
         abilityScoreLabel[5].text = stats["WIS"]
+        
+        currentExperienceLabel.isHidden = !isOwnCharacter
+        levelUpButton.isHidden = !isOwnCharacter
+        addExpButton.isHidden = !isOwnCharacter
+        progressbar.isHidden = !isOwnCharacter
+        expToAddTextField.isHidden = !isOwnCharacter
+        messageUserButton.isHidden = isOwnCharacter
+        
     }
     
     @IBAction func didPressAddExp(_ sender: Any) {
@@ -76,8 +82,8 @@ class CharacterProfileViewController: UIViewController {
         let user = Auth.auth().currentUser
         let userName = user?.email!.components(separatedBy: "@")
         levelUpButton.isEnabled = false
-        level = Int(levelLabel.text!) ?? 1
-        levelLabel.text = String(level + 1)
+        level = Int(levelLabel.text!.components(separatedBy: " ")[1]) ?? 1
+        levelLabel.text = "Level " + String(level + 1)
         
         self.ref.child("users").child(userName![0]).updateChildValues(["\(self.charNumber)/level": "\(self.level + 1)"])
         self.ref.child("users").child(userName![0]).updateChildValues(["\(self.charNumber)/exp": "\(self.currentExp)"])

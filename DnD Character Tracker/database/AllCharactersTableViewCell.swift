@@ -11,10 +11,8 @@ import FirebaseDatabase
 
 class AllCharactersTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var characterName: UILabel!
-    @IBOutlet weak var characterInfo: UILabel!
-    @IBOutlet weak var messageUserButton: UIButton!
-    
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var characterInfo: UILabel!    
     
     override func awakeFromNib() {
         super.awakeFromNib()

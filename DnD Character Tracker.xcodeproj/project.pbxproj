@@ -17,6 +17,7 @@
 		2757D95B259C97E600CFF270 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757D95A259C97E600CFF270 /* LogInViewController.swift */; };
 		2757D95D259CA0C100CFF270 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757D95C259CA0C100CFF270 /* SignUpViewController.swift */; };
 		2757D95F259CA65100CFF270 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2757D95E259CA65100CFF270 /* GoogleService-Info.plist */; };
+		275A9A9D2604EC9C00552912 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275A9A9C2604EC9C00552912 /* ChatViewController.swift */; };
 		275E3A79259DD0FB0045E8E8 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E3A78259DD0FB0045E8E8 /* Character.swift */; };
 		275EC109259CA96F007A2521 /* FireBaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275EC108259CA96F007A2521 /* FireBaseAuthManager.swift */; };
 		276007CC259F401F003B8B1A /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276007CB259F401F003B8B1A /* StatsViewController.swift */; };
@@ -39,6 +40,7 @@
 		276E023A25FEBB210079517D /* AllCharactersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276E023925FEBB210079517D /* AllCharactersTableViewCell.swift */; };
 		278E79A025F3BFA80058EABF /* GeneralInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */; };
 		27EB5D2D25AE63C200087983 /* CharacterProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */; };
+		27FCBAAA260B5C460055A366 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FCBAA9260B5C460055A366 /* Chat.swift */; };
 		5E976D36914D9207511DD8A5 /* Pods_DnD_Character_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B8FBA4C903CD898BC56C39 /* Pods_DnD_Character_Tracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +58,7 @@
 		2757D95A259C97E600CFF270 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		2757D95C259CA0C100CFF270 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		2757D95E259CA65100CFF270 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		275A9A9C2604EC9C00552912 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		275E3A78259DD0FB0045E8E8 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Character.swift; path = ../Character.swift; sourceTree = "<group>"; };
 		275EC108259CA96F007A2521 /* FireBaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuthManager.swift; sourceTree = "<group>"; };
 		276007CB259F401F003B8B1A /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 		276E023925FEBB210079517D /* AllCharactersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCharactersTableViewCell.swift; sourceTree = "<group>"; };
 		278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoTableViewController.swift; sourceTree = "<group>"; };
 		27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfileViewController.swift; sourceTree = "<group>"; };
+		27FCBAA9260B5C460055A366 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,7 @@
 		273BD60825A5E1D800270C7A /* data structure */ = {
 			isa = PBXGroup;
 			children = (
+				27FCBAA9260B5C460055A366 /* Chat.swift */,
 				276850C125F947ED008A2C70 /* Spell.swift */,
 				275E3A78259DD0FB0045E8E8 /* Character.swift */,
 			);
@@ -175,6 +180,7 @@
 		276D23CB252798A400242C8B /* DnD Character Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				275A9A9C2604EC9C00552912 /* ChatViewController.swift */,
 				276E023825FEB9CD0079517D /* database */,
 				27EB5D2B25AE31B600087983 /* navigation */,
 				273BD60825A5E1D800270C7A /* data structure */,
@@ -356,6 +362,7 @@
 				276E023A25FEBB210079517D /* AllCharactersTableViewCell.swift in Sources */,
 				276D23D1252798A400242C8B /* NavigationViewController.swift in Sources */,
 				2757D959259C8C5B00CFF270 /* StartUpViewController.swift in Sources */,
+				27FCBAAA260B5C460055A366 /* Chat.swift in Sources */,
 				27679A0F252866F0006984FA /* ClassVC.swift in Sources */,
 				270A090025A49B49006B3D57 /* DiceRollCollectionViewCell.swift in Sources */,
 				275391F025AB96EB00260440 /* CharacterListTableViewCell.swift in Sources */,
@@ -370,6 +377,7 @@
 				276E023725FEB9820079517D /* AllCharactersViewController.swift in Sources */,
 				2757D95B259C97E600CFF270 /* LogInViewController.swift in Sources */,
 				27679A13252868E9006984FA /* InfoSelectTableViewCell.swift in Sources */,
+				275A9A9D2604EC9C00552912 /* ChatViewController.swift in Sources */,
 				276850C425F9694F008A2C70 /* SpellListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

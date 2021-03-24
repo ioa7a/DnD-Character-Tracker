@@ -13,6 +13,7 @@ class AllCharactersTableViewCell: UITableViewCell {
 
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var characterInfo: UILabel!    
+    @IBOutlet weak var messageUserButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

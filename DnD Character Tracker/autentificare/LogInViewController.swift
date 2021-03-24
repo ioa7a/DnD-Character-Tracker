@@ -47,7 +47,7 @@ class LogViewController: UIViewController, UITextFieldDelegate {
                 case .invalidEmail:
                     self.message = "Error: Indicates the email address is malformed."
                 default:
-                    self.message = "Error: Something went wrong"
+                    self.message = "Error: Incorrect username or password."
                 let alert = UIAlertController(title: nil, message: self.message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel))
                 self.present(alert, animated: true, completion: nil)

@@ -42,7 +42,7 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
             print(error.localizedDescription)
         }
         
-        for i in 1...3 {
+        for i in 1...12 {
             ref.child("classes").child(String(i)).observeSingleEvent(of: .value, with: { (snapshot) in
                 let value = snapshot.value as? NSDictionary
                 let name = value?["name"] as? String
@@ -113,7 +113,10 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if expandCell && indexPath.row == indexOfExpandedCell {
-            return 300.0
+        if let cell = classTableView.cellForRow(at: indexPath) as? ClassInfoTableViewCell {
+            return cell.armorLabel.bounds.size.height*5.0 + 65.0
+               }
+               return 300.0
         }
         return 65.0
     }

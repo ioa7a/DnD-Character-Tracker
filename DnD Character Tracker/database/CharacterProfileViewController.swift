@@ -24,8 +24,6 @@ class CharacterProfileViewController: UIViewController {
     @IBOutlet weak var levelUpButton: UIButton!
     @IBOutlet var abilityScoreLabel: [UILabel]!
     @IBOutlet var abilityModifierLabel: [UILabel]!
-    @IBOutlet weak var messageUserButton: CustomButton!
-    
     
     
     var experienceToLevelUp: [Int] = [300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000]
@@ -59,8 +57,6 @@ class CharacterProfileViewController: UIViewController {
         addExpButton.isHidden = !isOwnCharacter
         progressbar.isHidden = !isOwnCharacter
         expToAddTextField.isHidden = !isOwnCharacter
-        messageUserButton.isHidden = isOwnCharacter
-        
     }
     
     @IBAction func didPressAddExp(_ sender: Any) {
@@ -91,7 +87,6 @@ class CharacterProfileViewController: UIViewController {
         
         if(level < 20) {
             currentExp = (currentExp-experienceToLevelUp[level-1]>0) ? currentExp-experienceToLevelUp[level-1] : 0
-           // totalExp = experienceToLevelUp[level]
             progressbar.progress = Float(currentExp)/Float(experienceToLevelUp[level-1])
             currentExperienceLabel.text = "\(currentExp)/\(experienceToLevelUp[level-1])"
         } else {
@@ -103,5 +98,11 @@ class CharacterProfileViewController: UIViewController {
     @IBAction func didPressBackButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "mesageUserSegue", let dest = segue.destination as? ChatViewController {
+//            dest.user2Name = secondUserName
+//        }
+//    }
     
 }

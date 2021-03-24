@@ -73,12 +73,12 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CharacterProfileVC") as! CharacterProfileViewController
         vc.isOwnCharacter = true
-        vc.raceName = character[indexPath.row].race
-        vc.className = character[indexPath.row].charClass
+        vc.raceName = character[indexPath.row].race.capitalized
+        vc.className = character[indexPath.row].charClass.capitalized
         vc.level = Int(character[indexPath.row].level) ?? 1
         vc.stats = character[indexPath.row].stats ?? [:]
         vc.charNumber = indexPath.row + 1
-        vc.background = character[indexPath.row].background
+        vc.background = character[indexPath.row].background.capitalized
         vc.currentExp = Int(character[indexPath.row].currentExp) ?? 0
         present(vc, animated: true, completion: nil)
     }

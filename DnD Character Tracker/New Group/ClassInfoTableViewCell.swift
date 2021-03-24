@@ -18,7 +18,8 @@ class ClassInfoTableViewCell: UITableViewCell {
     @IBOutlet weak var weaponsLabel: UILabel!
     @IBOutlet weak var toolsLabel: UILabel!
     var shouldShowInfo: Bool = false
-
+    @IBOutlet weak var expandedStackView: UIStackView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

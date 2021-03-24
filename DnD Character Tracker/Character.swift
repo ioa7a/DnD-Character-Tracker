@@ -17,17 +17,17 @@ struct Character {
     var stats: [String:String]?
     var level: String = "1"
     var currentExp: String = "0"
-    
-    init(user: String, name: String, race: String, charClass: String, background: String, stats: [String: String], level: String, currentExp: String){
-        self.user = user
- //       self.name = name
-        self.race = race
-        self.charClass = charClass
-        self.background = background
-        self.stats = stats
-        self.level = level
-        self.currentExp = currentExp
-    }
+//    
+//    init(user: String, name: String, race: String, charClass: String, background: String, stats: [String: String], level: String, currentExp: String){
+//        self.user = user
+// //       self.name = name
+//        self.race = race
+//        self.charClass = charClass
+//        self.background = background
+//        self.stats = stats
+//        self.level = level
+//        self.currentExp = currentExp
+//    }
 }
 
 class Race {
@@ -52,18 +52,6 @@ class Race {
     }
 }
 
-//class CharacterClass {
-//    var name: String?
-//    var description: String?
-//    var spellList: [Spell] = []
-//
-//
-//    init(name: String, description: String) {
-//           self.name = name
-//           self.description = description
-//       }
-//    }
-
 class Stats {
     var CHA: Int = 0
     var CON: Int = 0
@@ -85,12 +73,6 @@ class Stats {
     }
 }
 
-
-//struct Results: Codable {
-//    var index: String?
-//    var name: String?
-//    var url: String?
-//}
 
 class ClassDetails  {
     var name: String?

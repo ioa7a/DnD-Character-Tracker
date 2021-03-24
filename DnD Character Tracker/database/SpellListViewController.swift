@@ -64,7 +64,6 @@ class SpellListViewController: UIViewController, UITableViewDelegate, UITableVie
                         let casting_time =  result?["casting_time"] as! String
                         if (name.lowercased().contains(self.textFilter.lowercased()) || self.textFilter == "") && (dndClass.lowercased().contains(self.filteredClass.lowercased()) || self.filteredClass == "Any Class") && (self.filteredLevel == "Any Level" || level.lowercased().contains(self.filteredLevel.lowercased())) {
                             let spell = Spell(name: name, desc: desc, higher_level: higher_level, range: range, components: components, material: materials, duration: duration, casting_time: casting_time, level: level,  dnd_class: dndClass)
-                            //  let spell = Spell(name: name , desc: desc, dnd_class: dndClass)
                             self.dataSource.append(spell)
                             
                         }

@@ -10,6 +10,7 @@ import UIKit
 import FirebaseDatabase
 import Firebase
 
+
 class AllCharactersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -107,6 +108,7 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
           let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatVC") as! ChatViewController
         vc.user2Name = allCharactersList[button.tag].user
         vc.user1Name = currentUserName
+        present(vc, animated: true)
      }
      
     

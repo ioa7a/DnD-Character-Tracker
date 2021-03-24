@@ -43,5 +43,11 @@ class NavigationViewController: UIViewController {
           }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToChatIndex", let vc = segue.destination as? ChatIndexViewController {
+            vc.userName = username
+        }
+    }
+    
 }
 

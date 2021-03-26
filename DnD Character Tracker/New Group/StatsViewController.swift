@@ -249,16 +249,15 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         guard let totalScore = Int(pointsUsedLabel.text!) else { return }
         if totalScore == 27 {
             let user = Auth.auth().currentUser
-            let userName = user?.email!.components(separatedBy: "@")
             var stat : [String: String] = [:]
             for i in 0 ..< abilityButton.count {
                 stat[abilityButton[i].titleLabel!.text!] = totalAbilityScoreLabel[i].text
             }
-            ref.child("users").child(userName![0]).observeSingleEvent(of: .value, with: { (snapshot) in
+            ref.child("users").child(user!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
                 let value = snapshot.value as? NSDictionary
                 self.charNumber = Int(value?["character nr"] as! String) ?? 0
-                self.ref.child("users").child(userName![0]).updateChildValues(["\(self.charNumber+1)/stats" : stat, "\(self.charNumber+1)/level": "1"])
-                self.ref.child("users").child(userName![0]).updateChildValues(["character nr" : "\(self.charNumber+1)"])
+                self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/stats" : stat, "\(self.charNumber+1)/level": "1"])
+                self.ref.child("users").child(user!.uid).updateChildValues(["character nr" : "\(self.charNumber+1)"])
             })
             { (error) in
                 print(error.localizedDescription)

@@ -31,7 +31,6 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
-        
         loadChat()
         
     }
@@ -59,7 +58,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
         
         //Fetch all the chats which has current user in it
         let db = Firestore.firestore().collection("Chats")
-            .whereField("users", arrayContains: self.user1Name)
+            .whereField("users", arrayContains: self.user1Name ?? "unknown user")
         
         
         db.getDocuments { (chatQuerySnap, error) in
@@ -190,18 +189,39 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
     
     
     // MARK: - MessagesLayoutDelegate
+    
+//    func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+//        return CGSize(width: 100.0, height: 20.0)
+//    }
+    
+    func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 20.0
+    }
+    
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         avatarView.isHidden = true
     }
     func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
-        return CGSize(width: 0.0, height: 0.0)
+        return .zero
+    }
+    
+    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 20.0
     }
     
     func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-         return isFromCurrentSender(message: message) ? NSAttributedString(string: user1Name ?? "Unknown") : NSAttributedString(string: user2Name ?? "Unknown")
+        let myString = (isFromCurrentSender(message: message) ? user1Name ?? "Unknown" :  user2Name ?? "Unknown")
+        let range = (myString as NSString).range(of: myString)
+
+        let mutableAttributedString = NSMutableAttributedString.init(string: myString)
+        mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: (isFromCurrentSender(message: message) ? UIColor.systemBlue : UIColor.systemGray2), range: range)
+        mutableAttributedString.addAttribute(NSAttributedString.Key.strokeWidth, value: 2.5, range: range)
+        
+        
+        return mutableAttributedString
     }
 
-    
+ 
     // MARK: - MessagesDisplayDelegate
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         return isFromCurrentSender(message: message) ? .systemBlue: .systemGray2

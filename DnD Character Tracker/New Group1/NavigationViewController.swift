@@ -18,15 +18,15 @@ class NavigationViewController: UIViewController {
     @IBOutlet weak var welcomeLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let emailName = user?.email!.components(separatedBy: "@"){
-            ref.child("users").child(emailName[0]).observeSingleEvent(of: .value, with: { (snapshot) in
+
+            ref.child("users").child(user!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
                 let value = snapshot.value as? NSDictionary
                 self.username = value?["username"] as? String ?? "user"
                 self.welcomeLabel.text =  "Welcome " + self.username + "!"
             }) { (error) in
                 print(error.localizedDescription)
             }
-        }
+        
         
     }
     

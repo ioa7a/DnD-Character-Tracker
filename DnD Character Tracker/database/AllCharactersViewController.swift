@@ -40,15 +40,21 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
         allCharactersList = []
         userList = []
         characterTableView.reloadData()
-        let emailName = user?.email!.components(separatedBy: "@")
         ref.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
              let value = snapshot.value as? NSDictionary
-             for (key, _) in value! {
+             for (key, val) in value! {
                  if let stringKey = key as? String {
-                     if stringKey != emailName?[0] {
-                         self.userList.append(stringKey)
-                     } else {
-                         self.currentUserName = stringKey
+                    if stringKey != self.user!.uid {
+                        self.userList.append(stringKey)
+//                        if let dictValue = val as? NSDictionary {
+//                            self.userList.append(dictValue["username"] as? String ?? "user")
+//                                               }
+                        
+                    }
+                    else {
+                        if let dictValue = val as? NSDictionary {
+                            self.currentUserName = dictValue["username"] as? String ?? "user"
+                        }
                      }
                  }
              }
@@ -94,7 +100,7 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
             cell.userNameLabel.text = "User: " + allCharactersList[indexPath.row].user
             cell.characterInfo.text = "Level \(allCharactersList[indexPath.row].level) \(allCharactersList[indexPath.row].race) \(allCharactersList[indexPath.row].charClass)\n"
             let stats = allCharactersList[indexPath.row].stats
-            cell.characterInfo.text?.append("CHA: \(stats?["CHA"] ?? "0") CON: \(stats?["CON"] ?? "0") DEX: \(stats?["DEX"] ?? "0") INT: \(stats?["INT"] ?? "0") STR: \(stats?["STR"] ?? "0") WIS: \(stats?["WIS"] ?? "0")")
+            cell.characterInfo.text?.append("CHA: \(stats?["CHA"] ?? "0")/CON: \(stats?["CON"] ?? "0")/DEX: \(stats?["DEX"] ?? "0")/INT: \(stats?["INT"] ?? "0")/STR: \(stats?["STR"] ?? "0")/WIS: \(stats?["WIS"] ?? "0")")
             cell.messageUserButton.addTarget(self, action: #selector(self.messageUser(button:)), for: .touchUpInside)
             
             return cell

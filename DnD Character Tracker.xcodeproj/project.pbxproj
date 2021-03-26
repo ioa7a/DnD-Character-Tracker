@@ -83,7 +83,7 @@
 		276E023625FEB9820079517D /* AllCharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCharactersViewController.swift; sourceTree = "<group>"; };
 		276E023925FEBB210079517D /* AllCharactersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCharactersTableViewCell.swift; sourceTree = "<group>"; };
 		278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoTableViewController.swift; sourceTree = "<group>"; };
-		27ACF66B260BCDFA002DF95B /* ChatIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatIndexViewController.swift; path = "DnD Character Tracker/ChatIndexViewController.swift"; sourceTree = "<group>"; };
+		27ACF66B260BCDFA002DF95B /* ChatIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatIndexViewController.swift; sourceTree = "<group>"; };
 		27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfileViewController.swift; sourceTree = "<group>"; };
 		27FCBAA9260B5C460055A366 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,10 +161,18 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		2761BA9F260E1A9300A616FF /* chat */ = {
+			isa = PBXGroup;
+			children = (
+				275A9A9C2604EC9C00552912 /* ChatViewController.swift */,
+				27ACF66B260BCDFA002DF95B /* ChatIndexViewController.swift */,
+			);
+			path = chat;
+			sourceTree = "<group>";
+		};
 		276D23C0252798A400242C8B = {
 			isa = PBXGroup;
 			children = (
-				27ACF66B260BCDFA002DF95B /* ChatIndexViewController.swift */,
 				276D23CB252798A400242C8B /* DnD Character Tracker */,
 				276D23CA252798A400242C8B /* Products */,
 				A0C2FC1D23951C28BF03D4CF /* Pods */,
@@ -183,7 +191,7 @@
 		276D23CB252798A400242C8B /* DnD Character Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				275A9A9C2604EC9C00552912 /* ChatViewController.swift */,
+				2761BA9F260E1A9300A616FF /* chat */,
 				276E023825FEB9CD0079517D /* database */,
 				27EB5D2B25AE31B600087983 /* navigation */,
 				273BD60825A5E1D800270C7A /* data structure */,

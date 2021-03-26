@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
+import Firebase
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
@@ -48,51 +50,80 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             username = usernameTextField.text
             email = emailTextField.text
             password = passwordTextField.text
+            var availableUser: Bool = true
             
-            let signUpmanager = FirebaseAuthManager()
-            signUpmanager.createUser(email: email!, password: password!) {[weak self] (success) in
-                guard let self = self else { return }
-                var message: String = ""
-                if(success) {
-                    message = "User succesfully created! Please wait..."
-                    self.loginSuccess = true
-                    let userKey = self.email?.components(separatedBy: "@")
-                    self.ref.child("users").child(userKey![0]).setValue(["email": self.email!, "character nr": "0", "username": self.username!])
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                               }
-                } else {
-                    let alert = UIAlertController(title: nil, message: signUpmanager.message, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-                    self.present(alert, animated: true, completion: nil)
-                    self.loginSuccess = false
+            ref.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
+                let value = snapshot.value as? NSDictionary
+                for (_, val) in value! {
+                    if let stringValue = val as? NSDictionary {
+                        if let valUsername = stringValue["username"] as? String {
+                            if valUsername == self.username {
+                                let alert = UIAlertController(title: nil, message: "Username is unavailable.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                                self.present(alert, animated: true, completion: nil)
+                                availableUser = false
+                                break;
+                            } } } }
+                if availableUser {
+                    Auth.auth().createUser(withEmail: self.email!, password: self.password!) {
+                        (authResult, error) in
+                        if let user = authResult?.user{
+                            let uid = user.uid
+                            self.ref.child("users").child(uid).setValue(["email": self.email!, "character nr": "0", "username": self.username!])
+                            let signUpAlert = UIAlertController(title: nil, message: "User succesfully created! Please wait...", preferredStyle: .alert)
+                            signUpAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                            self.present(signUpAlert, animated: true)
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                self.dismiss(animated: true, completion: nil)
+                                                          let vc = self.storyboard?.instantiateViewController(withIdentifier: "loginVC") as! LogViewController
+                                                          self.present(vc, animated: true, completion: nil)
+                            }
+                          
+                        } else {
+                            if let error = error as NSError? {
+                                var errorMessage: String = ""
+                                switch AuthErrorCode(rawValue: error.code) {
+                                case .operationNotAllowed:
+                                    errorMessage = " Error: The given sign-in provider is disabled for this Firebase project. Enable it in the Firebase console, under the sign-in method tab of the Auth section."
+                                case .emailAlreadyInUse:
+                                    errorMessage = "Error: The email address is already in use by another account."
+                                case .invalidEmail:
+                                    errorMessage = "Error: The email address is badly formatted."
+                                case .weakPassword:
+                                    errorMessage = "Error: The password must be 6 characters long or more."
+                                default:
+                                    errorMessage = "Error: \(error.localizedDescription)"
+                                    
+                                    let alert = UIAlertController(title: nil, message: errorMessage, preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                                    self.present(alert, animated: true, completion: nil)
+                                    self.loginSuccess = false
+                                }
+                            }
+                        }
+                    }
                 }
-                let signUpAlert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-                signUpAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self.present(signUpAlert, animated: true)
-                if self.loginSuccess {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    self.dismiss(animated: true, completion: nil)
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "loginVC") as! LogViewController
-                        self.present(vc, animated: true, completion: nil)
-                }
-                }
+            })
+            { (error) in
+                print(error.localizedDescription)
             }
         }
         
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-       textField.resignFirstResponder()
+        textField.resignFirstResponder()
         return true
     }
     
     @IBAction func didPressLogin(_ sender: Any) {
         weak var pvc = self.presentingViewController
         dismiss(animated: true) {
-        pvc?.performSegue(withIdentifier: "goToLogin", sender: nil)
-              }
+            pvc?.performSegue(withIdentifier: "goToLogin", sender: nil)
+        }
     }
-
+    
     
     
 }

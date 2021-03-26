@@ -30,8 +30,8 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         raceTableView.delegate = self
         raceTableView.dataSource = self
         let user = Auth.auth().currentUser
-        let userName = user?.email!.components(separatedBy: "@")
-        ref.child("users").child(userName![0]).observeSingleEvent(of: .value, with: { (snapshot) in
+        let uid = user?.uid
+        ref.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             self.charNumber = Int(value?["character nr"] as! String) ?? 0
         })
@@ -111,8 +111,7 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBAction func didPressNextButton(_ sender: Any) {
         if(didSelectRace){
             let user = Auth.auth().currentUser
-            let userName = user?.email!.components(separatedBy: "@")
-            self.ref.child("users").child(userName![0]).updateChildValues(["\(charNumber+1)/race" : races[raceIndex-1].name!])
+            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/race" : races[raceIndex-1].name!])
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClassSelectVC") as! ClassSelectVC
             vc.raceIndex = raceIndex
             present(vc, animated: true, completion: nil)

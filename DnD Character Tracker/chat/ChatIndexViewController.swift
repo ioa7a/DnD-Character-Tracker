@@ -26,6 +26,7 @@ class ChatIndexViewController: UIViewController, UITableViewDelegate, UITableVie
         noChatsLabel.isHidden = true
         chatIndexTableView.delegate = self
         chatIndexTableView.dataSource = self
+        debugPrint("username is \(userName)")
         let db = Firestore.firestore().collection("Chats")
             .whereField("users", arrayContains: self.userName)
     
@@ -49,36 +50,11 @@ class ChatIndexViewController: UIViewController, UITableViewDelegate, UITableVie
                     for doc in chatQuerySnap!.documents {
                         
                         let chat = Chat(dictionary: doc.data())
-                        if let user = chat?.users[1] {
-                            self.dataSource.append(user)
+                        if let user1 = chat?.users[0], let user2 = chat?.users[1] {
+                            self.dataSource.append(user1 != self.userName ? user1 : user2)
                         }
-                        debugPrint(chat?.users[1] ?? "nope")
                         self.chatIndexTableView.reloadData()
-                        //Get the chat which has user2 id
-//                        if (chat?.users.contains(self.user2Name ?? ""))! {
-//
-//                            self.docReference = doc.reference
-//                            //fetch it's thread collection
-//                            doc.reference.collection("thread")
-//                                .order(by: "created", descending: false)
-//                                .addSnapshotListener(includeMetadataChanges: true, listener: { (threadQuery, error) in
-//                                    if let error = error {
-//                                        print("Error: \(error)")
-//                                        return
-//                                    } else {
-//                                        self.messages.removeAll()
-//                                        for message in threadQuery!.documents {
-//
-//                                            let msg = Message(dictionary: message.data())
-//                                            self.messages.append(msg!)
-//                                            print("Data: \(msg?.content ?? "No message found")")
-//                                        }
-//                                        self.chatIndexTableView.reloadData()
-//                                    }
-//                                })
-//                            return
-//                        } //end of if
-                    } //end of for
+                    }
                 } else {
                     print("Let's hope this error never prints!")
                 }

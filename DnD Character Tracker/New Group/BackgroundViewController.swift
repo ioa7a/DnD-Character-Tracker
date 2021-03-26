@@ -25,8 +25,7 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         bgTableView.dataSource = self
         bgTableView.delegate = self
-        let userName = user?.email!.components(separatedBy: "@")
-               ref.child("users").child(userName![0]).observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("users").child(user!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
                       let value = snapshot.value as? NSDictionary
                       self.charNumber = Int(value?["character nr"] as! String) ?? 0
                   })
@@ -51,8 +50,7 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func didPressNext(_ sender: Any) {
         if didSelectBg {
-             let userName = user?.email!.components(separatedBy: "@")
-            self.ref.child("users").child(userName![0]).updateChildValues(["\(charNumber+1)/background" : selectedBackground!])
+            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/background" : selectedBackground!])
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "StatsVC") as! StatsViewController
             vc.raceIndex = raceIndex
             present(vc, animated: true, completion: nil)

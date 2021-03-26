@@ -16,16 +16,16 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     let user = Auth.auth().currentUser
     var ref: DatabaseReference! = Database.database().reference()
     var character: [Character] = []
-    var username: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let emailName = user?.email!.components(separatedBy: "@")
+        let uid = user?.uid
         characterListTableView.delegate = self
         characterListTableView.dataSource = self
-        ref.child("users").child(emailName![0]).observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("users").child(uid ?? "none").observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let chNr = Int(value?["character nr"] as! String) ?? 0
+            let username = value?["username"] as? String
             if chNr > 0 {
                 for i in 1...chNr {
                     let charData = value?["\(i)"] as? NSDictionary
@@ -35,7 +35,7 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                     let chStats = charData!["stats"] as? [String: String] ?? [:]
                     let chLevel = charData!["level"] as? String ?? "1"
                     let exp = charData!["exp"] as? String ?? "0"
-                    self.character.append(Character(user: emailName![0], name: "", race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp))
+                    self.character.append(Character(user: username ?? "n/a", name: "", race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp))
                 }
             }
             
@@ -87,14 +87,14 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         if editingStyle == .delete {
             let charToDelete = indexPath.row + 1
             var charNr = 0
-            let userName = user?.email!.components(separatedBy: "@")
-            ref.child("users").child(userName![0]).observeSingleEvent(of: .value, with: { (snapshot) in
+            let uid = user?.uid
+            ref.child("users").child(uid ?? "none").observeSingleEvent(of: .value, with: { (snapshot) in
                 let value = snapshot.value as? NSDictionary
                 charNr = Int(value?["character nr"] as! String) ?? 0
                 
                 if charToDelete == charNr {
-                    self.ref.child("users").child(userName![0]).child("\(charNr)").removeValue()
-                    self.ref.child("users").child(userName![0]).updateChildValues(["character nr" : "\(charNr-1)"])
+                    self.ref.child("users").child(uid ?? "none").child("\(charNr)").removeValue()
+                    self.ref.child("users").child(uid ?? "none").updateChildValues(["character nr" : "\(charNr-1)"])
                     self.character.remove(at: charToDelete-1)
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 } else {
@@ -107,19 +107,19 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                             debugPrint(charData1)
                             aux = charData1
                             if let charData2 = value?["\(i+1)"] as? [String : Any] {
-                                self.ref.child("users").child(userName![0]).child("\(i)").updateChildValues(charData2)
+                                self.ref.child("users").child(uid ?? "none").child("\(i)").updateChildValues(charData2)
                                 debugPrint(charData2)
                             } else {
                                 debugPrint("no")
                             }
-                            self.ref.child("users").child(userName![0]).child("\(i+1)").updateChildValues(aux)
+                            self.ref.child("users").child(uid ?? "none").child("\(i+1)").updateChildValues(aux)
                         } else {
                             debugPrint("can't show char \(i)")
                         }
                         
                     }
-                    self.ref.child("users").child(userName![0]).child("\(charNr)").removeValue()
-                    self.ref.child("users").child(userName![0]).updateChildValues(["character nr" : "\(charNr-1)"])
+                    self.ref.child("users").child(uid ?? "none").child("\(charNr)").removeValue()
+                    self.ref.child("users").child(uid ?? "none").updateChildValues(["character nr" : "\(charNr-1)"])
                     self.character.remove(at: charToDelete-1)
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 }

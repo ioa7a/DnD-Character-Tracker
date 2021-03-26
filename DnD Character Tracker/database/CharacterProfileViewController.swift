@@ -68,21 +68,19 @@ class CharacterProfileViewController: UIViewController {
                 levelUpButton.isEnabled = true
             }
             let user = Auth.auth().currentUser
-            let userName = user?.email!.components(separatedBy: "@")
-            self.ref.child("users").child(userName![0]).updateChildValues(["\(self.charNumber)/exp": "\(self.currentExp)"])
+            self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber)/exp": "\(self.currentExp)"])
             
         }
     }
     
     @IBAction func didPressLevelUp(_ sender: Any) {
         let user = Auth.auth().currentUser
-        let userName = user?.email!.components(separatedBy: "@")
         levelUpButton.isEnabled = false
         level = Int(levelLabel.text!.components(separatedBy: " ")[1]) ?? 1
         levelLabel.text = "Level " + String(level + 1)
         
-        self.ref.child("users").child(userName![0]).updateChildValues(["\(self.charNumber)/level": "\(self.level + 1)"])
-        self.ref.child("users").child(userName![0]).updateChildValues(["\(self.charNumber)/exp": "\(self.currentExp)"])
+        self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber)/level": "\(self.level + 1)"])
+        self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber)/exp": "\(self.currentExp)"])
         
         
         if(level < 20) {

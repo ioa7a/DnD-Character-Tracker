@@ -12,14 +12,13 @@ import FirebaseDatabase
 class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var ref: DatabaseReference = Database.database().reference()
-    var classArray = ["barbarian", "bard", "cleric", "druid","fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard"]
     var didSelectClass: Bool = false
     var expandCell: Bool = false
     var indexOfExpandedCell: Int = -1
     var raceIndex: Int = 0;
     var classDetailsArray : [ClassDetails] = []
     var charClass: ClassDetails?
-    var characterCreationDone: Bool = false
+    //var characterCreationDone: Bool = false
     let user = Auth.auth().currentUser
     var charNumber: Int = 0;
     
@@ -28,13 +27,12 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if characterCreationDone {
-            dismiss(animated: true, completion: nil)
-        }
+//        if characterCreationDone {
+//            dismiss(animated: true, completion: nil)
+//        }
         classTableView.delegate = self
         classTableView.dataSource = self
-        let userName = user?.email!.components(separatedBy: "@")
-        ref.child("users").child(userName![0]).observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("users").child(user!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             self.charNumber = Int(value?["character nr"] as! String) ?? 0
         })
@@ -96,8 +94,7 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     @IBAction func didpressNextButton(_ sender: Any) {
         if didSelectClass {
-            let userName = user?.email!.components(separatedBy: "@")
-            self.ref.child("users").child(userName![0]).updateChildValues(["\(charNumber+1)/class" : charClass!.name ?? "none"])
+            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/class" : charClass!.name ?? "none"])
             
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "backgroundViewController") as! BackgroundViewController
             vc.raceIndex = raceIndex
@@ -113,9 +110,6 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if expandCell && indexPath.row == indexOfExpandedCell {
-        if let cell = classTableView.cellForRow(at: indexPath) as? ClassInfoTableViewCell {
-            return cell.armorLabel.bounds.size.height*5.0 + 65.0
-               }
                return 300.0
         }
         return 65.0

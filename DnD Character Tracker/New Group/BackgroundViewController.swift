@@ -14,7 +14,9 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
     var expandCell: Bool = false
     var indexOfExpandedCell: Int = -1
     var didSelectBg: Bool = false
-    var raceIndex: Int = 0;
+    var raceIndex: Int = 0
+    var classIndex: Int = 0
+    var bgIndex: Int = 0
     var backgrounds : [Background] = []
     var selectedBackground: String?
     var ref: DatabaseReference = Database.database().reference()
@@ -38,7 +40,11 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
                 let value = snapshot.value as? NSDictionary
                 let name = value?["name"] as? String
                 let desc = value?["description"] as? String
-                let bg = Background(name: name!, desc: desc!)
+                let feature = value?["feature"] as? String
+                let skills = value?["skills"] as? String
+                let tools = value?["tools"] as? String
+                let languageNumber = value?["languages"] as? String
+                let bg = Background(name: name!, desc: desc!, skills: skills!, tools: tools!, languageNr: languageNumber!, feature: feature!)
                 self.backgrounds.append(bg)
                 self.bgTableView.reloadData()
             })
@@ -51,8 +57,12 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func didPressNext(_ sender: Any) {
         if didSelectBg {
             self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/background" : selectedBackground!])
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "StatsVC") as! StatsViewController
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProficienciesVC") as! ProficienciesViewController
             vc.raceIndex = raceIndex
+            vc.bgIndex = bgIndex
+            vc.classIndex = classIndex
+            debugPrint("bg view index: \(classIndex) \(bgIndex)")
+          
             present(vc, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "", message: "Please select a background for your character.", preferredStyle: .alert)
@@ -71,7 +81,10 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.infoButton.isOpaque = true
             cell.infoButton.isHidden = false
             cell.nameLabel?.text = backgrounds[indexPath.row].name
-            cell.desriptionLabel?.text = backgrounds[indexPath.row].desc
+            cell.descriptionLabel?.text = backgrounds[indexPath.row].desc
+            cell.skillLabel.text = "Background skills: \(backgrounds[indexPath.row].skills ?? "none")"
+            cell.featureLabel.text = "Background feature: \(backgrounds[indexPath.row].feature ?? "none")"
+            cell.languageLabel.text = "Number of languages: \(backgrounds[indexPath.row].languageNr ?? "none")"
             cell.infoButton.tag = indexPath.row
             cell.infoButton.addTarget(self, action: #selector(self.expandInformation(button:)), for: .touchUpInside)
             return cell
@@ -80,14 +93,18 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedBackground = backgrounds[indexPath.row].name
+        bgIndex = indexPath.row + 1
         didSelectBg = true
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if expandCell && indexPath.row == indexOfExpandedCell {
-            return 500.0
+            if let cell = bgTableView.cellForRow(at: indexPath) as? BackgroundTableViewCell {
+                          return cell.descriptionLabel.bounds.size.height + 66.0*5
+                      }
+            return 300.0
         }
-        return 65.0
+        return 55.0
     }
     
     @objc func expandInformation(button: UIButton) {
@@ -97,5 +114,10 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
         self.bgTableView.beginUpdates()
         self.bgTableView.endUpdates()
     }
+    
+    @IBAction func didPressPrevButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
 }

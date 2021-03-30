@@ -18,7 +18,7 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     var raceIndex: Int = 0;
     var classDetailsArray : [ClassDetails] = []
     var charClass: ClassDetails?
-    //var characterCreationDone: Bool = false
+    var classIndex: Int = 0
     let user = Auth.auth().currentUser
     var charNumber: Int = 0;
     
@@ -27,9 +27,6 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if characterCreationDone {
-//            dismiss(animated: true, completion: nil)
-//        }
         classTableView.delegate = self
         classTableView.dataSource = self
         ref.child("users").child(user!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -89,6 +86,7 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         charClass = classDetailsArray[indexPath.row]
+        classIndex = indexPath.row + 1
         didSelectClass = true
     }
     
@@ -98,6 +96,7 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
             
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "backgroundViewController") as! BackgroundViewController
             vc.raceIndex = raceIndex
+            vc.classIndex = classIndex
             present(vc, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "", message: "Please select a class for your character.", preferredStyle: .alert)
@@ -110,6 +109,9 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if expandCell && indexPath.row == indexOfExpandedCell {
+            if let cell = classTableView.cellForRow(at: indexPath) as? ClassInfoTableViewCell {
+                return cell.proficienciesLabel.bounds.size.height + 70.0*5.0
+            }
                return 300.0
         }
         return 65.0

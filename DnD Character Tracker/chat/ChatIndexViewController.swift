@@ -9,16 +9,32 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import FirebaseDatabase
+
+struct UserMessageData: Equatable {
+ 
+    var user: UserData
+    var messages: Message
+    
+    static func == (lhs: UserMessageData, rhs: UserMessageData) -> Bool {
+        return lhs.user == rhs.user
+     }
+     
+}
 
 
 class ChatIndexViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var chatIndexTableView: UITableView!
     @IBOutlet weak var noChatsLabel: UILabel!
     
     private var docReference: DocumentReference?
+    var databaseReference: DatabaseReference! = Database.database().reference()
+    
     var dataSource: [String] = []
     var userName: String = ""
+    var currentUser: User = Auth.auth().currentUser!
+    var userMessageData: [UserMessageData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,20 +42,18 @@ class ChatIndexViewController: UIViewController, UITableViewDelegate, UITableVie
         noChatsLabel.isHidden = true
         chatIndexTableView.delegate = self
         chatIndexTableView.dataSource = self
-        debugPrint("username is \(userName)")
+        
         let db = Firestore.firestore().collection("Chats")
-            .whereField("users", arrayContains: self.userName)
-    
+            .whereField("users", arrayContains: self.currentUser.uid)
+        
         db.getDocuments { (chatQuerySnap, error) in
             if let error = error {
                 print("Error: \(error)")
                 return
             } else {
-                
                 guard let queryCount = chatQuerySnap?.documents.count else {
                     return
                 }
-                
                 if queryCount == 0 {
                     self.noChatsLabel.isHidden = false
                     self.chatIndexTableView.isHidden = true
@@ -47,12 +61,35 @@ class ChatIndexViewController: UIViewController, UITableViewDelegate, UITableVie
                 else if queryCount >= 1 {
                     self.noChatsLabel.isHidden = true
                     self.chatIndexTableView.isHidden = false
+                    
                     for doc in chatQuerySnap!.documents {
-                        
-                        let chat = Chat(dictionary: doc.data())
-                        if let user1 = chat?.users[0], let user2 = chat?.users[1] {
-                            self.dataSource.append(user1 != self.userName ? user1 : user2)
-                        }
+                        doc.reference.collection("thread")
+                            .order(by: "created", descending: true)
+                            .addSnapshotListener(includeMetadataChanges: true, listener: { (threadQuery, error) in
+                                if let error = error {
+                                    print("Error: \(error)")
+                                    return
+                                } else {
+                                    //sender ID poate sa fie si propriul ID
+                                    //adauga proprietate de reciever ID? la struct de message
+                                    // & reciever name
+                                    if let data = threadQuery?.documents.first?.data() {
+                                        if let message = Message(dictionary: data) {
+                                            if message.senderID != self.currentUser.uid {
+                                                let userData = UserData(uid: message.senderID , username: message.senderName)
+                                                self.userMessageData.append(UserMessageData(user: userData, messages: message ))
+                                            } else {
+                                                let userData = UserData(uid: message.receiverID , username: message.receiverName)
+                                                self.userMessageData.append(UserMessageData(user: userData, messages: message ))
+                                            }
+                                          self.userMessageData.removeDuplicates()
+                                            self.chatIndexTableView.reloadData()
+                                        }
+                                        
+                                    }
+                                }
+                            })
+                        self.userMessageData.removeDuplicates()
                         self.chatIndexTableView.reloadData()
                     }
                 } else {
@@ -64,19 +101,21 @@ class ChatIndexViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        return userMessageData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = chatIndexTableView.dequeueReusableCell(withIdentifier: "chatIndexCell", for: indexPath)
-        cell.textLabel?.text = dataSource[indexPath.row]
+        cell.textLabel?.text = userMessageData[indexPath.row].user.username
+        cell.detailTextLabel?.text = "\(userMessageData[indexPath.row].messages.sentDate.description)\n\(userMessageData[indexPath.row].messages.senderName): \(userMessageData[indexPath.row].messages.content)"
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatVC") as! ChatViewController
         vc.user1Name = userName
-        vc.user2Name = dataSource[indexPath.row]
+        vc.user2Name = userMessageData[indexPath.row].user.username
+        vc.user2UID = userMessageData[indexPath.row].user.uid
         present(vc, animated: true)
     }
     

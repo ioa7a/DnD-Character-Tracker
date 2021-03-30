@@ -9,7 +9,8 @@
 import Foundation
 
 struct Character {
-    var user: String = ""
+    var userName: String = ""
+    var userUID: String = ""
     var name: String = ""
     var race: String = ""
     var charClass: String = ""
@@ -17,39 +18,19 @@ struct Character {
     var stats: [String:String]?
     var level: String = "1"
     var currentExp: String = "0"
-//    
-//    init(user: String, name: String, race: String, charClass: String, background: String, stats: [String: String], level: String, currentExp: String){
-//        self.user = user
-// //       self.name = name
-//        self.race = race
-//        self.charClass = charClass
-//        self.background = background
-//        self.stats = stats
-//        self.level = level
-//        self.currentExp = currentExp
-//    }
+
 }
 
-class Race {
+struct Race {
     var index: Int?
     var name: String?
     var size: String?
     var speed: String?
-    var languages: [String]?
+    var languages: String?
     var bonusLang: Int = 0
     var modifier: [String: Int]?
     var ability: String?
     
-    init(index: Int, name: String, size: String, speed: String, languages: [String], modifier: [String: Int], ability: String?) {
-        self.index = index
-        self.name = name
-        self.size = size
-        self.speed = speed
-        self.languages = languages
-        self.modifier = modifier
-        self.ability = ability
-        
-    }
 }
 
 class Stats {
@@ -82,10 +63,6 @@ class ClassDetails  {
     var armor: String? = ""
     var weapons: String? = ""
     var tools:String? = ""
-//    var proficiency_choices: ProficiencyChoices?
-//    var proficiencies: Proficiencies?
-//    var saving_throws: SavingThrow?
-//    var starting_equipment: String?
     
     init(name: String, hit_die: String, proficiencies: [String:String]){
         self.name = name
@@ -94,14 +71,12 @@ class ClassDetails  {
     }
 }
 
-
-
-class Background {
+struct Background {
     var name: String?
     var desc: String?
-    
-    init(name: String, desc: String){
-        self.name = name
-        self.desc = desc
-    }
+    var skills: String?
+    var tools: String?
+    var languageNr: String?
+    var feature: String?
+
 }

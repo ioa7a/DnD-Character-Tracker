@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		270A08FA25A48165006B3D57 /* DiceRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A08F925A48165006B3D57 /* DiceRollViewController.swift */; };
 		270A090025A49B49006B3D57 /* DiceRollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A08FF25A49B49006B3D57 /* DiceRollCollectionViewCell.swift */; };
+		2722096B26127FDA002E132E /* CharacterAbilityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2722096A26127FD9002E132E /* CharacterAbilityCollectionViewCell.swift */; };
 		273BD60525A5DF8300270C7A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273BD60425A5DF8300270C7A /* CustomButton.swift */; };
 		273BD60A25A655BC00270C7A /* ClassInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273BD60925A6558500270C7A /* ClassInfoTableViewCell.swift */; };
 		275391EE25A9F74D00260440 /* BackgroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275391ED25A9F74D00260440 /* BackgroundTableViewCell.swift */; };
@@ -18,6 +19,7 @@
 		2757D95D259CA0C100CFF270 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757D95C259CA0C100CFF270 /* SignUpViewController.swift */; };
 		2757D95F259CA65100CFF270 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2757D95E259CA65100CFF270 /* GoogleService-Info.plist */; };
 		275A9A9D2604EC9C00552912 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275A9A9C2604EC9C00552912 /* ChatViewController.swift */; };
+		275C58772610C1F2001C0E14 /* ProficienciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275C58762610C1F2001C0E14 /* ProficienciesViewController.swift */; };
 		275E3A79259DD0FB0045E8E8 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275E3A78259DD0FB0045E8E8 /* Character.swift */; };
 		275EC109259CA96F007A2521 /* FireBaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275EC108259CA96F007A2521 /* FireBaseAuthManager.swift */; };
 		276007CC259F401F003B8B1A /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276007CB259F401F003B8B1A /* StatsViewController.swift */; };
@@ -51,6 +53,7 @@
 		19F05F94CB22FF2F7D69D462 /* Pods-DnD Character Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DnD Character Tracker.release.xcconfig"; path = "Target Support Files/Pods-DnD Character Tracker/Pods-DnD Character Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		270A08F925A48165006B3D57 /* DiceRollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollViewController.swift; sourceTree = "<group>"; };
 		270A08FF25A49B49006B3D57 /* DiceRollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollCollectionViewCell.swift; sourceTree = "<group>"; };
+		2722096A26127FD9002E132E /* CharacterAbilityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterAbilityCollectionViewCell.swift; path = "/Users/ioanabojinca/Desktop/dnd/DnD Character Tracker/CharacterAbilityCollectionViewCell.swift"; sourceTree = "<absolute>"; };
 		273BD60425A5DF8300270C7A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		273BD60925A6558500270C7A /* ClassInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassInfoTableViewCell.swift; sourceTree = "<group>"; };
 		275391ED25A9F74D00260440 /* BackgroundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTableViewCell.swift; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 		2757D95C259CA0C100CFF270 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		2757D95E259CA65100CFF270 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		275A9A9C2604EC9C00552912 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		275C58762610C1F2001C0E14 /* ProficienciesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProficienciesViewController.swift; path = "DnD Character Tracker/New Group/ProficienciesViewController.swift"; sourceTree = "<group>"; };
 		275E3A78259DD0FB0045E8E8 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Character.swift; path = ../Character.swift; sourceTree = "<group>"; };
 		275EC108259CA96F007A2521 /* FireBaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAuthManager.swift; sourceTree = "<group>"; };
 		276007CB259F401F003B8B1A /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +177,8 @@
 		276D23C0252798A400242C8B = {
 			isa = PBXGroup;
 			children = (
+				2722096A26127FD9002E132E /* CharacterAbilityCollectionViewCell.swift */,
+				275C58762610C1F2001C0E14 /* ProficienciesViewController.swift */,
 				276D23CB252798A400242C8B /* DnD Character Tracker */,
 				276D23CA252798A400242C8B /* Products */,
 				A0C2FC1D23951C28BF03D4CF /* Pods */,
@@ -381,11 +387,13 @@
 				276850C225F947ED008A2C70 /* Spell.swift in Sources */,
 				275391EE25A9F74D00260440 /* BackgroundTableViewCell.swift in Sources */,
 				27679A0D252866E0006984FA /* CharacterListVC.swift in Sources */,
+				2722096B26127FDA002E132E /* CharacterAbilityCollectionViewCell.swift in Sources */,
 				276D23CD252798A400242C8B /* AppDelegate.swift in Sources */,
 				276D23CF252798A400242C8B /* SceneDelegate.swift in Sources */,
 				273BD60A25A655BC00270C7A /* ClassInfoTableViewCell.swift in Sources */,
 				276D23D7252798A500242C8B /* DnD_Character_Tracker.xcdatamodeld in Sources */,
 				276007D0259F7628003B8B1A /* BackgroundViewController.swift in Sources */,
+				275C58772610C1F2001C0E14 /* ProficienciesViewController.swift in Sources */,
 				276E023725FEB9820079517D /* AllCharactersViewController.swift in Sources */,
 				2757D95B259C97E600CFF270 /* LogInViewController.swift in Sources */,
 				27679A13252868E9006984FA /* InfoSelectTableViewCell.swift in Sources */,

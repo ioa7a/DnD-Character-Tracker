@@ -36,6 +36,8 @@ struct Message {
     var created: Timestamp
     var senderID: String
     var senderName: String
+    var receiverID: String
+    var receiverName: String
     
     var dictionary: [String: Any] {
         
@@ -44,7 +46,10 @@ struct Message {
             "content": content,
             "created": created,
             "senderID": senderID,
-            "senderName":senderName]
+            "senderName": senderName,
+            "receiverID": receiverID,
+            "receiverName": receiverName
+        ]
         
     }
 }
@@ -56,10 +61,12 @@ extension Message {
             let content = dictionary["content"] as? String,
             let created = dictionary["created"] as? Timestamp,
             let senderID = dictionary["senderID"] as? String,
-            let senderName = dictionary["senderName"] as? String
+            let senderName = dictionary["senderName"] as? String,
+            let receiverID = dictionary["receiverID"] as? String,
+            let receiverName = dictionary["receiverName"] as? String
             else {return nil}
         
-        self.init(id: id, content: content, created: created, senderID: senderID, senderName:senderName)
+        self.init(id: id, content: content, created: created, senderID: senderID, senderName:senderName, receiverID: receiverID, receiverName: receiverName)
         
     }
 }

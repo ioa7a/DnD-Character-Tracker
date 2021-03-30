@@ -12,7 +12,7 @@ class BackgroundTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var infoButton: CustomButton!
-    @IBOutlet weak var desriptionLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var skillLabel: UILabel!
     @IBOutlet weak var equipmentLabel: UILabel!

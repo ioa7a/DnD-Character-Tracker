@@ -10,6 +10,14 @@ import UIKit
 import FirebaseDatabase
 import Firebase
 
+struct UserData: Equatable {
+    var uid: String
+    var username: String
+    
+    static func == (lhs: UserData, rhs: UserData) -> Bool {
+        return (lhs.uid == rhs.uid) && (lhs.username == rhs.username)
+    }
+}
 
 class AllCharactersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
     
@@ -18,8 +26,7 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
     
     let user = Auth.auth().currentUser
     var ref: DatabaseReference! = Database.database().reference()
-    var userList: [String] = []
-    var uidList: [String] = []
+    var userList: [UserData] = []
     var allCharactersList: [Character] = []
     var currentUserName: String = ""
     
@@ -45,11 +52,11 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
              for (key, val) in value! {
                  if let stringKey = key as? String {
                     if stringKey != self.user!.uid {
-                        self.userList.append(stringKey)
-//                        if let dictValue = val as? NSDictionary {
-//                            self.userList.append(dictValue["username"] as? String ?? "user")
-//                                               }
-                        
+                        if let dictValue = val as? NSDictionary {
+                            if let username = dictValue["username"] as? String {
+                                self.userList.append(UserData(uid: stringKey, username: username))
+                            }
+                      }
                     }
                     else {
                         if let dictValue = val as? NSDictionary {
@@ -59,7 +66,7 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
                  }
              }
              for i in 0 ..< self.userList.count {
-                 self.ref.child("users").child(self.userList[i]).observeSingleEvent(of: .value, with: { (snapshot) in
+                self.ref.child("users").child(self.userList[i].uid).observeSingleEvent(of: .value, with: { (snapshot) in
                      let value = snapshot.value as? NSDictionary
                      let chNr = Int(value?["character nr"] as! String) ?? 0
                      if chNr > 0 {
@@ -73,12 +80,10 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
                              let exp = charData!["exp"] as? String ?? "0"
                              let textToFilter = "Level \(chLevel) \(chRace) \(chClass)"
                             if filter == "" || (textToFilter.lowercased().contains(filter.lowercased())) {
-                             self.allCharactersList.append(Character(user: self.userList[i], name: "", race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp))
+                                self.allCharactersList.append(Character(userName: self.userList[i].username, userUID: self.userList[i].uid, name: "", race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp))
                             }
                          }
                      }
-                     
-                     
                      self.characterTableView.reloadData()
                      
                  }) { (error) in
@@ -97,23 +102,24 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = characterTableView.dequeueReusableCell(withIdentifier: "characterListCell") as? AllCharactersTableViewCell {
-            cell.userNameLabel.text = "User: " + allCharactersList[indexPath.row].user
+            cell.userNameLabel.text = "User: " + allCharactersList[indexPath.row].userName
             cell.characterInfo.text = "Level \(allCharactersList[indexPath.row].level) \(allCharactersList[indexPath.row].race) \(allCharactersList[indexPath.row].charClass)\n"
             let stats = allCharactersList[indexPath.row].stats
-            cell.characterInfo.text?.append("CHA: \(stats?["CHA"] ?? "0")/CON: \(stats?["CON"] ?? "0")/DEX: \(stats?["DEX"] ?? "0")/INT: \(stats?["INT"] ?? "0")/STR: \(stats?["STR"] ?? "0")/WIS: \(stats?["WIS"] ?? "0")")
+            cell.characterInfo.text?.append("\(stats?["CHA"] ?? "0") CHA/\(stats?["CON"] ?? "0") CON/\(stats?["DEX"] ?? "0") DEX/\(stats?["INT"] ?? "0") INT/\(stats?["STR"] ?? "0") STR/\(stats?["WIS"] ?? "0") WIS")
             cell.messageUserButton.addTarget(self, action: #selector(self.messageUser(button:)), for: .touchUpInside)
-            
+            cell.messageUserButton.tag = indexPath.row
             return cell
         }
         return UITableViewCell()
     }
     
     @objc func messageUser(button: UIButton) {
-         indexOfSelectedCell = button.tag
-         selectCell = button.isSelected
-          let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatVC") as! ChatViewController
-        vc.user2Name = allCharactersList[button.tag].user
+        indexOfSelectedCell = button.tag
+        selectCell = button.isSelected
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatVC") as! ChatViewController
         vc.user1Name = currentUserName
+        vc.user2Name = allCharactersList[button.tag].userName
+         vc.user2UID = allCharactersList[button.tag].userUID
         present(vc, animated: true)
      }
      

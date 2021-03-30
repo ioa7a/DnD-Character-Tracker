@@ -35,7 +35,7 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                     let chStats = charData!["stats"] as? [String: String] ?? [:]
                     let chLevel = charData!["level"] as? String ?? "1"
                     let exp = charData!["exp"] as? String ?? "0"
-                    self.character.append(Character(user: username ?? "n/a", name: "", race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp))
+                    self.character.append(Character(userName: username ?? "n/a", userUID: self.user?.uid ?? "none", name: "", race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp))
                 }
             }
             
@@ -72,7 +72,6 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CharacterProfileVC") as! CharacterProfileViewController
-        vc.isOwnCharacter = true
         vc.raceName = character[indexPath.row].race.capitalized
         vc.className = character[indexPath.row].charClass.capitalized
         vc.level = Int(character[indexPath.row].level) ?? 1

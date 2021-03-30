@@ -10,10 +10,12 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class CharacterProfileViewController: UIViewController {
+class CharacterProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     var ref: DatabaseReference = Database.database().reference()
     var charNumber: Int = 0
-    
+    let user = Auth.auth().currentUser
+
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var characterInfoLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -24,7 +26,9 @@ class CharacterProfileViewController: UIViewController {
     @IBOutlet weak var levelUpButton: UIButton!
     @IBOutlet var abilityScoreLabel: [UILabel]!
     @IBOutlet var abilityModifierLabel: [UILabel]!
-    
+    @IBOutlet weak var HP_ACLabel: UILabel!
+    @IBOutlet weak var abilityCollectionView: UICollectionView!
+    var collectionViewDataSource: [String] = ["Athletics", "Acrobatics", "Sleight of Hand", "Stealth", "Arcana", "History", "Investigation", "Nature", "Religion", "Animal Handling", "Insight", "Medicine", "Perception", "Survival", "Deception", "Intimidation", "Performance", "Persuasion"]
     
     var experienceToLevelUp: [Int] = [300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000]
     var level: Int = 1;
@@ -33,18 +37,16 @@ class CharacterProfileViewController: UIViewController {
     var raceName: String = ""
     var stats: [String: String] = [:]
     var background: String = ""
-    var isOwnCharacter: Bool = false
+    var HP : Int  = 0
+    var AC: Int = 10
+    var defaultHP: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        abilityCollectionView.delegate = self
+        abilityCollectionView.dataSource = self
+        
         characterInfoLabel.text = "\(raceName) \(className), \(background) Background"
-        levelLabel.text = "Level \(level)"
-        currentExperienceLabel.text = "\(currentExp)/\(experienceToLevelUp[level-1])"
-        
-        progressbar.progress = Float(currentExp)/Float(experienceToLevelUp[level-1])
-        progressbar.progressTintColor = .orange
-        levelUpButton.isEnabled = false
-        
         abilityScoreLabel[0].text = stats["CHA"]
         abilityScoreLabel[1].text = stats["CON"]
         abilityScoreLabel[2].text = stats["DEX"]
@@ -52,13 +54,23 @@ class CharacterProfileViewController: UIViewController {
         abilityScoreLabel[4].text = stats["STR"]
         abilityScoreLabel[5].text = stats["WIS"]
         
-        currentExperienceLabel.isHidden = !isOwnCharacter
-        levelUpButton.isHidden = !isOwnCharacter
-        addExpButton.isHidden = !isOwnCharacter
-        progressbar.isHidden = !isOwnCharacter
-        expToAddTextField.isHidden = !isOwnCharacter
+        calculateModifier()
+        switch(className.lowercased()) {
+            case "barbarian": self.defaultHP = 12
+            case "fighter", "paladin", "ranger": self.defaultHP = 10
+            case "sorcerer", "wizard": self.defaultHP = 6
+            default: self.defaultHP = 8
+        }
+        updateHP_AC()
+        levelLabel.text = "Level \(level)"
+        currentExperienceLabel.text = "\(currentExp)/\(experienceToLevelUp[level-1])"
+        progressbar.progress = Float(currentExp)/Float(experienceToLevelUp[level-1])
+        progressbar.progressTintColor = .systemBlue
+        levelUpButton.isEnabled = false
     }
     
+    
+    //MARK: Experience/Level up
     @IBAction func didPressAddExp(_ sender: Any) {
         if let exp = Int(expToAddTextField.text ?? "0") {
             currentExp = currentExp + exp
@@ -69,38 +81,107 @@ class CharacterProfileViewController: UIViewController {
             }
             let user = Auth.auth().currentUser
             self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber)/exp": "\(self.currentExp)"])
-            
+            expToAddTextField.text = ""
         }
     }
     
     @IBAction func didPressLevelUp(_ sender: Any) {
-        let user = Auth.auth().currentUser
+
         levelUpButton.isEnabled = false
         level = Int(levelLabel.text!.components(separatedBy: " ")[1]) ?? 1
-        levelLabel.text = "Level " + String(level + 1)
-        
+        levelLabel.text = "Level \(level+1)"
+
         self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber)/level": "\(self.level + 1)"])
         self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber)/exp": "\(self.currentExp)"])
+        self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber)/hp": "\(self.HP)", "\(self.charNumber)/ac": "\(self.AC)"])
         
         
         if(level < 20) {
-            currentExp = (currentExp-experienceToLevelUp[level-1]>0) ? currentExp-experienceToLevelUp[level-1] : 0
+            currentExp = max(currentExp-experienceToLevelUp[level-1], 0)
             progressbar.progress = Float(currentExp)/Float(experienceToLevelUp[level-1])
             currentExperienceLabel.text = "\(currentExp)/\(experienceToLevelUp[level-1])"
+            updateHP_AC()
+
         } else {
             levelUpButton.isHidden = true
             addExpButton.isEnabled = false
         }
     }
     
+    //MARK: Navigation
     @IBAction func didPressBackButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "mesageUserSegue", let dest = segue.destination as? ChatViewController {
-//            dest.user2Name = secondUserName
-//        }
-//    }
+    
+    //MARK: Calculate/Update Stats
+    
+    func calculateModifier(){
+        for i in 0...5 {
+            var modifier: Int = 0;
+            guard let total = Int(abilityScoreLabel[i].text!) else { return }
+            if total == 9 {
+                modifier = -1
+            } else {
+                modifier = Int((total - 10)/2)
+            }
+            if modifier > 0 {
+                abilityModifierLabel[i].text = "+\(modifier)"
+            } else {
+                abilityModifierLabel[i].text = String(modifier)
+            }
+        }
+    }
+    
+    func updateHP_AC(){
+        let CONModif = abilityModifierLabel[1].text
+        self.HP = (self.defaultHP + Int(CONModif ?? "0")!)*level
+        HP_ACLabel.text = "\(HP) HP     AC: \(AC) without armor"
+        
+        let DEXModif = abilityModifierLabel[1].text
+               self.AC =  10 + Int(DEXModif ?? "0")!
+               HP_ACLabel.text = "\(HP) HP     AC: \(AC) without armor"
+        
+          
+        self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber)/hp": "\(self.HP)", "\(self.charNumber)/ac": "\(self.AC)"])
+    }
+    
+    //MARK: Collection View
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return collectionViewDataSource.count
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = abilityCollectionView.bounds.width/2.0
+
+        return CGSize(width: cellWidth, height: 50.0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.zero
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1.0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 2.5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = abilityCollectionView.dequeueReusableCell(withReuseIdentifier: "abilityCell", for: indexPath) as? CharacterAbilityCollectionViewCell{
+            cell.abilityLabel.text = collectionViewDataSource[indexPath.row]
+            cell.layer.borderColor = UIColor.systemGray.cgColor
+            cell.layer.borderWidth = 2.0
+            return cell
+            
+        }
+        else {
+            return UICollectionViewCell()
+        }
+    }
+    
     
 }

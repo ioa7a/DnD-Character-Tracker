@@ -26,9 +26,7 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var pointsUsedLabel: UILabel!
     
     @IBOutlet weak var bonusAbility1Button: UIButton!
-    @IBOutlet weak var bonusPicker1: UIPickerView!
-    @IBOutlet weak var bonusPicker2: UIPickerView!
-    
+    @IBOutlet weak var bonusPicker: UIPickerView!
     @IBOutlet weak var createCharacterButton: UIButton!
     
     var race: String?
@@ -56,15 +54,13 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             let value = snapshot.value as? NSDictionary
             let name = value?["name"] as? String ?? ""
             debugPrint(name)
-            if name == "half-elf"{
+            if name.lowercased() == "half-elf"{
                 self.bonusAbility1Button.isHidden = false
-                self.bonusPicker1.isHidden = false
-                self.bonusPicker2.isHidden = false
+                self.bonusPicker.isHidden = false
                 
             } else {
                 self.bonusAbility1Button.isHidden = true
-                self.bonusPicker1.isHidden = true
-                self.bonusPicker2.isHidden = true
+                self.bonusPicker.isHidden = true
             }
         })
         { (error) in
@@ -84,10 +80,8 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             print(error.localizedDescription)
         }
         
-        bonusPicker1.delegate = self
-        bonusPicker1.dataSource = self
-        bonusPicker2.delegate = self
-        bonusPicker2.dataSource = self
+        bonusPicker.delegate = self
+        bonusPicker.dataSource = self
         abilityDescriptionLabel.isHidden = true
         abilityButton.forEach{button in
             button.isSelected = false}
@@ -191,12 +185,16 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             } else {
                 modifier = Int((total - 10)/2)
             }
-            overallModifierLabel[i].text = String(modifier)
+            if modifier > 0 {
+                overallModifierLabel[i].text = "+\(modifier)"
+            } else {
+                overallModifierLabel[i].text = String(modifier)
+            }
         }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -209,19 +207,20 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func didPressBonusAbility(_ sender: Any) {
         if(!bonusAdded){
-            if bonusPicker1.selectedRow(inComponent: 0) == bonusPicker2.selectedRow(inComponent: 0) {
+            bonusIndex1 = bonusPicker.selectedRow(inComponent: 0)
+            bonusIndex2 = bonusPicker.selectedRow(inComponent: 1)
+
+            if bonusIndex1 == bonusIndex2 {
                 let alert = UIAlertController(title: "", message: "Abilities must be different!", preferredStyle: .alert)
                 let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alert.addAction(cancelAction)
                 present(alert, animated: true)
             } else {
                 bonusAdded = true
-                guard let currentValue1 = Int((racialModifierLabel?[bonusPicker1.selectedRow(inComponent: 0)].text)!) else { return }
-                racialModifierLabel?[bonusPicker1.selectedRow(inComponent: 0)].text = String(currentValue1+1)
-                bonusIndex1 = bonusPicker1.selectedRow(inComponent: 0)
-                guard let currentValue2 = Int((racialModifierLabel?[bonusPicker2.selectedRow(inComponent: 0)].text)!) else { return }
-                racialModifierLabel?[bonusPicker2.selectedRow(inComponent: 0)].text = String(currentValue2+1)
-                bonusIndex2 = bonusPicker2.selectedRow(inComponent: 0)
+                guard let currentValue1 = Int((racialModifierLabel?[bonusPicker.selectedRow(inComponent: 0)].text)!) else { return }
+                racialModifierLabel?[bonusPicker.selectedRow(inComponent: 0)].text = String(currentValue1+1)
+                guard let currentValue2 = Int((racialModifierLabel?[bonusPicker.selectedRow(inComponent: 1)].text)!) else { return }
+                racialModifierLabel?[bonusPicker.selectedRow(inComponent: 1)].text = String(currentValue2+1)
                 updateTotalScore()
                 calculateModifier()
             }
@@ -229,15 +228,15 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         else {
             guard let oldValue1 = Int((racialModifierLabel?[bonusIndex1].text)!) else { return }
             racialModifierLabel?[bonusIndex1].text = String(oldValue1-1)
-            bonusIndex1 = bonusPicker1.selectedRow(inComponent: 0)
+            bonusIndex1 = bonusPicker.selectedRow(inComponent: 0)
             guard let oldValue2 = Int((racialModifierLabel?[bonusIndex2].text)!) else { return }
             racialModifierLabel?[bonusIndex2].text = String(oldValue2-1)
-            bonusIndex2 = bonusPicker2.selectedRow(inComponent: 0)
+            bonusIndex2 = bonusPicker.selectedRow(inComponent: 1)
             
-            guard let currentValue1 = Int((racialModifierLabel?[bonusPicker1.selectedRow(inComponent: 0)].text)!) else { return }
-            racialModifierLabel?[bonusPicker1.selectedRow(inComponent: 0)].text = String(currentValue1+1)
-            guard let currentValue2 = Int((racialModifierLabel?[bonusPicker2.selectedRow(inComponent: 0)].text)!) else { return }
-            racialModifierLabel?[bonusPicker2.selectedRow(inComponent: 0)].text = String(currentValue2+1)
+            guard let currentValue1 = Int((racialModifierLabel?[bonusPicker.selectedRow(inComponent: 0)].text)!) else { return }
+            racialModifierLabel?[bonusPicker.selectedRow(inComponent: 0)].text = String(currentValue1+1)
+            guard let currentValue2 = Int((racialModifierLabel?[bonusPicker.selectedRow(inComponent: 1)].text)!) else { return }
+            racialModifierLabel?[bonusPicker.selectedRow(inComponent: 1)].text = String(currentValue2+1)
             
             updateTotalScore()
             calculateModifier()
@@ -273,6 +272,9 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
     }
     
+    @IBAction func didPressPrevButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
 }
 

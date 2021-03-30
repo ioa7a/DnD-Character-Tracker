@@ -46,11 +46,11 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 let size = value?["size"] as? String
                 let speed = value?["speed"] as? String
                 let languages = value?["language"] as? NSDictionary
-                let langArray = languages!["name"] as? [String]
+                let langArray = languages!["name"] as? String
                 let bonusLangNr = languages!["bonus_lang"] as? Int
                 let modifiers = value?["modifiers"] as? [String: Int]
                 let abilities = value?["ability"] as! String?
-                let race = Race(index: i, name: name!, size: size!, speed: speed!, languages: langArray ?? [], modifier: modifiers!, ability: abilities ?? "None")
+                var race = Race(index: i, name: name!, size: size!, speed: speed!, languages: langArray!, modifier: modifiers!, ability: abilities ?? "None")
                 race.bonusLang = bonusLangNr ?? 0
                 self.races.append(race)
                 self.raceTableView.reloadData()
@@ -67,18 +67,17 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        races = races.sorted(by: {$0.name! < $1.name!})
         if let cell = raceTableView.dequeueReusableCell(withIdentifier: "raceCell") as? InfoSelectTableViewCell {
             cell.nameLabel?.text = races[indexPath.row].name
             cell.speedLabel?.text = "Speed: \(races[indexPath.row].speed!) feet"
             cell.sizeLabel?.text = "Size: \(races[indexPath.row].size!)"
-            cell.languageLabel.text = "Languages: "
-            for i in 0 ..< races[indexPath.row].languages!.count {
-                cell.languageLabel.text?.append(races[indexPath.row].languages![i])
-                if i < races[indexPath.row].languages!.count - 1{
-                    cell.languageLabel.text?.append("; ") }
-                
-            }
+            cell.languageLabel.text = "Languages: \(races[indexPath.row].languages!)"
+//            for i in 0 ..< races[indexPath.row].languages!.count {
+//                cell.languageLabel.text?.append(races[indexPath.row].languages![i])
+//                if i < races[indexPath.row].languages!.count - 1{
+//                    cell.languageLabel.text?.append("; ") }
+//
+//            }
             if(races[indexPath.row].bonusLang != 0){
                 cell.languageLabel.text?.append(". Bonus languages: \(races[indexPath.row].bonusLang)")
             }
@@ -130,6 +129,9 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if expandCell && indexPath.row == indexOfExpandedCell {
+            if let cell = raceTableView.cellForRow(at: indexPath) as? InfoSelectTableViewCell{
+                return cell.abilityLabel.bounds.size.height + 60.0*4.0
+            }
             return 200.0
         }
         return 60.0

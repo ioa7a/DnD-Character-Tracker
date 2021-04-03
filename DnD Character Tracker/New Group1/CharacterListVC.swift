@@ -35,7 +35,20 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                     let chStats = charData!["stats"] as? [String: String] ?? [:]
                     let chLevel = charData!["level"] as? String ?? "1"
                     let exp = charData!["exp"] as? String ?? "0"
-                    self.character.append(Character(userName: username ?? "n/a", userUID: self.user?.uid ?? "none", name: "", race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp))
+                    var langs: [String] = []
+                    var profs: [String] = []
+                    if let languageArray = charData?["languages"] as? NSArray{
+                        for i in languageArray {
+                            langs.append(i as! String)
+                        }
+                    }
+                    
+                    if let profArray = charData?["proficiencies"] as? NSArray{
+                        for i in profArray {
+                            profs.append(i as! String)
+                        }
+                    }
+                    self.character.append(Character(userName: username ?? "n/a", userUID: self.user?.uid ?? "none", name: "", race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp, languages: langs, proficiencies: profs))
                 }
             }
             
@@ -79,6 +92,8 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         vc.charNumber = indexPath.row + 1
         vc.background = character[indexPath.row].background.capitalized
         vc.currentExp = Int(character[indexPath.row].currentExp) ?? 0
+        vc.languages = character[indexPath.row].languages
+        vc.proficiencies = character[indexPath.row].proficiencies
         present(vc, animated: true, completion: nil)
     }
     
@@ -100,7 +115,7 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                     debugPrint("will delete char nr \(charToDelete)")
                     for i in charToDelete..<charNr {
                         var aux: [String: Any] = [:]
-                       
+                        
                         if let charData1 = value?["\(i)"] as? [String:Any]{
                             
                             debugPrint(charData1)

@@ -18,6 +18,8 @@ struct Character {
     var stats: [String:String]?
     var level: String = "1"
     var currentExp: String = "0"
+    var languages: [String] = []
+    var proficiencies: [String] = []
 
 }
 

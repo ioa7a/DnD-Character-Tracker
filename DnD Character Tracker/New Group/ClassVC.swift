@@ -77,7 +77,9 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
             cell.toolsLabel.text = "Tools: \(classDetailsArray[indexPath.row].tools ?? "none")"
             cell.infoButton.tag = indexPath.row
             cell.infoButton.addTarget(self, action: #selector(self.expandInformation(button:)), for: .touchUpInside)
-            
+            if indexPath.row != indexOfExpandedCell {
+                cell.infoButton.isSelected = false
+            }
             return cell
         }
         return UITableViewCell()
@@ -110,7 +112,7 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if expandCell && indexPath.row == indexOfExpandedCell {
             if let cell = classTableView.cellForRow(at: indexPath) as? ClassInfoTableViewCell {
-                return cell.proficienciesLabel.bounds.size.height + 70.0*5.0
+                return cell.proficienciesLabel.bounds.size.height + 75.0*5.0
             }
                return 300.0
         }

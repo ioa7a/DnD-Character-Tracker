@@ -61,6 +61,7 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
             vc.raceIndex = raceIndex
             vc.bgIndex = bgIndex
             vc.classIndex = classIndex
+            vc.charNumber = charNumber
             debugPrint("bg view index: \(classIndex) \(bgIndex)")
           
             present(vc, animated: true, completion: nil)

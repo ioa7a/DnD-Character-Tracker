@@ -31,6 +31,7 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
     var raceIndex: Int = 0
     var ref: DatabaseReference = Database.database().reference()
     let user = Auth.auth().currentUser
+    var hasDuplicates: Bool = false
     
     var selectedSkills: [String] = []
     var selectedLanguages: [String] = []
@@ -187,37 +188,29 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
         }
             selectedSkills.append(contentsOf: backgroundSkills)
         debugPrint(selectedSkills)
-        let hasDuplicates = (selectedLanguages.count != Set(selectedLanguages).count) || (selectedSkills.count != Set(selectedSkills).count)
+        hasDuplicates = (selectedLanguages.count != Set(selectedLanguages).count) || (selectedSkills.count != Set(selectedSkills).count)
         if hasDuplicates {
             let alert = UIAlertController(title: "", message: "Selected proficiencies must differ.", preferredStyle: .actionSheet)
                         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                         present(alert, animated: true)
         }
-      //  if selectedLanguages.dupli
-//        if selectedLanguages.contains(bonusLang){
-//            let alert = UIAlertController(title: "", message: "Selected languages must differ.", preferredStyle: .actionSheet)
-//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-//            present(alert, animated: true)
-//        }
-
         
     }
     
     
     @IBAction func didPressNext(_ sender: Any) {
         
-        
-        //     if didSelectBg {
-        //  self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/background" : selectedBackground!])
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "StatsVC") as! StatsViewController
-        vc.raceIndex = raceIndex
-        present(vc, animated: true, completion: nil)
-        //               } else {
-        //                   let alert = UIAlertController(title: "", message: "Please select a background for your character.", preferredStyle: .alert)
-        //                   let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        //                   alert.addAction(cancelAction)
-        //                   present(alert, animated: true)
-        //               }
+        if hasDuplicates || selectedSkills == [] || selectedLanguages == [] {
+            let alert = UIAlertController(title: "", message: "Please select your proficiencies and languages.", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                               present(alert, animated: true)
+        } else {
+            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/proficiencies" : selectedSkills])
+            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/languages" : selectedLanguages])
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "StatsVC") as! StatsViewController
+                  vc.raceIndex = raceIndex
+                  present(vc, animated: true, completion: nil)
+        }
     }
     @IBAction func didPressPrevButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)

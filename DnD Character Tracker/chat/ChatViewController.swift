@@ -22,18 +22,29 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = user2Name ?? "Chat"
+      //  self.title = user2Name ?? "Chat"
         navigationItem.largeTitleDisplayMode = .always
         maintainPositionOnKeyboardFrameChanged = true
         messageInputBar.inputTextView.tintColor = .systemBlue
         messageInputBar.sendButton.setTitleColor(.systemBlue, for: .normal)
-        
         messageInputBar.delegate = self
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
+        
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
+        self.view.addSubview(navBar)
+        navBar.backgroundColor = .clear
+        let backButton = UIBarButtonItem(title: "BACK", style: .plain, target: self, action: #selector(onCancel))
+        self.navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftBarButtonItem = backButton
+        navBar.items?.append(navigationItem)
         loadChat()
         
+    }
+    
+    @objc func onCancel(){
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Custom messages handlers
@@ -155,7 +166,6 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
         
         let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid , senderName: user1Name ?? "none", receiverID: user2UID ?? "none", receiverName: user2Name ?? "n/a")
         
-        // messages.append(message)
         insertNewMessage(message)
         save(message)
         
@@ -186,11 +196,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
     
     
     // MARK: - MessagesLayoutDelegate
-    
-//    func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
-//        return CGSize(width: 100.0, height: 20.0)
-//    }
-    
+
     func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         return 20.0
     }

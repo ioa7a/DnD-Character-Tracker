@@ -79,7 +79,7 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
                              let chLevel = charData!["level"] as? String ?? "1"
                              let exp = charData!["exp"] as? String ?? "0"
                              let textToFilter = "Level \(chLevel) \(chRace) \(chClass)"
-                            if filter == "" || (textToFilter.lowercased().contains(filter.lowercased())) {
+                            if filter == " " || filter.isEmpty || (textToFilter.lowercased().contains(filter.lowercased())) {
                                 self.allCharactersList.append(Character(userName: self.userList[i].username, userUID: self.userList[i].uid, name: "", race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp))
                             }
                          }
@@ -119,16 +119,27 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatVC") as! ChatViewController
         vc.user1Name = currentUserName
         vc.user2Name = allCharactersList[button.tag].userName
-         vc.user2UID = allCharactersList[button.tag].userUID
-        present(vc, animated: true)
+        vc.user2UID = allCharactersList[button.tag].userUID
+              self.navigationController?.setNavigationBarHidden(false, animated: true)
+        vc.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.pushViewController(vc, animated: true)
+  
+        
+ //      present(vc, animated: true)
      }
      
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         allCharactersList = []
         characterTableView.reloadData()
-        let filter = searchBar.text ?? ""
+        var filter: String = " "
+        if !(searchBar.text?.isEmpty ?? true) {
+            filter = searchBar.text ?? " "
+        }
+        debugPrint(filter)
         getCharacters(filter: filter)
     }
-    
+    @IBAction func didPressBackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }

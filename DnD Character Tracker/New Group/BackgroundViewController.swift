@@ -110,6 +110,9 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @objc func expandInformation(button: UIButton) {
         button.isSelected = !button.isSelected
+        if button.isSelected {
+            button.backgroundColor = .clear
+        }
         indexOfExpandedCell = button.tag
         expandCell = button.isSelected
         self.bgTableView.beginUpdates()

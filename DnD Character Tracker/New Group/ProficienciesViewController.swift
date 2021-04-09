@@ -20,6 +20,8 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var bgLanguageLabel: UILabel!
     @IBOutlet weak var bgSkillsLabel: UILabel!
     @IBOutlet weak var bgToolsLabel: UILabel!
+    @IBOutlet weak var featuresLabel: UILabel!
+    @IBOutlet weak var selectProficienciesButton: UIButton!
     
     var classSkillsSource: [String] = []
     var classSkillsNumber: Int = 0
@@ -98,10 +100,14 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
             }
             let skills = value?["skills"] as? String
             let tools = value?["tools"] as? String
-            self.bgSkillsLabel.text = "Background skills: \(skills ?? "none")"
-            self.backgroundSkills = skills?.components(separatedBy: ", ") as! [String]
+            let features = value?["feature"] as? String
+            self.bgSkillsLabel.text = "Background skills: \(skills ?? "none.")"
+            if let skills = skills?.components(separatedBy: ", ") {
+                self.backgroundSkills = skills
+            }
+            self.featuresLabel.text = "Features: \(features ?? "none.")"
             debugPrint("BG skills: \(self.backgroundSkills)")
-            self.bgToolsLabel.text = "Background tools: \(tools ?? "none")"
+            self.bgToolsLabel.text = "Background tools: \(tools ?? "none.")"
             
             self.backgroundLanguagesPickerView.reloadAllComponents()
             
@@ -135,11 +141,13 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
             pickerLabel = UILabel()
             pickerLabel?.textAlignment = .center
             pickerLabel?.textColor = .systemBlue
+            pickerLabel?.numberOfLines = 0
+
             switch(pickerView.tag) {
             case 1:
                 pickerLabel?.text = classSkillsSource[row]
                 if classSkillsNumber > 2 {
-                    pickerLabel?.font = UIFont(name: "System", size: 8.0)
+                    pickerLabel?.font = UIFont(name: "System", size: 10.0)
                 } else {
                     pickerLabel?.font = UIFont(name: "System", size: 12.0)
                 }
@@ -152,24 +160,15 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
         return pickerLabel!
     }
     
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        switch(pickerView.tag) {
-//            //class skills
-//        case 1:   selectedSkills.append(classSkillsSource[row])
-//            //background
-//        case 0: backgroundLanguages.append(languageData[row])
-//        case 2:  selectedLanguages.append(languageData[row])
-//        default: return
-//
-//        }
-//        debugPrint("Skills: \(selectedSkills) \nLangs: \(selectedLanguages)")
-//    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectProficienciesButton.isSelected = false
+        selectProficienciesButton.setTitle("LOCK SELECTION", for: .normal)
+    }
+    
     
     @IBAction func selectProficiencies(_ sender: Any) {
         selectedLanguages = []
         selectedSkills = []
-//        bonusIndex1 = bonusPicker.selectedRow(inComponent: 0)
-//        bonusIndex2 = bonusPicker.selectedRow(inComponent: 1)
         if !backgroundLanguagesPickerView.isHidden{
             for i in 0 ..< backgroundLanguagesPickerView.numberOfComponents{
                 selectedLanguages.append(languageData[backgroundLanguagesPickerView.selectedRow(inComponent: i)])
@@ -193,6 +192,9 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
             let alert = UIAlertController(title: "", message: "Selected proficiencies must differ.", preferredStyle: .actionSheet)
                         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                         present(alert, animated: true)
+        } else {
+            selectProficienciesButton.isSelected = true
+            selectProficienciesButton.setTitle("SELECTION LOCKED", for: .selected)
         }
         
     }

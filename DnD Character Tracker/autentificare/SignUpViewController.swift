@@ -34,6 +34,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         emailTextField.autocorrectionType = .no
         passwordTextField.autocorrectionType = .no
         confirmPasswordTextField.autocorrectionType = .no
+        emailTextField.textContentType = .none
+        passwordTextField.textContentType = .none
+        confirmPasswordTextField.textContentType = .none
+
     }
     
     @IBAction func didPressSignUp(_ sender: Any) {

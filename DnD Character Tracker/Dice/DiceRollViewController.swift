@@ -69,9 +69,18 @@ class DiceRollViewController: UIViewController, UICollectionViewDelegate, UIColl
                     debugPrint("something went wrong")
                     return
                 }
-                for _ in 0..<diceNr {
-                    rolls.append(diceRoll(d: type))
-                    diceResultCollectionView.reloadData()
+                
+                if diceNr > 0 {
+                    for _ in 0..<diceNr {
+                        rolls.append(diceRoll(d: type))
+                        diceResultCollectionView.reloadData()
+                    }
+                    
+                }
+                else {
+                    let alert = UIAlertController(title: "Dice number must be greater than 0!", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    present(alert, animated: true)
                 }
                 debugPrint("rolled \(rolls) ")
                 break;
@@ -163,6 +172,9 @@ class DiceRollViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         totalValLabel.text = String(sum)
         
+    }
+    @IBAction func didPressBackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
 }

@@ -166,7 +166,10 @@ class SpellListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
 }
-
+    @IBAction func didPressBackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension Array where Element: Equatable {

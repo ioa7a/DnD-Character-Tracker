@@ -192,21 +192,28 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
             cell.abilityLabel.text = collectionViewDataSource[indexPath.row]
             var score: Int = 0
             switch(cell.abilityLabel.text) {
-            case "Athletics":
-                score = Int(abilityModifierLabel[4].text!) ?? 0
-                cell.layer.borderColor = UIColor.systemRed.cgColor
-            case "Acrobatics", "Sleight of Hand", "Stealth":
-                score = Int(abilityModifierLabel[2].text!) ?? 0
-                cell.layer.borderColor = UIColor.systemOrange.cgColor
-            case "Arcana", "History", "Investigation", "Nature", "Religion":
-                score = Int(abilityModifierLabel[3].text!) ?? 0
-                cell.layer.borderColor = UIColor.systemYellow.cgColor
-            case "Animal Handling", "Insight", "Medicine", "Perception", "Survival":
-                score = Int(abilityModifierLabel[5].text!) ?? 0
-                cell.layer.borderColor = UIColor.systemGreen.cgColor
             case "Deception", "Intimidation", "Performance", "Persuasion":
                 score = Int(abilityModifierLabel[0].text!) ?? 0
                 cell.layer.borderColor = UIColor.systemBlue.cgColor
+                cell.abilityLabel.text?.append("\n(CHA)")
+            case "Acrobatics", "Sleight of Hand", "Stealth":
+                score = Int(abilityModifierLabel[2].text!) ?? 0
+                cell.layer.borderColor = UIColor.systemOrange.cgColor
+                cell.abilityLabel.text?.append("\n(DEX)")
+            case "Arcana", "History", "Investigation", "Nature", "Religion":
+                score = Int(abilityModifierLabel[3].text!) ?? 0
+                cell.layer.borderColor = UIColor.systemYellow.cgColor
+                 cell.abilityLabel.text?.append("\n(INT)")
+            case "Athletics":
+                score = Int(abilityModifierLabel[4].text!) ?? 0
+                cell.layer.borderColor = UIColor.systemRed.cgColor
+                cell.abilityLabel.text?.append("\n(STR)")
+           
+            case "Animal Handling", "Insight", "Medicine", "Perception", "Survival":
+                score = Int(abilityModifierLabel[5].text!) ?? 0
+                cell.layer.borderColor = UIColor.systemGreen.cgColor
+                cell.abilityLabel.text?.append("\n(WIS)")
+           
             default:  cell.layer.borderColor = UIColor.systemGray.cgColor
             }
             
@@ -220,7 +227,7 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
                 default: break
                 }
             }
-            cell.abilityScoreLabel.text = (score >= 0 ? "+ \(score)" : "- \(score)")
+            cell.abilityScoreLabel.text = (score >= 0 ? "+ \(score)" : " \(score)")
             cell.layer.borderWidth = 2.0
             return cell
             

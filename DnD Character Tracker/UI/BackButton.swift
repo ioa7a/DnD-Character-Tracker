@@ -1,38 +1,26 @@
 //
-//  CustomButton.swift
+//  BackButton.swift
 //  DnD Character Tracker
 //
-//  Created by Ioana Bojinca on 06/01/2021.
+//  Created by Ioana Bojinca on 09/04/2021.
 //  Copyright © 2021 Ioana Bojinca. All rights reserved.
 //
+
 
 import UIKit
 
 @IBDesignable
-class CustomButton: UIButton{
-    var borderWidth: CGFloat = 2.5
+class BackButton: UIButton{
+    var borderWidth: CGFloat = 0.0
     var borderColor = UIColor.systemBlue.cgColor
+    var image = UIImage(named: "arrowshape.turn.up.left")
     @IBInspectable var titleText: String? {
         didSet {
             self.setTitle(titleText, for: .normal)
             self.setTitleColor(UIColor.green,for: .normal)
-            self.backgroundColor = .clear
+            self.setImage(image, for: .normal)
         }
     }
-    
-    override var isSelected: Bool {
-        didSet {
-            self.backgroundColor = UIColor.clear
-            showsTouchWhenHighlighted = false
-        }
-    }
-    
-    override var isHighlighted: Bool {
-          didSet {
-              self.backgroundColor = UIColor.clear
-              showsTouchWhenHighlighted = false
-          }
-      }
 
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -53,4 +41,5 @@ class CustomButton: UIButton{
         self.layer.borderColor = borderColor
         self.layer.borderWidth = borderWidth
     }
+    
 }

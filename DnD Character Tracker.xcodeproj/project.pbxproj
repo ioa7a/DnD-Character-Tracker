@@ -40,6 +40,7 @@
 		276D23DC252798AD00242C8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 276D23DA252798AD00242C8B /* LaunchScreen.storyboard */; };
 		276E023725FEB9820079517D /* AllCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276E023625FEB9820079517D /* AllCharactersViewController.swift */; };
 		276E023A25FEBB210079517D /* AllCharactersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276E023925FEBB210079517D /* AllCharactersTableViewCell.swift */; };
+		278A8FF72620528B00B78A50 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278A8FF62620528B00B78A50 /* BackButton.swift */; };
 		278E79A025F3BFA80058EABF /* GeneralInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */; };
 		27ACF66C260BCDFA002DF95B /* ChatIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ACF66B260BCDFA002DF95B /* ChatIndexViewController.swift */; };
 		27EB5D2D25AE63C200087983 /* CharacterProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */; };
@@ -86,6 +87,7 @@
 		276D23DD252798AD00242C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		276E023625FEB9820079517D /* AllCharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCharactersViewController.swift; sourceTree = "<group>"; };
 		276E023925FEBB210079517D /* AllCharactersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCharactersTableViewCell.swift; sourceTree = "<group>"; };
+		278A8FF62620528B00B78A50 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoTableViewController.swift; sourceTree = "<group>"; };
 		27ACF66B260BCDFA002DF95B /* ChatIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatIndexViewController.swift; sourceTree = "<group>"; };
 		27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfileViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				273BD60425A5DF8300270C7A /* CustomButton.swift */,
+				278A8FF62620528B00B78A50 /* BackButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				2757D95D259CA0C100CFF270 /* SignUpViewController.swift in Sources */,
 				273BD60525A5DF8300270C7A /* CustomButton.swift in Sources */,
 				27679A1125286702006984FA /* RaceVC.swift in Sources */,
+				278A8FF72620528B00B78A50 /* BackButton.swift in Sources */,
 				275EC109259CA96F007A2521 /* FireBaseAuthManager.swift in Sources */,
 				270A08FA25A48165006B3D57 /* DiceRollViewController.swift in Sources */,
 				27EB5D2D25AE63C200087983 /* CharacterProfileViewController.swift in Sources */,

@@ -72,12 +72,7 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             cell.speedLabel?.text = "Speed: \(races[indexPath.row].speed!) feet"
             cell.sizeLabel?.text = "Size: \(races[indexPath.row].size!)"
             cell.languageLabel.text = "Languages: \(races[indexPath.row].languages!)"
-//            for i in 0 ..< races[indexPath.row].languages!.count {
-//                cell.languageLabel.text?.append(races[indexPath.row].languages![i])
-//                if i < races[indexPath.row].languages!.count - 1{
-//                    cell.languageLabel.text?.append("; ") }
-//
-//            }
+
             if(races[indexPath.row].bonusLang != 0){
                 cell.languageLabel.text?.append(". Bonus languages: \(races[indexPath.row].bonusLang)")
             }

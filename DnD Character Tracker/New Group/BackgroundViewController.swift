@@ -22,7 +22,9 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
     var ref: DatabaseReference = Database.database().reference()
     let user = Auth.auth().currentUser
     var charNumber: Int = 0;
+    
     @IBOutlet weak var bgTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bgTableView.dataSource = self
@@ -44,7 +46,8 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
                 let skills = value?["skills"] as? String
                 let tools = value?["tools"] as? String
                 let languageNumber = value?["languages"] as? String
-                let bg = Background(name: name!, desc: desc!, skills: skills!, tools: tools!, languageNr: languageNumber!, feature: feature!)
+                let equipment = value?["equipment"] as? String
+                let bg = Background(name: name!, desc: desc!, skills: skills!, tools: tools!, languageNr: languageNumber!, equipment: equipment!, feature: feature!)
                 self.backgrounds.append(bg)
                 self.bgTableView.reloadData()
             })
@@ -84,9 +87,12 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.nameLabel?.text = backgrounds[indexPath.row].name
             cell.descriptionLabel?.text = backgrounds[indexPath.row].desc
             cell.skillLabel.text = "Background skills: \(backgrounds[indexPath.row].skills ?? "none")"
+            cell.equipmentLabel.text = "Starting equipment: \(backgrounds[indexPath.row].equipment ?? "none")"
             cell.featureLabel.text = "Background feature: \(backgrounds[indexPath.row].feature ?? "none")"
             cell.languageLabel.text = "Number of languages: \(backgrounds[indexPath.row].languageNr ?? "none")"
             cell.infoButton.tag = indexPath.row
+            cell.infoButton.setTitle("SHOW INFO", for: .normal)
+            cell.infoButton.setTitle("HIDE INFO", for: .selected)
             cell.infoButton.addTarget(self, action: #selector(self.expandInformation(button:)), for: .touchUpInside)
             return cell
         }

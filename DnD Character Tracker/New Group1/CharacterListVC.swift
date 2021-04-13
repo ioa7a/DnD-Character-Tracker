@@ -37,6 +37,7 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                     let exp = charData!["exp"] as? String ?? "0"
                     var langs: [String] = []
                     var profs: [String] = []
+                    let equip = charData!["equipment"] as? String
                     if let languageArray = charData?["languages"] as? NSArray{
                         for i in languageArray {
                             langs.append(i as! String)
@@ -48,7 +49,7 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                             profs.append(i as! String)
                         }
                     }
-                    self.character.append(Character(userName: username ?? "n/a", userUID: self.user?.uid ?? "none", name: "", race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp, languages: langs, proficiencies: profs))
+                    self.character.append(Character(userName: username ?? "n/a", userUID: self.user?.uid ?? "none", name: "", race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp, languages: langs, proficiencies: profs, equipment: equip ?? "none"))
                 }
             }
             
@@ -94,6 +95,7 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         vc.currentExp = Int(character[indexPath.row].currentExp) ?? 0
         vc.languages = character[indexPath.row].languages
         vc.proficiencies = character[indexPath.row].proficiencies
+        vc.equipment = character[indexPath.row].equipment
         present(vc, animated: true, completion: nil)
     }
     

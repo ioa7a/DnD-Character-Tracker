@@ -22,8 +22,6 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  self.title = user2Name ?? "Chat"
-        navigationItem.largeTitleDisplayMode = .always
         maintainPositionOnKeyboardFrameChanged = true
         messageInputBar.inputTextView.tintColor = .systemBlue
         messageInputBar.sendButton.setTitleColor(.systemBlue, for: .normal)
@@ -35,9 +33,10 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
         self.view.addSubview(navBar)
         navBar.backgroundColor = .clear
-        let backButton = UIBarButtonItem(title: "BACK", style: .plain, target: self, action: #selector(onCancel))
+        let backButton = UIBarButtonItem(title: "< BACK", style: .plain, target: self, action: #selector(onCancel))
         self.navigationItem.leftItemsSupplementBackButton = true
-        navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.title = user2Name ?? "Chat"
+        self.navigationItem.leftBarButtonItem = backButton
         navBar.items?.append(navigationItem)
         loadChat()
         

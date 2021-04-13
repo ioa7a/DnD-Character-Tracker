@@ -20,7 +20,7 @@ struct Character {
     var currentExp: String = "0"
     var languages: [String] = []
     var proficiencies: [String] = []
-
+    var equipment: String = ""
 }
 
 struct Race {
@@ -79,6 +79,7 @@ struct Background {
     var skills: String?
     var tools: String?
     var languageNr: String?
+    var equipment: String?
     var feature: String?
 
 }

@@ -90,6 +90,8 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
             }
             cell.abilityLabel.text?.append(bonusText)
             cell.traitLabel.text? = "Abilities: \(races[indexPath.row].ability!)"
+            cell.infoButton.setTitle("SHOW INFO", for: .normal)
+            cell.infoButton.setTitle("HIDE INFO", for: .selected)
             cell.infoButton.tag = indexPath.row
             cell.infoButton.addTarget(self, action: #selector(self.expandInformation(button:)), for: .touchUpInside)
             return cell
@@ -136,6 +138,7 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
         button.isSelected = !button.isSelected
         indexOfExpandedCell = button.tag
         expandCell = button.isSelected
+      
         self.raceTableView.beginUpdates()
         self.raceTableView.endUpdates()
     }

@@ -29,6 +29,8 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var bonusPicker: UIPickerView!
     @IBOutlet weak var createCharacterButton: UIButton!
     
+    @IBOutlet weak var abilityNameLabel: UILabel!
+    
     var race: String?
     var raceIndex: Int = 0
     var modifiers: [Int] = []
@@ -90,26 +92,37 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func selectCHA(_ sender: Any) {
         abilitySelected(index: 0)
+        abilityNameLabel.text = "CHA"
     }
     
     @IBAction func selectCon(_ sender: Any) {
         abilitySelected(index: 1)
+        abilityNameLabel.text = "CON"
+
     }
     
     @IBAction func selectDEX(_ sender: Any) {
         abilitySelected(index: 2)
+        abilityNameLabel.text = "DEX"
+
     }
     
     @IBAction func selectINT(_ sender: Any) {
         abilitySelected(index: 3)
+        abilityNameLabel.text = "INT"
+
     }
     
     @IBAction func selectSTR(_ sender: Any) {
         abilitySelected(index: 4)
+        abilityNameLabel.text = "STR"
+
     }
     
     @IBAction func selectWIS(_ sender: Any) {
         abilitySelected(index: 5)
+        abilityNameLabel.text = "WIS"
+
     }
     
     func abilitySelected(index: Int) {

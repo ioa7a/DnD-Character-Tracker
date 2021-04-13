@@ -76,6 +76,8 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
             cell.weaponsLabel.text = "Weapons: \(classDetailsArray[indexPath.row].weapons ?? "Simple Weapons")"
             cell.toolsLabel.text = "Tools: \(classDetailsArray[indexPath.row].tools ?? "none")"
             cell.infoButton.tag = indexPath.row
+            cell.infoButton.setTitle("SHOW INFO", for: .normal)
+            cell.infoButton.setTitle("HIDE INFO", for: .selected)
             cell.infoButton.addTarget(self, action: #selector(self.expandInformation(button:)), for: .touchUpInside)
             if indexPath.row != indexOfExpandedCell {
                 cell.infoButton.isSelected = false

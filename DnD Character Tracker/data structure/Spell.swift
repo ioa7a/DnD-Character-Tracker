@@ -15,11 +15,8 @@ struct Spell: Codable, Equatable {
       var range: String
       var components: String
       var material: String
-//    var ritual: String
       var duration: String
-//    var concentration: String
       var casting_time: String
       var level: String
-//    var school: String
      var dnd_class: String
 }

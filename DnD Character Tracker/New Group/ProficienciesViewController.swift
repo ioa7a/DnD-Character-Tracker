@@ -22,6 +22,7 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var bgToolsLabel: UILabel!
     @IBOutlet weak var featuresLabel: UILabel!
     @IBOutlet weak var selectProficienciesButton: UIButton!
+    @IBOutlet weak var equipmentLabel: UILabel!
     
     var classSkillsSource: [String] = []
     var classSkillsNumber: Int = 0
@@ -40,6 +41,7 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
     var backgroundSkills: [String] = []
     var backgroundLanguages: [String] = []
     var knownLanguages: [String] = []
+    var equipment: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +63,7 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
             if let tools = value?["tools"] as? String {
                 self.classToolsLabel.text = "Class tools: \(tools)"
             }
+           
             self.classSkillsPickerView.reloadAllComponents()
         })
         { (error) in
@@ -72,7 +75,7 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
             if let languages = value?["language"] as? NSDictionary {
                 let number = languages["bonus_lang"] as! Int
                 let langName = languages["name"] as! String
-                self.knownLanguages = langName.components(separatedBy: ", ") as! [String]
+                self.knownLanguages = langName.components(separatedBy: ", ")
                 self.bonusLanguageLabel.text = "Known languages: \(langName). "
                 if number > 0 {
                     self.bonusLanguagePickerView.isHidden = false
@@ -98,6 +101,9 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
                     self.bgLanguageNumber = 0
                 }
             }
+            if let equipment = value?["equipment"] as? String {
+                self.equipment = equipment
+            }
             let skills = value?["skills"] as? String
             let tools = value?["tools"] as? String
             let features = value?["feature"] as? String
@@ -106,9 +112,8 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
                 self.backgroundSkills = skills
             }
             self.featuresLabel.text = "Features: \(features ?? "none.")"
-            debugPrint("BG skills: \(self.backgroundSkills)")
             self.bgToolsLabel.text = "Background tools: \(tools ?? "none.")"
-            
+            self.equipmentLabel.text = "Equipment: \(self.equipment)"
             self.backgroundLanguagesPickerView.reloadAllComponents()
             
         })
@@ -209,6 +214,7 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
         } else {
             self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/proficiencies" : selectedSkills])
             self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/languages" : selectedLanguages])
+            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/equipment" : equipment])
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "StatsVC") as! StatsViewController
                   vc.raceIndex = raceIndex
                   present(vc, animated: true, completion: nil)

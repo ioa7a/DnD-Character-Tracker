@@ -30,6 +30,11 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
     @IBOutlet weak var HP_ACLabel: UILabel!
     @IBOutlet weak var abilityCollectionView: UICollectionView!
     @IBOutlet weak var proficiencyLabel: UILabel!
+    @IBOutlet weak var abilityScoreImprovementButton: UIButton!
+    @IBOutlet weak var equipmentTextView: UITextView!
+    
+    
+    var canImproveAbilityScore: Bool = false
     var collectionViewDataSource: [String] = ["Athletics", "Acrobatics", "Sleight of Hand", "Stealth", "Arcana", "History", "Investigation", "Nature", "Religion", "Animal Handling", "Insight", "Medicine", "Perception", "Survival", "Deception", "Intimidation", "Performance", "Persuasion"]
     
     var experienceToLevelUp: [Int] = [300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000]
@@ -44,6 +49,7 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
     var defaultHP: Int = 0
     var languages: [String] = []
     var proficiencies: [String] = []
+    var equipment: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +91,9 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
                 proficiencyLabel.text?.append(", ")
             }
         }
+        
+        abilityScoreImprovementButton.isEnabled = canImproveAbilityScore ? true : false
+        equipmentTextView.text = equipment
     }
     
     
@@ -123,6 +132,11 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         } else {
             levelUpButton.isHidden = true
             addExpButton.isEnabled = false
+        }
+        
+        if [4, 8, 12, 16, 19].contains(level){
+            abilityScoreImprovementButton.isEnabled = true
+            debugPrint("can improve abilities now")
         }
     }
     
@@ -234,6 +248,12 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         }
         else {
             return UICollectionViewCell()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToAbilityImprovement",  let vc = segue.destination as? AbilityScoreImprovementViewController{
+            vc.stats = self.stats
         }
     }
     

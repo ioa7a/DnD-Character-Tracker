@@ -120,12 +120,7 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
         vc.user1Name = currentUserName
         vc.user2Name = allCharactersList[button.tag].userName
         vc.user2UID = allCharactersList[button.tag].userUID
-              self.navigationController?.setNavigationBarHidden(false, animated: true)
-        vc.navigationController?.setNavigationBarHidden(false, animated: true)
-        self.navigationController?.pushViewController(vc, animated: true)
-  
-        
- //      present(vc, animated: true)
+       present(vc, animated: true)
      }
      
     
@@ -139,6 +134,11 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
         debugPrint(filter)
         getCharacters(filter: filter)
     }
+    @IBAction func resetSearchPressed(_ sender: Any) {
+        getCharacters(filter: " ")
+    }
+    
+    
     @IBAction func didPressBackButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

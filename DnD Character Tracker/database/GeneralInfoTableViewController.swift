@@ -11,6 +11,8 @@ import UIKit
 class GeneralInfoTableViewController: UITableViewController {
     
     var abilityDescription: [[String]] = []
+    var expandCell: Bool = false
+    var indexOfExpandedCell: Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +30,35 @@ class GeneralInfoTableViewController: UITableViewController {
     }
     
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "generalInfoCell", for: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> GeneralInfoTableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "generalInfoCell", for: indexPath) as! GeneralInfoTableViewCell
         
-        cell.textLabel?.text = abilityDescription[indexPath.row][0]
-        cell.detailTextLabel?.text = abilityDescription[indexPath.row][1]
-        
+        cell.titleLabel?.text = abilityDescription[indexPath.row][0]
+        cell.descriptionLabel?.text = abilityDescription[indexPath.row][1]
+        cell.infoButton.setTitle("SHOW INFO", for: .normal)
+        cell.infoButton.setTitle("HIDE INFO", for: .selected)
+        cell.infoButton.tag = indexPath.row
+        cell.infoButton.addTarget(self, action: #selector(self.expandInformation(button:)), for: .touchUpInside)
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+          if expandCell && indexPath.row == indexOfExpandedCell {
+              if let cell = tableView.cellForRow(at: indexPath) as? GeneralInfoTableViewCell{
+                return cell.descriptionLabel.bounds.size.height + 80.0
+              }
+              return 300.0
+          }
+        return 60.0
+      }
+    
+    @objc func expandInformation(button: UIButton) {
+        button.isSelected = !button.isSelected
+        indexOfExpandedCell = button.tag
+        expandCell = button.isSelected
+        
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
     }
     
     

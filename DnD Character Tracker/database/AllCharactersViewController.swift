@@ -78,7 +78,7 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
                              let chStats = charData!["stats"] as? [String: String] ?? [:]
                              let chLevel = charData!["level"] as? String ?? "1"
                              let exp = charData!["exp"] as? String ?? "0"
-                             let textToFilter = "Level \(chLevel) \(chRace) \(chClass)"
+                            let textToFilter = "Level \(chLevel) \(chRace) \(chClass) User: \(self.userList[i].username)"
                             if filter == " " || filter.isEmpty || (textToFilter.lowercased().contains(filter.lowercased())) {
                                 self.allCharactersList.append(Character(userName: self.userList[i].username, userUID: self.userList[i].uid, name: "", race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp))
                             }
@@ -136,6 +136,7 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
     }
     @IBAction func resetSearchPressed(_ sender: Any) {
         getCharacters(filter: " ")
+        searchBar.text = .none
     }
     
     

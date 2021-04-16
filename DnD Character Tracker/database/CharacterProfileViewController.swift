@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class CharacterProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class CharacterProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
     
     var ref: DatabaseReference = Database.database().reference()
     var charNumber: Int = 0
@@ -55,6 +55,7 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         super.viewDidLoad()
         abilityCollectionView.delegate = self
         abilityCollectionView.dataSource = self
+        equipmentTextView.delegate = self
         
         characterInfoLabel.text = "\(raceName) \(className), \(background) Background"
         abilityScoreLabel[0].text = stats["CHA"]
@@ -63,14 +64,15 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         abilityScoreLabel[3].text = stats["INT"]
         abilityScoreLabel[4].text = stats["STR"]
         abilityScoreLabel[5].text = stats["WIS"]
-        
         calculateModifier()
+        
         switch(className.lowercased()) {
         case "barbarian": self.defaultHP = 12
         case "fighter", "paladin", "ranger": self.defaultHP = 10
         case "sorcerer", "wizard": self.defaultHP = 6
         default: self.defaultHP = 8
         }
+        
         updateHP_AC()
         levelLabel.text = "Level \(level)"
         currentExperienceLabel.text = "\(currentExp)/\(experienceToLevelUp[level-1])"
@@ -93,7 +95,7 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         }
         
         abilityScoreImprovementButton.isEnabled = canImproveAbilityScore ? true : false
-        equipmentTextView.text = equipment
+        equipmentTextView.text = "Current inventory: \(equipment)"
     }
     
     

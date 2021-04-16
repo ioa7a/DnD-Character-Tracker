@@ -107,7 +107,7 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if expandCell && indexPath.row == indexOfExpandedCell {
             if let cell = bgTableView.cellForRow(at: indexPath) as? BackgroundTableViewCell {
-                          return cell.descriptionLabel.bounds.size.height + 66.0*5
+                return cell.descriptionLabel.bounds.size.height + 80.0*5
                       }
             return 300.0
         }

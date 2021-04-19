@@ -1788,25 +1788,35 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="142"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spell Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgf-Gs-wRe">
-                                                    <rect key="frame" x="16" y="11" width="86.5" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Classes" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPC-OB-Qbu">
-                                                    <rect key="frame" x="16" y="31.5" width="86.5" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="18" id="fS0-N7-2az"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEO-RE-4P2" customClass="CustomButton" customModule="DnD_Character_Tracker" customModuleProvider="target">
-                                                    <rect key="frame" x="110.5" y="16" width="242.5" height="33.5"/>
-                                                    <state key="normal" title="INFORMATION"/>
-                                                </button>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="jRb-5s-Zf8">
+                                                    <rect key="frame" x="16" y="11" width="343" height="38.5"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1yb-3I-zXh">
+                                                            <rect key="frame" x="0.0" y="0.0" width="146.5" height="38.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spell Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgf-Gs-wRe">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="146.5" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Classes" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPC-OB-Qbu">
+                                                                    <rect key="frame" x="0.0" y="20.5" width="146.5" height="18"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="18" id="fS0-N7-2az"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEO-RE-4P2" customClass="CustomButton" customModule="DnD_Character_Tracker" customModuleProvider="target">
+                                                            <rect key="frame" x="196.5" y="0.0" width="146.5" height="38.5"/>
+                                                            <state key="normal" title="INFORMATION"/>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIk-2H-83U">
                                                     <rect key="frame" x="16" y="69.5" width="343" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1815,18 +1825,12 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="tIk-2H-83U" firstAttribute="top" secondItem="hPC-OB-Qbu" secondAttribute="bottom" constant="20" id="1rE-4W-9q0"/>
-                                                <constraint firstItem="tIk-2H-83U" firstAttribute="top" secondItem="GEO-RE-4P2" secondAttribute="bottom" constant="20" id="5wN-oh-uuJ"/>
                                                 <constraint firstItem="tIk-2H-83U" firstAttribute="leading" secondItem="dTe-QR-ZWP" secondAttribute="leadingMargin" id="6GO-5A-MpI"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="GEO-RE-4P2" secondAttribute="trailing" constant="6" id="7ZD-8z-zHD"/>
-                                                <constraint firstItem="Bgf-Gs-wRe" firstAttribute="top" secondItem="dTe-QR-ZWP" secondAttribute="topMargin" id="HF3-50-wow"/>
-                                                <constraint firstItem="GEO-RE-4P2" firstAttribute="top" secondItem="dTe-QR-ZWP" secondAttribute="topMargin" constant="5" id="MjL-6B-Bgh"/>
-                                                <constraint firstItem="hPC-OB-Qbu" firstAttribute="leading" secondItem="dTe-QR-ZWP" secondAttribute="leadingMargin" id="U1s-tm-kd2"/>
-                                                <constraint firstItem="hPC-OB-Qbu" firstAttribute="top" secondItem="Bgf-Gs-wRe" secondAttribute="bottom" id="ZjN-wt-lDF"/>
+                                                <constraint firstItem="tIk-2H-83U" firstAttribute="top" secondItem="jRb-5s-Zf8" secondAttribute="bottom" constant="20" id="JDa-Wh-VXQ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="tIk-2H-83U" secondAttribute="trailing" id="aKQ-9h-y5C"/>
-                                                <constraint firstItem="Bgf-Gs-wRe" firstAttribute="leading" secondItem="hPC-OB-Qbu" secondAttribute="leading" id="are-LV-thd"/>
-                                                <constraint firstItem="GEO-RE-4P2" firstAttribute="leading" secondItem="Bgf-Gs-wRe" secondAttribute="trailing" constant="8" id="e0q-Yk-vhz"/>
-                                                <constraint firstItem="Bgf-Gs-wRe" firstAttribute="trailing" secondItem="hPC-OB-Qbu" secondAttribute="trailing" id="lP4-Xe-an6"/>
+                                                <constraint firstItem="jRb-5s-Zf8" firstAttribute="leading" secondItem="dTe-QR-ZWP" secondAttribute="leadingMargin" id="mjR-Pk-1hs"/>
+                                                <constraint firstItem="jRb-5s-Zf8" firstAttribute="top" secondItem="dTe-QR-ZWP" secondAttribute="topMargin" id="uJI-Fh-yr2"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="jRb-5s-Zf8" secondAttribute="trailing" id="wa0-Rc-vwh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -2184,8 +2188,8 @@
                                     <constraint firstItem="l7T-YK-qMr" firstAttribute="centerX" secondItem="50Q-hI-85g" secondAttribute="centerX" id="xAc-mP-DzY"/>
                                 </constraints>
                             </scrollView>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="XUr-vw-nh9">
-                                <rect key="frame" x="20" y="407" width="334" height="151.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="XUr-vw-nh9">
+                                <rect key="frame" x="20.5" y="389.5" width="334" height="151.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FID-qS-C4e">
                                         <rect key="frame" x="145.5" y="0.0" width="43.5" height="20.5"/>
@@ -2232,19 +2236,24 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="Score Improvement"/>
                                                 <connections>
-                                                    <action selector="didPressLevelUp:" destination="tIb-o9-Cpn" eventType="touchUpInside" id="v1m-2U-jpX"/>
                                                     <segue destination="uT2-mu-c9r" kind="show" identifier="goToAbilityImprovement" id="C3G-6I-ag3"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="6PH-dM-EGi" firstAttribute="leading" secondItem="XUr-vw-nh9" secondAttribute="leading" id="HDb-mo-POP"/>
+                                    <constraint firstAttribute="trailing" secondItem="6PH-dM-EGi" secondAttribute="trailing" id="mZc-Fh-nj7"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="R5M-OO-i9p"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="XUr-vw-nh9" firstAttribute="centerX" secondItem="TT0-T3-uSQ" secondAttribute="centerX" id="7Mp-1f-fDS"/>
                             <constraint firstItem="gD8-AU-XgT" firstAttribute="top" secondItem="50Q-hI-85g" secondAttribute="bottom" constant="10" id="8kV-Xr-gi6"/>
+                            <constraint firstItem="XUr-vw-nh9" firstAttribute="top" secondItem="gD8-AU-XgT" secondAttribute="bottom" constant="10" id="Fu3-kN-202"/>
                             <constraint firstItem="gD8-AU-XgT" firstAttribute="centerX" secondItem="TT0-T3-uSQ" secondAttribute="centerX" id="P7u-E2-Rhr"/>
                             <constraint firstItem="R5M-OO-i9p" firstAttribute="trailing" secondItem="gD8-AU-XgT" secondAttribute="trailing" constant="10" id="TvB-d0-Jpt"/>
                             <constraint firstItem="50Q-hI-85g" firstAttribute="top" secondItem="pZR-HL-RMu" secondAttribute="bottom" constant="20" id="VCA-vs-nWa"/>
@@ -2336,7 +2345,7 @@
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <state key="normal" title="CHA"/>
                                                         <connections>
-                                                            <action selector="selectCHA:" destination="uT2-mu-c9r" eventType="touchUpInside" id="pcd-49-CvD"/>
+                                                            <action selector="selectCHA:" destination="uT2-mu-c9r" eventType="touchUpInside" id="a09-Ag-fdb"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FNS-E2-oti">
@@ -2361,7 +2370,7 @@
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <state key="normal" title="CON"/>
                                                         <connections>
-                                                            <action selector="selectCon:" destination="uT2-mu-c9r" eventType="touchUpInside" id="JvA-Lz-UF0"/>
+                                                            <action selector="selectCon:" destination="uT2-mu-c9r" eventType="touchUpInside" id="NRw-0k-jNL"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7M-jA-uvv">
@@ -2386,7 +2395,7 @@
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <state key="normal" title="DEX"/>
                                                         <connections>
-                                                            <action selector="selectDEX:" destination="uT2-mu-c9r" eventType="touchUpInside" id="Y60-IN-VOH"/>
+                                                            <action selector="selectDEX:" destination="uT2-mu-c9r" eventType="touchUpInside" id="ZFN-tI-XBz"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqL-WQ-GbK">
@@ -2411,7 +2420,7 @@
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <state key="normal" title="INT"/>
                                                         <connections>
-                                                            <action selector="selectINT:" destination="uT2-mu-c9r" eventType="touchUpInside" id="kGC-Ag-Cas"/>
+                                                            <action selector="selectINT:" destination="uT2-mu-c9r" eventType="touchUpInside" id="Thx-oa-nCs"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WX5-YV-DRo">
@@ -2436,7 +2445,7 @@
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <state key="normal" title="STR"/>
                                                         <connections>
-                                                            <action selector="selectSTR:" destination="uT2-mu-c9r" eventType="touchUpInside" id="Pdq-tS-erj"/>
+                                                            <action selector="selectSTR:" destination="uT2-mu-c9r" eventType="touchUpInside" id="Nhd-FZ-TMz"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKz-xt-NnA">
@@ -2461,7 +2470,7 @@
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                         <state key="normal" title="WIS"/>
                                                         <connections>
-                                                            <action selector="selectWIS:" destination="uT2-mu-c9r" eventType="touchUpInside" id="mh0-2V-vC6"/>
+                                                            <action selector="selectWIS:" destination="uT2-mu-c9r" eventType="touchUpInside" id="YS4-1b-4il"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45o-ZG-MBb">
@@ -2574,24 +2583,24 @@
                         <outlet property="abilityNameLabel" destination="F8x-V3-zsl" id="WvB-59-3My"/>
                         <outlet property="pointsLeftLabel" destination="XMQ-4C-vLH" id="mx4-OU-l2Z"/>
                         <outlet property="warningLabel" destination="gEJ-vx-zGO" id="aDx-w3-7Tr"/>
-                        <outletCollection property="abilityButton" destination="qq9-bZ-kLF" collectionClass="NSMutableArray" id="lKE-k3-ZjA"/>
-                        <outletCollection property="modifierLabel" destination="lch-CZ-iVW" collectionClass="NSMutableArray" id="bUt-Bk-Z4X"/>
-                        <outletCollection property="modifierLabel" destination="oQe-a2-Hsu" collectionClass="NSMutableArray" id="IAh-Dp-yYW"/>
-                        <outletCollection property="totalAbilityScoreLabel" destination="YqL-WQ-GbK" collectionClass="NSMutableArray" id="Oe7-MO-DZy"/>
-                        <outletCollection property="totalAbilityScoreLabel" destination="45o-ZG-MBb" collectionClass="NSMutableArray" id="7YZ-fl-VYl"/>
-                        <outletCollection property="totalAbilityScoreLabel" destination="WX5-YV-DRo" collectionClass="NSMutableArray" id="xNT-g4-Gno"/>
-                        <outletCollection property="totalAbilityScoreLabel" destination="W7M-jA-uvv" collectionClass="NSMutableArray" id="zyc-8n-NWA"/>
-                        <outletCollection property="modifierLabel" destination="toU-SS-uzF" collectionClass="NSMutableArray" id="mnB-r3-FDt"/>
-                        <outletCollection property="modifierLabel" destination="bGo-yX-giT" collectionClass="NSMutableArray" id="8Th-9E-RXB"/>
-                        <outletCollection property="abilityButton" destination="SAd-A0-762" collectionClass="NSMutableArray" id="8h3-T6-Jfu"/>
-                        <outletCollection property="modifierLabel" destination="Shm-Q9-AN6" collectionClass="NSMutableArray" id="TU2-NG-gv0"/>
-                        <outletCollection property="abilityButton" destination="EPO-A8-ALf" collectionClass="NSMutableArray" id="WNK-ED-C3A"/>
-                        <outletCollection property="modifierLabel" destination="hrd-VU-hES" collectionClass="NSMutableArray" id="bEg-bU-vpj"/>
-                        <outletCollection property="totalAbilityScoreLabel" destination="FNS-E2-oti" collectionClass="NSMutableArray" id="TtP-xh-fqQ"/>
-                        <outletCollection property="abilityButton" destination="wbh-PG-5kE" collectionClass="NSMutableArray" id="4a1-uX-MRO"/>
-                        <outletCollection property="abilityButton" destination="rUX-so-Vrx" collectionClass="NSMutableArray" id="KNM-PE-kB9"/>
-                        <outletCollection property="totalAbilityScoreLabel" destination="pKz-xt-NnA" collectionClass="NSMutableArray" id="PUd-Dh-lDH"/>
-                        <outletCollection property="abilityButton" destination="8mH-D9-Vbz" collectionClass="NSMutableArray" id="wI2-Z0-DuY"/>
+                        <outletCollection property="abilityButton" destination="SAd-A0-762" collectionClass="NSMutableArray" id="rK6-yU-NhX"/>
+                        <outletCollection property="abilityButton" destination="qq9-bZ-kLF" collectionClass="NSMutableArray" id="y5q-KO-v3C"/>
+                        <outletCollection property="abilityButton" destination="EPO-A8-ALf" collectionClass="NSMutableArray" id="QqB-Va-5GD"/>
+                        <outletCollection property="abilityButton" destination="rUX-so-Vrx" collectionClass="NSMutableArray" id="v5D-kM-n9B"/>
+                        <outletCollection property="abilityButton" destination="8mH-D9-Vbz" collectionClass="NSMutableArray" id="urJ-1r-gza"/>
+                        <outletCollection property="abilityButton" destination="wbh-PG-5kE" collectionClass="NSMutableArray" id="r5x-oV-ioj"/>
+                        <outletCollection property="totalAbilityScoreLabel" destination="FNS-E2-oti" collectionClass="NSMutableArray" id="oDz-EF-Y1e"/>
+                        <outletCollection property="totalAbilityScoreLabel" destination="W7M-jA-uvv" collectionClass="NSMutableArray" id="2QU-eK-xHz"/>
+                        <outletCollection property="totalAbilityScoreLabel" destination="YqL-WQ-GbK" collectionClass="NSMutableArray" id="mQx-hB-ZCU"/>
+                        <outletCollection property="totalAbilityScoreLabel" destination="WX5-YV-DRo" collectionClass="NSMutableArray" id="qVL-YB-Gcc"/>
+                        <outletCollection property="totalAbilityScoreLabel" destination="pKz-xt-NnA" collectionClass="NSMutableArray" id="y0j-eK-pgD"/>
+                        <outletCollection property="totalAbilityScoreLabel" destination="45o-ZG-MBb" collectionClass="NSMutableArray" id="K9N-a4-DdR"/>
+                        <outletCollection property="modifierLabel" destination="toU-SS-uzF" collectionClass="NSMutableArray" id="ACF-wA-ulP"/>
+                        <outletCollection property="modifierLabel" destination="Shm-Q9-AN6" collectionClass="NSMutableArray" id="jGJ-Ob-PD9"/>
+                        <outletCollection property="modifierLabel" destination="lch-CZ-iVW" collectionClass="NSMutableArray" id="y4f-Vd-Pou"/>
+                        <outletCollection property="modifierLabel" destination="oQe-a2-Hsu" collectionClass="NSMutableArray" id="5Vf-9B-Odr"/>
+                        <outletCollection property="modifierLabel" destination="bGo-yX-giT" collectionClass="NSMutableArray" id="COC-hH-o2Q"/>
+                        <outletCollection property="modifierLabel" destination="hrd-VU-hES" collectionClass="NSMutableArray" id="Qla-3R-udM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sm3-mY-oeC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

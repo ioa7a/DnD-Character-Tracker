@@ -48,24 +48,24 @@ class AbilityScoreImprovementViewController: UIViewController {
         abilityNameLabel.text = "DEX"
 
       }
-      
+
       @IBAction func selectINT(_ sender: Any) {
           abilitySelected(index: 3)
         abilityNameLabel.text = "INT"
       }
-      
+
       @IBAction func selectSTR(_ sender: Any) {
           abilitySelected(index: 4)
         abilityNameLabel.text = "STR"
 
       }
-      
+
       @IBAction func selectWIS(_ sender: Any) {
           abilitySelected(index: 5)
         abilityNameLabel.text = "WIS"
 
       }
-      
+    
       func abilitySelected(index: Int) {
         warningLabel.isHidden = true
           abilityButton[index].isSelected = !abilityButton[index].isSelected

@@ -74,9 +74,11 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         updateHP_AC()
         levelLabel.text = "Level \(level)"
         currentExperienceLabel.text = "\(currentExp)/\(experienceToLevelUp[level-1])"
+        
+        levelUpButton.isEnabled = currentExp >= experienceToLevelUp[level-1] ? true : false
+        
         progressbar.progress = Float(currentExp)/Float(experienceToLevelUp[level-1])
         progressbar.progressTintColor = .systemBlue
-        levelUpButton.isEnabled = false
         languageLabel.text = "Known languages: "
         for i in 0 ..< languages.count {
             languageLabel.text?.append(languages[i])
@@ -121,7 +123,7 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber)/hp": "\(self.HP)", "\(self.charNumber)/ac": "\(self.AC)"])
         
         
-        if(level < 20) {
+        if(level + 1 < 20) {
             currentExp = max(currentExp-experienceToLevelUp[level-1], 0)
             progressbar.progress = Float(currentExp)/Float(experienceToLevelUp[level-1])
             currentExperienceLabel.text = "\(currentExp)/\(experienceToLevelUp[level-1])"
@@ -133,16 +135,18 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
             updateHP_AC()
             
         } else {
+            abilityScoreImprovementButton.isHidden = true
             progressbar.isHidden = true
             currentExperienceLabel.isHidden = true
             levelUpButton.isHidden = true
             expToAddTextField.isHidden = true
             addExpButton.isHidden = true
         }
-        
-        if [4, 8, 12, 16, 19].contains(level){
+        switch(level+1) {
+        case 4, 8, 12, 16, 19:
             abilityScoreImprovementButton.isEnabled = true
-            debugPrint("can improve abilities now")
+        default:
+            abilityScoreImprovementButton.isEnabled = false
         }
     }
     

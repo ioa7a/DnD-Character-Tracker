@@ -16,6 +16,7 @@ class CustomButton: UIButton{
         didSet {
             self.setTitle(titleText, for: .normal)
             self.setTitleColor(.systemBlue,for: .normal)
+            self.setTitleColor(.systemBlue,for: .selected)
             self.backgroundColor = .clear
         }
     }

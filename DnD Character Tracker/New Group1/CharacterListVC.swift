@@ -25,7 +25,7 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         getCharacterList()
        
     }
-    
+
     func getCharacterList() {
         let uid = user?.uid
         ref.child("users").child(uid ?? "none").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -60,7 +60,6 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                     self.character.append(Character(userName: username ?? "n/a", userUID: self.user?.uid ?? "none", name: chName, race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp, languages: langs, proficiencies: profs, equipment: equip ?? "none"))
                 }
             }
-            self.character.removeDuplicates()
             self.characterListTableView.reloadData()
             
         }) { (error) in
@@ -166,8 +165,8 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     @IBAction func didPressRefreshCharacterList(_ sender: Any) {
+        character = []
         getCharacterList()
-        characterListTableView.reloadData()
     }
     
     

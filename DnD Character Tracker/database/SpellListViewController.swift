@@ -90,6 +90,11 @@ class SpellListViewController: UIViewController, UITableViewDelegate, UITableVie
                 cell.descriptionLabel.text?.append("\nMaterials: \(dataSource[indexPath.row].material)")
             }
             cell.descriptionLabel.text?.append("\nDuration: \(dataSource[indexPath.row].duration) \n\n\(dataSource[indexPath.row].desc) \n\(dataSource[indexPath.row].higher_level)")
+            cell.infoButton.tintColor = .clear
+            cell.infoButton.setTitleColor(.systemBlue, for: .selected)
+            cell.infoButton.setTitleColor(.systemBlue, for: .normal)
+            cell.infoButton.setTitle("SHOW INFO", for: .normal)
+            cell.infoButton.setTitle("HIDE INFO", for: .selected)
             cell.infoButton.tag = indexPath.row
             cell.infoButton.addTarget(self, action: #selector(self.expandInformation(button:)), for: .touchUpInside)
             

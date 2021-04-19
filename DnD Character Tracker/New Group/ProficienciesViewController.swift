@@ -207,7 +207,7 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     @IBAction func didPressNext(_ sender: Any) {
         
-        if hasDuplicates || selectedSkills == [] || selectedLanguages == [] {
+        if !selectProficienciesButton.isSelected || hasDuplicates || selectedSkills == [] || selectedLanguages == [] {
             let alert = UIAlertController(title: "", message: "Please select your proficiencies and languages.", preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                                present(alert, animated: true)

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Character {
+struct Character: Equatable {
     var userName: String = ""
     var userUID: String = ""
     var name: String = ""
@@ -21,6 +21,11 @@ struct Character {
     var languages: [String] = []
     var proficiencies: [String] = []
     var equipment: String = ""
+    
+    static func == (lhs:Character, rhs:Character) -> Bool {
+        return (lhs.name == rhs.name && lhs.race == rhs.race && lhs.charClass == rhs.charClass && lhs.background == rhs.background)
+        
+    }
 }
 
 struct Race {

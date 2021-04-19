@@ -16,19 +16,27 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     let user = Auth.auth().currentUser
     var ref: DatabaseReference! = Database.database().reference()
     var character: [Character] = []
+    var charNumber: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let uid = user?.uid
         characterListTableView.delegate = self
         characterListTableView.dataSource = self
+        getCharacterList()
+       
+    }
+    
+    func getCharacterList() {
+        let uid = user?.uid
         ref.child("users").child(uid ?? "none").observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let chNr = Int(value?["character nr"] as! String) ?? 0
+            self.charNumber = chNr
             let username = value?["username"] as? String
             if chNr > 0 {
                 for i in 1...chNr {
                     let charData = value?["\(i)"] as? NSDictionary
+                    let chName = charData!["name"] as? String ?? "name"
                     let chRace = charData!["race"] as? String ?? "race"
                     let chClass = charData!["class"] as? String ?? ""
                     let chBg = charData!["background"] as? String ?? ""
@@ -49,18 +57,15 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                             profs.append(i as! String)
                         }
                     }
-                    self.character.append(Character(userName: username ?? "n/a", userUID: self.user?.uid ?? "none", name: "", race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp, languages: langs, proficiencies: profs, equipment: equip ?? "none"))
+                    self.character.append(Character(userName: username ?? "n/a", userUID: self.user?.uid ?? "none", name: chName, race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp, languages: langs, proficiencies: profs, equipment: equip ?? "none"))
                 }
             }
-            
+            self.character.removeDuplicates()
             self.characterListTableView.reloadData()
+            
         }) { (error) in
             print(error.localizedDescription)
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool){
-        self.characterListTableView.reloadData()
     }
     
     
@@ -71,6 +76,7 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = characterListTableView.dequeueReusableCell(withIdentifier: "characterCell") as? CharacterListTableViewCell {
+            cell.nameLabel.text = character[indexPath.row].name
             cell.raceLabel.text = character[indexPath.row].race
             cell.classLabel.text = character[indexPath.row].charClass
             cell.bgLabel.text = character[indexPath.row].background + " Background"
@@ -114,25 +120,18 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                     self.character.remove(at: charToDelete-1)
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 } else {
-                    debugPrint("will delete char nr \(charToDelete)")
                     for i in charToDelete..<charNr {
                         var aux: [String: Any] = [:]
                         
                         if let charData1 = value?["\(i)"] as? [String:Any]{
                             
-                            debugPrint(charData1)
                             aux = charData1
                             if let charData2 = value?["\(i+1)"] as? [String : Any] {
                                 self.ref.child("users").child(uid ?? "none").child("\(i)").updateChildValues(charData2)
                                 debugPrint(charData2)
-                            } else {
-                                debugPrint("no")
                             }
                             self.ref.child("users").child(uid ?? "none").child("\(i+1)").updateChildValues(aux)
-                        } else {
-                            debugPrint("can't show char \(i)")
                         }
-                        
                     }
                     self.ref.child("users").child(uid ?? "none").child("\(charNr)").removeValue()
                     self.ref.child("users").child(uid ?? "none").updateChildValues(["character nr" : "\(charNr-1)"])
@@ -146,4 +145,30 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             
         }
     }
+    
+    @IBAction func didPressAddCharacter(_ sender: Any) {
+        let characterNameAlert = UIAlertController(title: nil, message: "Choose a name for your character:", preferredStyle: .alert)
+        characterNameAlert.addTextField { (textField) in
+            textField.placeholder = "Character name"
+        }
+        characterNameAlert.addAction(UIAlertAction(title: "DONE", style: .default, handler: { [weak characterNameAlert] (_) in
+            let textField = characterNameAlert?.textFields![0]
+            if let characterName = textField?.text{
+                debugPrint(characterName)
+                if characterName != ""{
+                    self.ref.child("users").child(self.user!.uid).updateChildValues(["\(self.charNumber+1)/name" : characterName])
+                self.performSegue(withIdentifier: "goToCharacterCreation", sender: (Any).self)
+                }
+            }
+        }))
+        characterNameAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(characterNameAlert, animated: true, completion: nil)
+    }
+    
+    @IBAction func didPressRefreshCharacterList(_ sender: Any) {
+        getCharacterList()
+        characterListTableView.reloadData()
+    }
+    
+    
 }

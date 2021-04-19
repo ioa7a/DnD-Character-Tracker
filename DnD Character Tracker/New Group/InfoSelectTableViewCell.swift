@@ -28,6 +28,11 @@ class InfoSelectTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
     }
+    
+    override func prepareForReuse() {
+//        infoButton.isSelected = false
+//        self.bounds.size.height = 50.0
+    }
 
 
 }

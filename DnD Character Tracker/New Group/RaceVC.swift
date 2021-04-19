@@ -19,11 +19,11 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var raceTableView: UITableView!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var prevButton: UIButton!
-    var expandCell: Bool = false
-    var indexOfExpandedCell: Int = -1
+//    var expandCell: Bool = false
+//    var indexOfExpandedCell: Int = -1
     var raceIndex: Int = 0;
     var charNumber: Int = 0
-    
+    var expandCellAt: [Bool] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +53,7 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 var race = Race(index: i, name: name!, size: size!, speed: speed!, languages: langArray!, modifier: modifiers!, ability: abilities ?? "None")
                 race.bonusLang = bonusLangNr ?? 0
                 self.races.append(race)
+                self.expandCellAt.append(false)
                 self.raceTableView.reloadData()
             })
             { (error) in
@@ -125,9 +126,9 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if expandCell && indexPath.row == indexOfExpandedCell {
+        if expandCellAt[indexPath.row]{
             if let cell = raceTableView.cellForRow(at: indexPath) as? InfoSelectTableViewCell{
-                return cell.abilityLabel.bounds.size.height + 60.0*4.0
+                return cell.abilityLabel.bounds.size.height + 45.0*4.0
             }
             return 200.0
         }
@@ -135,12 +136,16 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     @objc func expandInformation(button: UIButton) {
-        button.isSelected = !button.isSelected
-        indexOfExpandedCell = button.tag
-        expandCell = button.isSelected
-      
+        for i in 0 ..< expandCellAt.count {
+            if i == button.tag {
+                expandCellAt[i].toggle()
+                button.isSelected = expandCellAt[i]
+            }
+        }
         self.raceTableView.beginUpdates()
         self.raceTableView.endUpdates()
+      
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

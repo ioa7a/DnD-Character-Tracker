@@ -31,7 +31,6 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
     @IBOutlet weak var abilityCollectionView: UICollectionView!
     @IBOutlet weak var proficiencyLabel: UILabel!
     @IBOutlet weak var abilityScoreImprovementButton: UIButton!
-    @IBOutlet weak var equipmentTextView: UITextView!
     
     
     var canImproveAbilityScore: Bool = false
@@ -55,7 +54,6 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         super.viewDidLoad()
         abilityCollectionView.delegate = self
         abilityCollectionView.dataSource = self
-        equipmentTextView.delegate = self
         
         characterInfoLabel.text = "\(raceName) \(className), \(background) Background"
         abilityScoreLabel[0].text = stats["CHA"]
@@ -95,7 +93,6 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         }
         
         abilityScoreImprovementButton.isEnabled = canImproveAbilityScore ? true : false
-        equipmentTextView.text = "Current inventory: \(equipment)"
     }
     
     
@@ -116,7 +113,6 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
     
     @IBAction func didPressLevelUp(_ sender: Any) {
         
-        levelUpButton.isEnabled = false
         level = Int(levelLabel.text!.components(separatedBy: " ")[1]) ?? 1
         levelLabel.text = "Level \(level+1)"
         
@@ -129,11 +125,19 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
             currentExp = max(currentExp-experienceToLevelUp[level-1], 0)
             progressbar.progress = Float(currentExp)/Float(experienceToLevelUp[level-1])
             currentExperienceLabel.text = "\(currentExp)/\(experienceToLevelUp[level-1])"
+            if currentExp >= experienceToLevelUp[level-1] {
+                levelUpButton.isEnabled = true
+            } else {
+                levelUpButton.isEnabled = false
+            }
             updateHP_AC()
             
         } else {
+            progressbar.isHidden = true
+            currentExperienceLabel.isHidden = true
             levelUpButton.isHidden = true
-            addExpButton.isEnabled = false
+            expToAddTextField.isHidden = true
+            addExpButton.isHidden = true
         }
         
         if [4, 8, 12, 16, 19].contains(level){
@@ -259,5 +263,5 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         }
     }
     
-    
+
 }

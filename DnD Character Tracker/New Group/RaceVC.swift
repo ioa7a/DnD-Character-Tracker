@@ -19,8 +19,7 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var raceTableView: UITableView!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var prevButton: UIButton!
-//    var expandCell: Bool = false
-//    var indexOfExpandedCell: Int = -1
+
     var raceIndex: Int = 0;
     var charNumber: Int = 0
     var expandCellAt: [Bool] = []

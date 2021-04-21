@@ -11,8 +11,7 @@ import FirebaseDatabase
 
 class BackgroundViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var expandCell: Bool = false
-    var indexOfExpandedCell: Int = -1
+    var expandCellAt: [Bool] = []
     var didSelectBg: Bool = false
     var raceIndex: Int = 0
     var classIndex: Int = 0
@@ -48,6 +47,7 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
                 let languageNumber = value?["languages"] as? String
                 let equipment = value?["equipment"] as? String
                 let bg = Background(name: name!, desc: desc!, skills: skills!, tools: tools!, languageNr: languageNumber!, equipment: equipment!, feature: feature!)
+                self.expandCellAt.append(false)
                 self.backgrounds.append(bg)
                 self.bgTableView.reloadData()
             })
@@ -105,7 +105,7 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if expandCell && indexPath.row == indexOfExpandedCell {
+        if expandCellAt[indexPath.row] {
             if let cell = bgTableView.cellForRow(at: indexPath) as? BackgroundTableViewCell {
                 return cell.descriptionLabel.bounds.size.height + 80.0*5
                       }
@@ -115,12 +115,12 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @objc func expandInformation(button: UIButton) {
-        button.isSelected = !button.isSelected
-        if button.isSelected {
-            button.backgroundColor = .clear
+        for i in 0 ..< expandCellAt.count {
+            if i == button.tag {
+                expandCellAt[i].toggle()
+                button.isSelected = expandCellAt[i]
+            }
         }
-        indexOfExpandedCell = button.tag
-        expandCell = button.isSelected
         self.bgTableView.beginUpdates()
         self.bgTableView.endUpdates()
     }

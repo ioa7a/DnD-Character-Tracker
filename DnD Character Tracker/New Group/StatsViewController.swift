@@ -274,7 +274,6 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             { (error) in
                 print(error.localizedDescription)
             }
-            
             self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
         }
         else {

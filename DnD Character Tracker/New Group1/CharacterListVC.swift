@@ -22,11 +22,13 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         super.viewDidLoad()
         characterListTableView.delegate = self
         characterListTableView.dataSource = self
+        character = []
         getCharacterList()
        
     }
-
+    
     func getCharacterList() {
+        character = []
         let uid = user?.uid
         ref.child("users").child(uid ?? "none").observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
@@ -91,6 +93,7 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CharacterProfileVC") as! CharacterProfileViewController
+        vc.characterName = character[indexPath.row].name
         vc.raceName = character[indexPath.row].race.capitalized
         vc.className = character[indexPath.row].charClass.capitalized
         vc.level = Int(character[indexPath.row].level) ?? 1
@@ -127,7 +130,6 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                             aux = charData1
                             if let charData2 = value?["\(i+1)"] as? [String : Any] {
                                 self.ref.child("users").child(uid ?? "none").child("\(i)").updateChildValues(charData2)
-                                debugPrint(charData2)
                             }
                             self.ref.child("users").child(uid ?? "none").child("\(i+1)").updateChildValues(aux)
                         }
@@ -153,14 +155,26 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         characterNameAlert.addAction(UIAlertAction(title: "DONE", style: .default, handler: { [weak characterNameAlert] (_) in
             let textField = characterNameAlert?.textFields![0]
             if let characterName = textField?.text{
-                debugPrint(characterName)
                 if characterName != ""{
+                    var alreadyExists: Bool =  false
+                    for i in 0 ..< self.character.count {
+                        if self.character[i].name == characterName {
+                            alreadyExists = true
+                        }
+                    }
+                    if !alreadyExists {
                     self.ref.child("users").child(self.user!.uid).updateChildValues(["\(self.charNumber+1)/name" : characterName])
                 self.performSegue(withIdentifier: "goToCharacterCreation", sender: (Any).self)
+                    }
+                    else {
+                        let nameAlert = UIAlertController(title: nil, message: "You already have a character with that name!", preferredStyle: .alert)
+                        nameAlert.addAction(UIAlertAction(title: "OK", style: .cancel , handler: nil))
+                        self.present(nameAlert, animated: true, completion: nil)
+                    }
                 }
             }
         }))
-        characterNameAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        characterNameAlert.addAction(UIAlertAction(title: "CANCEL", style: .cancel, handler: nil))
         present(characterNameAlert, animated: true, completion: nil)
     }
     

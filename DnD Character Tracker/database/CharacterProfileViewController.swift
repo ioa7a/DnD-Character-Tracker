@@ -16,6 +16,7 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
     var charNumber: Int = 0
     let user = Auth.auth().currentUser
     
+    @IBOutlet weak var inventoryTextView: UITextView!
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var characterInfoLabel: UILabel!
@@ -26,7 +27,9 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
     @IBOutlet weak var currentExperienceLabel: UILabel!
     @IBOutlet weak var levelUpButton: UIButton!
     @IBOutlet var abilityScoreLabel: [UILabel]!
+    
     @IBOutlet var abilityModifierLabel: [UILabel]!
+     
     @IBOutlet weak var HP_ACLabel: UILabel!
     @IBOutlet weak var abilityCollectionView: UICollectionView!
     @IBOutlet weak var proficiencyLabel: UILabel!
@@ -49,13 +52,18 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
     var languages: [String] = []
     var proficiencies: [String] = []
     var equipment: String = ""
+    var characterName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         abilityCollectionView.delegate = self
         abilityCollectionView.dataSource = self
+        inventoryTextView.delegate = self
         
+        nameLabel.text = characterName
         characterInfoLabel.text = "\(raceName) \(className), \(background) Background"
+        inventoryTextView.text = equipment
+        
         abilityScoreLabel[0].text = stats["CHA"]
         abilityScoreLabel[1].text = stats["CON"]
         abilityScoreLabel[2].text = stats["DEX"]
@@ -73,13 +81,22 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         
         updateHP_AC()
         levelLabel.text = "Level \(level)"
-        currentExperienceLabel.text = "\(currentExp)/\(experienceToLevelUp[level-1])"
         
-        levelUpButton.isEnabled = currentExp >= experienceToLevelUp[level-1] ? true : false
+        if level < 20 {
+            currentExperienceLabel.text = "\(currentExp)/\(experienceToLevelUp[level-1])"
+            levelUpButton.isEnabled = currentExp >= experienceToLevelUp[level-1] ? true : false
+            progressbar.progress = Float(currentExp)/Float(experienceToLevelUp[level-1])
+            progressbar.progressTintColor = .systemBlue
+        } else {
+            currentExperienceLabel.isHidden = true
+            levelUpButton.isHidden = true
+            progressbar.isHidden = true
+            expToAddTextField.isHidden = true
+        }
         
-        progressbar.progress = Float(currentExp)/Float(experienceToLevelUp[level-1])
-        progressbar.progressTintColor = .systemBlue
+        
         languageLabel.text = "Known languages: "
+        languages.sort()
         for i in 0 ..< languages.count {
             languageLabel.text?.append(languages[i])
             if i < languages.count - 1 {
@@ -87,6 +104,8 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
             }
         }
         
+        proficiencyLabel.text = "Known languages: "
+        proficiencies.sort()
         for i in 0 ..< proficiencies.count {
             proficiencyLabel.text?.append(proficiencies[i])
             if i < proficiencies.count - 1 {
@@ -97,6 +116,24 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         abilityScoreImprovementButton.isEnabled = canImproveAbilityScore ? true : false
     }
     
+    func getStats() {
+        let uid = user?.uid
+        ref.child("users").child(uid ?? "none").child("\(charNumber)").observeSingleEvent(of: .value, with: { [self] (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let chStats = value!["stats"] as? [String: String] ?? [:]
+            self.stats = chStats
+            self.abilityScoreLabel[0].text = self.stats["CHA"]
+            self.abilityScoreLabel[1].text = self.stats["CON"]
+            self.abilityScoreLabel[2].text = self.stats["DEX"]
+            self.abilityScoreLabel[3].text = self.stats["INT"]
+            self.abilityScoreLabel[4].text = self.stats["STR"]
+            self.abilityScoreLabel[5].text = self.stats["WIS"]
+            self.calculateModifier()
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
     
     //MARK: Experience/Level up
     @IBAction func didPressAddExp(_ sender: Any) {
@@ -145,6 +182,7 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         switch(level+1) {
         case 4, 8, 12, 16, 19:
             abilityScoreImprovementButton.isEnabled = true
+            levelUpButton.isEnabled = false
         default:
             abilityScoreImprovementButton.isEnabled = false
         }
@@ -264,6 +302,9 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToAbilityImprovement",  let vc = segue.destination as? AbilityScoreImprovementViewController{
             vc.stats = self.stats
+            vc.charNumber = self.charNumber
+          //  vc.charProfileVC = self
+          
         }
     }
     

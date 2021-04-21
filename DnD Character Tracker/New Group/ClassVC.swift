@@ -13,6 +13,7 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     var ref: DatabaseReference = Database.database().reference()
     var didSelectClass: Bool = false
+    var expandCellAt: [Bool] = []
     var expandCell: Bool = false
     var indexOfExpandedCell: Int = -1
     var raceIndex: Int = 0;
@@ -52,6 +53,7 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
                 myClass.armor = armor
                 myClass.weapons = weapons
                 myClass.tools = tools
+                self.expandCellAt.append(false)
                 self.classDetailsArray.append(myClass)
                 self.classTableView.reloadData()
             })
@@ -112,9 +114,9 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if expandCell && indexPath.row == indexOfExpandedCell {
+        if expandCellAt[indexPath.row] {
             if let cell = classTableView.cellForRow(at: indexPath) as? ClassInfoTableViewCell {
-                return cell.proficienciesLabel.bounds.size.height + 75.0*5.0
+                return cell.proficienciesLabel.bounds.size.height + 70.0*4.0
             }
                return 300.0
         }
@@ -125,9 +127,12 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     }
     
     @objc func expandInformation(button: UIButton) {
-        button.isSelected = !button.isSelected
-        indexOfExpandedCell = button.tag
-        expandCell = button.isSelected
+        for i in 0 ..< expandCellAt.count {
+            if i == button.tag {
+                expandCellAt[i].toggle()
+                button.isSelected = expandCellAt[i]
+            }
+        }
         self.classTableView.beginUpdates()
         self.classTableView.endUpdates()
     }

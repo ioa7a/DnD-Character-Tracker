@@ -54,17 +54,20 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         ref.child("classes").child(String(classIndex)).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
+        
+            //class proficiencies
             if let proficiencies = value?["proficiencies"] as? NSDictionary {
                 let number = Int(proficiencies["number"] as! String)
                 let skills = proficiencies["skills"] as! String
                 self.classSkillsSource = skills.components(separatedBy: ", ")
                 self.classSkillsNumber = number ?? 0
             }
-            if let tools = value?["tools"] as? String {
-                self.classToolsLabel.text = "Class tools: \(tools)"
-            }
-           
             self.classSkillsPickerView.reloadAllComponents()
+            
+            //class tools
+            if let tools = value?["tools"] as? String {
+                self.classToolsLabel.attributedText = self.boldLabelText(labelText: "Class tools: \(tools)", boldText: "Class tools:")
+            }
         })
         { (error) in
             print(error.localizedDescription)
@@ -72,17 +75,20 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         ref.child("races").child(String(raceIndex)).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
+            
+            //race languages
             if let languages = value?["language"] as? NSDictionary {
                 let number = languages["bonus_lang"] as! Int
                 let langName = languages["name"] as! String
                 self.knownLanguages = langName.components(separatedBy: ", ")
-                self.bonusLanguageLabel.text = "Known languages: \(langName). "
+                var labelString = "Known languages: \(langName)."
                 if number > 0 {
                     self.bonusLanguagePickerView.isHidden = false
-                    self.bonusLanguageLabel.text?.append("Choose \(number) bonus language:")
+                    labelString.append("\nChoose \(number) bonus language:")
                 } else {
                     self.bonusLanguagePickerView.isHidden = true
                 }
+                self.bonusLanguageLabel.attributedText = self.boldLabelText(labelText: labelString, boldText: "Known languages:")
             }
         })
         { (error) in
@@ -91,6 +97,8 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         ref.child("backgrounds").child(String(bgIndex)).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
+            
+            //background languages
             if let languages = Int(value?["languages"] as? String ?? "0") {
                 if languages > 0 {
                     self.bgLanguageNumber = languages
@@ -101,25 +109,39 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
                     self.bgLanguageNumber = 0
                 }
             }
+            self.backgroundLanguagesPickerView.reloadAllComponents()
+            
+            //background equipment
             if let equipment = value?["equipment"] as? String {
                 self.equipment = equipment
             }
+            self.equipmentLabel.attributedText = self.boldLabelText(labelText: "Equipment: \(self.equipment)", boldText: "Equipment:")
+            
+            //background skills
             let skills = value?["skills"] as? String
-            let tools = value?["tools"] as? String
-            let features = value?["feature"] as? String
-            self.bgSkillsLabel.text = "Background skills: \(skills ?? "none.")"
             if let skills = skills?.components(separatedBy: ", ") {
                 self.backgroundSkills = skills
             }
-            self.featuresLabel.text = "Features: \(features ?? "none.")"
-            self.bgToolsLabel.text = "Background tools: \(tools ?? "none.")"
-            self.equipmentLabel.text = "Equipment: \(self.equipment)"
-            self.backgroundLanguagesPickerView.reloadAllComponents()
-            
+            self.bgSkillsLabel.attributedText = self.boldLabelText(labelText: "Background skills: \(skills ?? "none.")", boldText: "Background skills:")
+            //background tools
+            let tools = value?["tools"] as? String
+            self.bgToolsLabel.attributedText = self.boldLabelText(labelText: "Background tools: \(tools ?? "none")", boldText: "Background tools:")
+            //background features
+            let features = value?["feature"] as? String
+            self.featuresLabel.attributedText = self.boldLabelText(labelText: "Background features: \(features ?? "none")", boldText: "Background features:")
         })
         { (error) in
             print(error.localizedDescription)
         }
+    }
+    
+    func boldLabelText(labelText: String, boldText: String) -> NSMutableAttributedString{
+        let attrLabelString = NSMutableAttributedString(string: labelText)
+         let boldString = boldText
+        let boldRange = NSString(string: labelText).range(of: boldString)
+        let font = UIFont.boldSystemFont(ofSize: 16)
+        attrLabelString.addAttribute(NSAttributedString.Key.font, value: font, range: boldRange)
+        return attrLabelString
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -146,25 +168,36 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
             pickerLabel = UILabel()
             pickerLabel?.textAlignment = .center
             pickerLabel?.textColor = .systemBlue
-            pickerLabel?.numberOfLines = 0
-
+            pickerLabel?.lineBreakMode = .byWordWrapping;
+           
             switch(pickerView.tag) {
             case 1:
                 pickerLabel?.text = classSkillsSource[row]
                 if classSkillsNumber > 2 {
-                    pickerLabel?.font = UIFont(name: "System", size: 10.0)
+                    pickerLabel?.font = UIFont(name: "System", size: 8.0)
                 } else {
-                    pickerLabel?.font = UIFont(name: "System", size: 12.0)
+                    pickerLabel?.font = UIFont(name: "System", size: 11.0)
                 }
             case 0, 2:
                 pickerLabel?.text = languageData[row]
-                pickerLabel?.font = UIFont(name: "System", size: 14.0)
+                pickerLabel?.font = UIFont(name: "System", size: 12.0)
             default:  pickerLabel?.text =  "none"
             }
+            pickerLabel?.backgroundColor = .systemGray3
+            pickerLabel?.numberOfLines = 0;
+            pickerLabel?.sizeToFit()
         }
         return pickerLabel!
     }
     
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        switch (pickerView.tag) {
+        case 1:
+            return 60.0
+        default:
+            return 40.0
+        }
+    }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectProficienciesButton.isSelected = false
         selectProficienciesButton.setTitle("LOCK SELECTION", for: .normal)
@@ -194,7 +227,7 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
         debugPrint(selectedSkills)
         hasDuplicates = (selectedLanguages.count != Set(selectedLanguages).count) || (selectedSkills.count != Set(selectedSkills).count)
         if hasDuplicates {
-            let alert = UIAlertController(title: "", message: "Selected proficiencies must differ.", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "", message: "Selected proficiencies and languages must differ.", preferredStyle: .actionSheet)
                         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                         present(alert, animated: true)
         } else {

@@ -48,7 +48,7 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         "Wisdom measures self-awareness, common sense, restraint, perception and insight. Important for Clerics and Druids."]
     
     var abilities: [String] = ["Charisma", "Constitution", "Dexterity", "Intelligence", "Strength", "Wisdom"]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,6 +68,8 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         { (error) in
             print(error.localizedDescription)
         }
+        
+   
         
         ref.child("races").child(String(raceIndex)).child("modifiers").observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary

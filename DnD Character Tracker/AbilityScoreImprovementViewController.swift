@@ -39,6 +39,17 @@ class AbilityScoreImprovementViewController: UIViewController {
         calculateModifier()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if let firstVC = presentingViewController as? CharacterProfileViewController {
+            DispatchQueue.main.async {
+                firstVC.getStats()
+            }
+        }
+    }
+
+    
     @IBAction func selectCHA(_ sender: Any) {
           abilitySelected(index: 0)
           abilityNameLabel.text = "CHA"
@@ -146,7 +157,6 @@ class AbilityScoreImprovementViewController: UIViewController {
                     if self.wasModified[i] > 0 {
                         debugPrint("was modified: \(self.abilityButton[i].titleLabel?.text)")
                         self.ref.child("users").child(self.user!.uid).updateChildValues(["\(self.charNumber)/stats/\(self.abilityButton[i].titleLabel?.text ?? "nil")" : self.totalAbilityScoreLabel[i].text!])
-                        self.charProfileVC.getStats()
                         self.dismiss(animated: true, completion: nil)
                     }
                 }

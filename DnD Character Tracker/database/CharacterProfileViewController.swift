@@ -270,15 +270,15 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
                 score = Int(abilityModifierLabel[4].text!) ?? 0
                 cell.layer.borderColor = UIColor.systemRed.cgColor
                 cell.abilityLabel.text?.append("\n(STR)")
-           
+
             case "Animal Handling", "Insight", "Medicine", "Perception", "Survival":
                 score = Int(abilityModifierLabel[5].text!) ?? 0
                 cell.layer.borderColor = UIColor.systemGreen.cgColor
                 cell.abilityLabel.text?.append("\n(WIS)")
-           
+
             default:  cell.layer.borderColor = UIColor.systemGray.cgColor
             }
-            
+
             if proficiencies.contains(cell.abilityLabel.text ?? "none") {
                 switch(level) {
                 case 1 ... 4: score = score + 2
@@ -292,7 +292,7 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
             cell.abilityScoreLabel.text = (score >= 0 ? "+ \(score)" : " \(score)")
             cell.layer.borderWidth = 2.0
             return cell
-            
+
         }
         else {
             return UICollectionViewCell()

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		270A08FA25A48165006B3D57 /* DiceRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A08F925A48165006B3D57 /* DiceRollViewController.swift */; };
 		270A090025A49B49006B3D57 /* DiceRollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A08FF25A49B49006B3D57 /* DiceRollCollectionViewCell.swift */; };
-		2722096B26127FDA002E132E /* CharacterAbilityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2722096A26127FD9002E132E /* CharacterAbilityCollectionViewCell.swift */; };
 		273BD60525A5DF8300270C7A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273BD60425A5DF8300270C7A /* CustomButton.swift */; };
 		273BD60A25A655BC00270C7A /* ClassInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273BD60925A6558500270C7A /* ClassInfoTableViewCell.swift */; };
 		275391EE25A9F74D00260440 /* BackgroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275391ED25A9F74D00260440 /* BackgroundTableViewCell.swift */; };
@@ -42,21 +41,20 @@
 		278A8FF72620528B00B78A50 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278A8FF62620528B00B78A50 /* BackButton.swift */; };
 		278E79A025F3BFA80058EABF /* GeneralInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */; };
 		278FB4C22624D38800AE06A7 /* GeneralInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278FB4C12624D38800AE06A7 /* GeneralInfoTableViewCell.swift */; };
-		27A89835262B4B8F001E6DA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27A89834262B4B8F001E6DA2 /* GoogleService-Info.plist */; };
+		278FF5D32639EF9300496C65 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 278FF5D22639EF9300496C65 /* GoogleService-Info.plist */; };
 		27ACF66C260BCDFA002DF95B /* ChatIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ACF66B260BCDFA002DF95B /* ChatIndexViewController.swift */; };
 		27CAF1C62621CFFE0090860D /* AbilityScoreImprovementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAF1C52621CFFE0090860D /* AbilityScoreImprovementViewController.swift */; };
 		27EB5D2D25AE63C200087983 /* CharacterProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */; };
+		27F0509C2639F6A80022329B /* CharacterAbilityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F0509B2639F6A80022329B /* CharacterAbilityCollectionViewCell.swift */; };
 		27FCBAAA260B5C460055A366 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FCBAA9260B5C460055A366 /* Chat.swift */; };
-		5E976D36914D9207511DD8A5 /* Pods_DnD_Character_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01B8FBA4C903CD898BC56C39 /* Pods_DnD_Character_Tracker.framework */; };
+		6E3D446D7ED55D9E97D8684D /* Pods_DnD_Character_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F49253A6BCDC2FB111C1DA /* Pods_DnD_Character_Tracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		01B8FBA4C903CD898BC56C39 /* Pods_DnD_Character_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DnD_Character_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8E89DE57B4B224EF4C5BE4 /* Pods-DnD Character Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DnD Character Tracker.debug.xcconfig"; path = "Target Support Files/Pods-DnD Character Tracker/Pods-DnD Character Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 		19F05F94CB22FF2F7D69D462 /* Pods-DnD Character Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DnD Character Tracker.release.xcconfig"; path = "Target Support Files/Pods-DnD Character Tracker/Pods-DnD Character Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		270A08F925A48165006B3D57 /* DiceRollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollViewController.swift; sourceTree = "<group>"; };
 		270A08FF25A49B49006B3D57 /* DiceRollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollCollectionViewCell.swift; sourceTree = "<group>"; };
-		2722096A26127FD9002E132E /* CharacterAbilityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterAbilityCollectionViewCell.swift; path = "/Users/ioanabojinca/Desktop/dnd/DnD Character Tracker/CharacterAbilityCollectionViewCell.swift"; sourceTree = "<absolute>"; };
 		273BD60425A5DF8300270C7A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		273BD60925A6558500270C7A /* ClassInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassInfoTableViewCell.swift; sourceTree = "<group>"; };
 		275391ED25A9F74D00260440 /* BackgroundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTableViewCell.swift; sourceTree = "<group>"; };
@@ -91,11 +89,13 @@
 		278A8FF62620528B00B78A50 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoTableViewController.swift; sourceTree = "<group>"; };
 		278FB4C12624D38800AE06A7 /* GeneralInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoTableViewCell.swift; sourceTree = "<group>"; };
-		27A89834262B4B8F001E6DA2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		278FF5D22639EF9300496C65 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27ACF66B260BCDFA002DF95B /* ChatIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatIndexViewController.swift; sourceTree = "<group>"; };
 		27CAF1C52621CFFE0090860D /* AbilityScoreImprovementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityScoreImprovementViewController.swift; sourceTree = "<group>"; };
 		27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfileViewController.swift; sourceTree = "<group>"; };
+		27F0509B2639F6A80022329B /* CharacterAbilityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterAbilityCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		27FCBAA9260B5C460055A366 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		59F49253A6BCDC2FB111C1DA /* Pods_DnD_Character_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DnD_Character_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E976D36914D9207511DD8A5 /* Pods_DnD_Character_Tracker.framework in Frameworks */,
+				6E3D446D7ED55D9E97D8684D /* Pods_DnD_Character_Tracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +113,7 @@
 		24ADE115451CA1A0F238E7EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				01B8FBA4C903CD898BC56C39 /* Pods_DnD_Character_Tracker.framework */,
+				59F49253A6BCDC2FB111C1DA /* Pods_DnD_Character_Tracker.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -203,7 +203,7 @@
 		276D23CB252798A400242C8B /* DnD Character Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				2722096A26127FD9002E132E /* CharacterAbilityCollectionViewCell.swift */,
+				27F0509B2639F6A80022329B /* CharacterAbilityCollectionViewCell.swift */,
 				2761BA9F260E1A9300A616FF /* chat */,
 				276E023825FEB9CD0079517D /* database */,
 				27EB5D2B25AE31B600087983 /* navigation */,
@@ -213,12 +213,12 @@
 				276007CA259F3824003B8B1A /* character creation */,
 				275EC10A259CC104007A2521 /* autentificare */,
 				276D23CC252798A400242C8B /* AppDelegate.swift */,
-				27A89834262B4B8F001E6DA2 /* GoogleService-Info.plist */,
 				276D23CE252798A400242C8B /* SceneDelegate.swift */,
 				276D23D2252798A400242C8B /* Main.storyboard */,
 				276D23D8252798AD00242C8B /* Assets.xcassets */,
 				276D23DA252798AD00242C8B /* LaunchScreen.storyboard */,
 				276D23DD252798AD00242C8B /* Info.plist */,
+				278FF5D22639EF9300496C65 /* GoogleService-Info.plist */,
 				276D23D5252798A500242C8B /* DnD_Character_Tracker.xcdatamodeld */,
 				27CAF1C52621CFFE0090860D /* AbilityScoreImprovementViewController.swift */,
 			);
@@ -320,7 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				276D23DC252798AD00242C8B /* LaunchScreen.storyboard in Resources */,
-				27A89835262B4B8F001E6DA2 /* GoogleService-Info.plist in Resources */,
+				278FF5D32639EF9300496C65 /* GoogleService-Info.plist in Resources */,
 				276D23D9252798AD00242C8B /* Assets.xcassets in Resources */,
 				276D23D4252798A400242C8B /* Main.storyboard in Resources */,
 			);
@@ -399,7 +399,6 @@
 				276850C225F947ED008A2C70 /* Spell.swift in Sources */,
 				275391EE25A9F74D00260440 /* BackgroundTableViewCell.swift in Sources */,
 				27679A0D252866E0006984FA /* CharacterListVC.swift in Sources */,
-				2722096B26127FDA002E132E /* CharacterAbilityCollectionViewCell.swift in Sources */,
 				276D23CD252798A400242C8B /* AppDelegate.swift in Sources */,
 				276D23CF252798A400242C8B /* SceneDelegate.swift in Sources */,
 				273BD60A25A655BC00270C7A /* ClassInfoTableViewCell.swift in Sources */,
@@ -409,6 +408,7 @@
 				276E023725FEB9820079517D /* AllCharactersViewController.swift in Sources */,
 				2757D95B259C97E600CFF270 /* LogInViewController.swift in Sources */,
 				27679A13252868E9006984FA /* InfoSelectTableViewCell.swift in Sources */,
+				27F0509C2639F6A80022329B /* CharacterAbilityCollectionViewCell.swift in Sources */,
 				275A9A9D2604EC9C00552912 /* ChatViewController.swift in Sources */,
 				276850C425F9694F008A2C70 /* SpellListViewController.swift in Sources */,
 			);

@@ -23,10 +23,19 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         characterListTableView.delegate = self
         characterListTableView.dataSource = self
         character = []
-        getCharacterList()
+     //   getCharacterList()
        
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        character = []
+//        getCharacterList()
+//    }
+//
+    override func viewDidAppear(_ animated: Bool) {
+        character = []
+        getCharacterList()
+    }
     func getCharacterList() {
         character = []
         let uid = user?.uid
@@ -185,3 +194,4 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     
 }
+

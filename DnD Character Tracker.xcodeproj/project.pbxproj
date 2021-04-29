@@ -39,6 +39,7 @@
 		276E023725FEB9820079517D /* AllCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276E023625FEB9820079517D /* AllCharactersViewController.swift */; };
 		276E023A25FEBB210079517D /* AllCharactersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276E023925FEBB210079517D /* AllCharactersTableViewCell.swift */; };
 		277652D9263AEE8A00D6F47F /* CharacterCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 277652D8263AEE8A00D6F47F /* CharacterCreation.storyboard */; };
+		277652DC263AF0B700D6F47F /* Chats.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 277652DB263AF0B700D6F47F /* Chats.storyboard */; };
 		278A8FF72620528B00B78A50 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278A8FF62620528B00B78A50 /* BackButton.swift */; };
 		278E79A025F3BFA80058EABF /* GeneralInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */; };
 		278FB4C22624D38800AE06A7 /* GeneralInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278FB4C12624D38800AE06A7 /* GeneralInfoTableViewCell.swift */; };
@@ -88,6 +89,7 @@
 		276E023625FEB9820079517D /* AllCharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCharactersViewController.swift; sourceTree = "<group>"; };
 		276E023925FEBB210079517D /* AllCharactersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCharactersTableViewCell.swift; sourceTree = "<group>"; };
 		277652D8263AEE8A00D6F47F /* CharacterCreation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CharacterCreation.storyboard; sourceTree = "<group>"; };
+		277652DB263AF0B700D6F47F /* Chats.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chats.storyboard; sourceTree = "<group>"; };
 		278A8FF62620528B00B78A50 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoTableViewController.swift; sourceTree = "<group>"; };
 		278FB4C12624D38800AE06A7 /* GeneralInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -253,8 +255,9 @@
 			isa = PBXGroup;
 			children = (
 				276D23D2252798A400242C8B /* Main.storyboard */,
-				276D23DA252798AD00242C8B /* LaunchScreen.storyboard */,
 				277652D8263AEE8A00D6F47F /* CharacterCreation.storyboard */,
+				277652DB263AF0B700D6F47F /* Chats.storyboard */,
+				276D23DA252798AD00242C8B /* LaunchScreen.storyboard */,
 			);
 			path = storyboards;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277652DC263AF0B700D6F47F /* Chats.storyboard in Resources */,
 				277652D9263AEE8A00D6F47F /* CharacterCreation.storyboard in Resources */,
 				276D23DC252798AD00242C8B /* LaunchScreen.storyboard in Resources */,
 				278FF5D32639EF9300496C65 /* GoogleService-Info.plist in Resources */,

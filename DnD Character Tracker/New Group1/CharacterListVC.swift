@@ -113,13 +113,19 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         charProfileVC.raceName = selectedCharacter.race.capitalized
         charProfileVC.className = selectedCharacter.charClass.capitalized
         charProfileVC.level = Int(selectedCharacter.level ) ?? 1
-        charProfileVC.charNumber = charNumber
+        charProfileVC.charNumber = indexPath.row + 1
         charProfileVC.background = selectedCharacter.background.capitalized
         charProfileVC.currentExp = Int(selectedCharacter.currentExp ) ?? 0
         charProfileVC.languages = selectedCharacter.languages
         charProfileVC.proficiencies = selectedCharacter.proficiencies
         charProfileVC.equipment = selectedCharacter.equipment
         //TO DO: setup stats & abilities VC
+        let navVC2 =  tabBarController.viewControllers![1] as! UINavigationController
+        let abilitiesVC = navVC2.topViewController as! AbilitiesStatsViewController
+        abilitiesVC.stats = selectedCharacter.stats ?? [:]
+        abilitiesVC.proficiencies = selectedCharacter.proficiencies
+        abilitiesVC.charNumber = indexPath.row + 1
+
         present(tabBarController, animated: true, completion: nil)
     }
     

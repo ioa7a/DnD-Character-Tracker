@@ -13,6 +13,7 @@
 		273BD60A25A655BC00270C7A /* ClassInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273BD60925A6558500270C7A /* ClassInfoTableViewCell.swift */; };
 		275391EE25A9F74D00260440 /* BackgroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275391ED25A9F74D00260440 /* BackgroundTableViewCell.swift */; };
 		275391F025AB96EB00260440 /* CharacterListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275391EF25AB96EB00260440 /* CharacterListTableViewCell.swift */; };
+		275703A6263B4F7600D3FEE2 /* AbilitiesStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275703A5263B4F7600D3FEE2 /* AbilitiesStatsViewController.swift */; };
 		2757D959259C8C5B00CFF270 /* StartUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757D958259C8C5B00CFF270 /* StartUpViewController.swift */; };
 		2757D95B259C97E600CFF270 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757D95A259C97E600CFF270 /* LogInViewController.swift */; };
 		2757D95D259CA0C100CFF270 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2757D95C259CA0C100CFF270 /* SignUpViewController.swift */; };
@@ -62,6 +63,7 @@
 		273BD60925A6558500270C7A /* ClassInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassInfoTableViewCell.swift; sourceTree = "<group>"; };
 		275391ED25A9F74D00260440 /* BackgroundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTableViewCell.swift; sourceTree = "<group>"; };
 		275391EF25AB96EB00260440 /* CharacterListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListTableViewCell.swift; sourceTree = "<group>"; };
+		275703A5263B4F7600D3FEE2 /* AbilitiesStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitiesStatsViewController.swift; sourceTree = "<group>"; };
 		2757D958259C8C5B00CFF270 /* StartUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartUpViewController.swift; sourceTree = "<group>"; };
 		2757D95A259C97E600CFF270 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		2757D95C259CA0C100CFF270 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				27CAF1C52621CFFE0090860D /* AbilityScoreImprovementViewController.swift */,
 				27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */,
 				277652DF263B01D100D6F47F /* CharacterProfileTabBarMenuVC.swift */,
+				275703A5263B4F7600D3FEE2 /* AbilitiesStatsViewController.swift */,
 			);
 			path = "Character Profile";
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				278E79A025F3BFA80058EABF /* GeneralInfoTableViewController.swift in Sources */,
 				27CAF1C62621CFFE0090860D /* AbilityScoreImprovementViewController.swift in Sources */,
 				276E023A25FEBB210079517D /* AllCharactersTableViewCell.swift in Sources */,
+				275703A6263B4F7600D3FEE2 /* AbilitiesStatsViewController.swift in Sources */,
 				276D23D1252798A400242C8B /* NavigationViewController.swift in Sources */,
 				2757D959259C8C5B00CFF270 /* StartUpViewController.swift in Sources */,
 				27FCBAAA260B5C460055A366 /* Chat.swift in Sources */,

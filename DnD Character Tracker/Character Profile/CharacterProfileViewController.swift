@@ -10,8 +10,8 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class CharacterProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextViewDelegate {
-    
+class CharacterProfileViewController: UIViewController, UITextViewDelegate {
+    //UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
     var ref: DatabaseReference = Database.database().reference()
     var charNumber: Int = 0
     let user = Auth.auth().currentUser
@@ -64,20 +64,20 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        abilityCollectionView.delegate = self
-        abilityCollectionView.dataSource = self
+//        abilityCollectionView.delegate = self
+//        abilityCollectionView.dataSource = self
         inventoryLabel.text = "Inventory: \(equipment)"
         
         nameLabel.text = characterName
         characterInfoLabel.text = "\(raceName) \(className), \(background) Background"
         
-        abilityScoreLabel[0].text = stats["CHA"]
-        abilityScoreLabel[1].text = stats["CON"]
-        abilityScoreLabel[2].text = stats["DEX"]
-        abilityScoreLabel[3].text = stats["INT"]
-        abilityScoreLabel[4].text = stats["STR"]
-        abilityScoreLabel[5].text = stats["WIS"]
-        calculateModifier()
+//        abilityScoreLabel[0].text = stats["CHA"]
+//        abilityScoreLabel[1].text = stats["CON"]
+//        abilityScoreLabel[2].text = stats["DEX"]
+//        abilityScoreLabel[3].text = stats["INT"]
+//        abilityScoreLabel[4].text = stats["STR"]
+//        abilityScoreLabel[5].text = stats["WIS"]
+//        calculateModifier()
         
         switch(className.lowercased()) {
         case "barbarian": self.defaultHP = 12
@@ -86,7 +86,7 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         default: self.defaultHP = 8
         }
         
-        updateHP_AC()
+     //   updateHP_AC()
         levelLabel.text = "Level \(level)"
         
         if level < 20 {
@@ -124,24 +124,24 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         }
     }
     
-    func getStats() {
-        let uid = user?.uid
-        ref.child("users").child(uid ?? "none").child("\(charNumber)").observeSingleEvent(of: .value, with: { [self] (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let chStats = value!["stats"] as? [String: String] ?? [:]
-            self.stats = chStats
-            self.abilityScoreLabel[0].text = self.stats["CHA"]
-            self.abilityScoreLabel[1].text = self.stats["CON"]
-            self.abilityScoreLabel[2].text = self.stats["DEX"]
-            self.abilityScoreLabel[3].text = self.stats["INT"]
-            self.abilityScoreLabel[4].text = self.stats["STR"]
-            self.abilityScoreLabel[5].text = self.stats["WIS"]
-            self.calculateModifier()
-            
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
+//    func getStats() {
+//        let uid = user?.uid
+//        ref.child("users").child(uid ?? "none").child("\(charNumber)").observeSingleEvent(of: .value, with: { [self] (snapshot) in
+//            let value = snapshot.value as? NSDictionary
+//            let chStats = value!["stats"] as? [String: String] ?? [:]
+//            self.stats = chStats
+//            self.abilityScoreLabel[0].text = self.stats["CHA"]
+//            self.abilityScoreLabel[1].text = self.stats["CON"]
+//            self.abilityScoreLabel[2].text = self.stats["DEX"]
+//            self.abilityScoreLabel[3].text = self.stats["INT"]
+//            self.abilityScoreLabel[4].text = self.stats["STR"]
+//            self.abilityScoreLabel[5].text = self.stats["WIS"]
+//            self.calculateModifier()
+//
+//        }) { (error) in
+//            print(error.localizedDescription)
+//        }
+//    }
     
     //MARK: Experience/Level up
     @IBAction func didPressAddExp(_ sender: Any) {
@@ -175,7 +175,7 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
             } else {
                 levelUpButton.isEnabled = false
             }
-            updateHP_AC()
+          //  updateHP_AC()
             
         } else {
             abilityScoreImprovementButton.isHidden = true
@@ -221,94 +221,94 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         }
     }
     
-    func updateHP_AC(){
-        let CONModif = abilityModifierLabel[1].text
-        self.HP = (self.defaultHP + Int(CONModif ?? "0")!)*level
-        HP_ACLabel.text = "\(HP) HP     AC: \(AC) without armor"
-        
-        let DEXModif = abilityModifierLabel[1].text
-        self.AC =  10 + Int(DEXModif ?? "0")!
-        HP_ACLabel.text = "\(HP) HP     AC: \(AC) without armor"
-        
-        
-        self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber)/hp": "\(self.HP)", "\(self.charNumber)/ac": "\(self.AC)"])
-    }
+//    func updateHP_AC(){
+//        let CONModif = abilityModifierLabel[1].text
+//        self.HP = (self.defaultHP + Int(CONModif ?? "0")!)*level
+//        HP_ACLabel.text = "\(HP) HP     AC: \(AC) without armor"
+//
+//        let DEXModif = abilityModifierLabel[1].text
+//        self.AC =  10 + Int(DEXModif ?? "0")!
+//        HP_ACLabel.text = "\(HP) HP     AC: \(AC) without armor"
+//
+//
+//        self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber)/hp": "\(self.HP)", "\(self.charNumber)/ac": "\(self.AC)"])
+//    }
     
     //MARK: TEXT VIEW
     
     
     //MARK: Collection View
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionViewDataSource.count
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: 165.0, height: 50.0)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.zero
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 1.0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1.0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = abilityCollectionView.dequeueReusableCell(withReuseIdentifier: "abilityCell", for: indexPath) as? CharacterAbilityCollectionViewCell{
-            cell.abilityLabel.text = collectionViewDataSource[indexPath.row]
-            var score: Int = 0
-            switch(cell.abilityLabel.text) {
-            case "Deception", "Intimidation", "Performance", "Persuasion":
-                score = Int(abilityModifierLabel[0].text!) ?? 0
-                cell.layer.borderColor = UIColor.systemBlue.cgColor
-                cell.abilityLabel.text?.append("\n(CHA)")
-            case "Acrobatics", "Sleight of Hand", "Stealth":
-                score = Int(abilityModifierLabel[2].text!) ?? 0
-                cell.layer.borderColor = UIColor.systemOrange.cgColor
-                cell.abilityLabel.text?.append("\n(DEX)")
-            case "Arcana", "History", "Investigation", "Nature", "Religion":
-                score = Int(abilityModifierLabel[3].text!) ?? 0
-                cell.layer.borderColor = UIColor.systemYellow.cgColor
-                 cell.abilityLabel.text?.append("\n(INT)")
-            case "Athletics":
-                score = Int(abilityModifierLabel[4].text!) ?? 0
-                cell.layer.borderColor = UIColor.systemRed.cgColor
-                cell.abilityLabel.text?.append("\n(STR)")
-
-            case "Animal Handling", "Insight", "Medicine", "Perception", "Survival":
-                score = Int(abilityModifierLabel[5].text!) ?? 0
-                cell.layer.borderColor = UIColor.systemGreen.cgColor
-                cell.abilityLabel.text?.append("\n(WIS)")
-
-            default:  cell.layer.borderColor = UIColor.systemGray.cgColor
-            }
-
-            if proficiencies.contains(cell.abilityLabel.text ?? "none") {
-                switch(level) {
-                case 1 ... 4: score = score + 2
-                case 5 ... 8: score = score + 3
-                case 9 ... 12: score = score + 4
-                case 13 ... 16: score = score + 5
-                case 17 ... 20: score = score + 6
-                default: break
-                }
-            }
-            cell.abilityScoreLabel.text = (score >= 0 ? "+ \(score)" : " \(score)")
-            cell.layer.borderWidth = 2.0
-            return cell
-
-        }
-        else {
-            return UICollectionViewCell()
-        }
-    }
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return collectionViewDataSource.count
+//    }
+//
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        return CGSize(width: 165.0, height: 50.0)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets.zero
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 1.0
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 1.0
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        if let cell = abilityCollectionView.dequeueReusableCell(withReuseIdentifier: "abilityCell", for: indexPath) as? CharacterAbilityCollectionViewCell{
+//            cell.abilityLabel.text = collectionViewDataSource[indexPath.row]
+//            var score: Int = 0
+//            switch(cell.abilityLabel.text) {
+//            case "Deception", "Intimidation", "Performance", "Persuasion":
+//                score = Int(abilityModifierLabel[0].text!) ?? 0
+//                cell.layer.borderColor = UIColor.systemBlue.cgColor
+//                cell.abilityLabel.text?.append("\n(CHA)")
+//            case "Acrobatics", "Sleight of Hand", "Stealth":
+//                score = Int(abilityModifierLabel[2].text!) ?? 0
+//                cell.layer.borderColor = UIColor.systemOrange.cgColor
+//                cell.abilityLabel.text?.append("\n(DEX)")
+//            case "Arcana", "History", "Investigation", "Nature", "Religion":
+//                score = Int(abilityModifierLabel[3].text!) ?? 0
+//                cell.layer.borderColor = UIColor.systemYellow.cgColor
+//                 cell.abilityLabel.text?.append("\n(INT)")
+//            case "Athletics":
+//                score = Int(abilityModifierLabel[4].text!) ?? 0
+//                cell.layer.borderColor = UIColor.systemRed.cgColor
+//                cell.abilityLabel.text?.append("\n(STR)")
+//
+//            case "Animal Handling", "Insight", "Medicine", "Perception", "Survival":
+//                score = Int(abilityModifierLabel[5].text!) ?? 0
+//                cell.layer.borderColor = UIColor.systemGreen.cgColor
+//                cell.abilityLabel.text?.append("\n(WIS)")
+//
+//            default:  cell.layer.borderColor = UIColor.systemGray.cgColor
+//            }
+//
+//            if proficiencies.contains(cell.abilityLabel.text ?? "none") {
+//                switch(level) {
+//                case 1 ... 4: score = score + 2
+//                case 5 ... 8: score = score + 3
+//                case 9 ... 12: score = score + 4
+//                case 13 ... 16: score = score + 5
+//                case 17 ... 20: score = score + 6
+//                default: break
+//                }
+//            }
+//            cell.abilityScoreLabel.text = (score >= 0 ? "+ \(score)" : " \(score)")
+//            cell.layer.borderWidth = 2.0
+//            return cell
+//
+//        }
+//        else {
+//            return UICollectionViewCell()
+//        }
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToAbilityImprovement",  let vc = segue.destination as? AbilityScoreImprovementViewController{

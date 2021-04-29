@@ -40,6 +40,7 @@
 		276E023A25FEBB210079517D /* AllCharactersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276E023925FEBB210079517D /* AllCharactersTableViewCell.swift */; };
 		277652D9263AEE8A00D6F47F /* CharacterCreation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 277652D8263AEE8A00D6F47F /* CharacterCreation.storyboard */; };
 		277652DC263AF0B700D6F47F /* Chats.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 277652DB263AF0B700D6F47F /* Chats.storyboard */; };
+		277652E0263B01D100D6F47F /* CharacterProfileTabBarMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277652DF263B01D100D6F47F /* CharacterProfileTabBarMenuVC.swift */; };
 		278A8FF72620528B00B78A50 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278A8FF62620528B00B78A50 /* BackButton.swift */; };
 		278E79A025F3BFA80058EABF /* GeneralInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */; };
 		278FB4C22624D38800AE06A7 /* GeneralInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278FB4C12624D38800AE06A7 /* GeneralInfoTableViewCell.swift */; };
@@ -90,6 +91,7 @@
 		276E023925FEBB210079517D /* AllCharactersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCharactersTableViewCell.swift; sourceTree = "<group>"; };
 		277652D8263AEE8A00D6F47F /* CharacterCreation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CharacterCreation.storyboard; sourceTree = "<group>"; };
 		277652DB263AF0B700D6F47F /* Chats.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chats.storyboard; sourceTree = "<group>"; };
+		277652DF263B01D100D6F47F /* CharacterProfileTabBarMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfileTabBarMenuVC.swift; sourceTree = "<group>"; };
 		278A8FF62620528B00B78A50 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoTableViewController.swift; sourceTree = "<group>"; };
 		278FB4C12624D38800AE06A7 /* GeneralInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				27F0509B2639F6A80022329B /* CharacterAbilityCollectionViewCell.swift */,
 				27CAF1C52621CFFE0090860D /* AbilityScoreImprovementViewController.swift */,
 				27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */,
+				277652DF263B01D100D6F47F /* CharacterProfileTabBarMenuVC.swift */,
 			);
 			path = "Character Profile";
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				270A090025A49B49006B3D57 /* DiceRollCollectionViewCell.swift in Sources */,
 				275391F025AB96EB00260440 /* CharacterListTableViewCell.swift in Sources */,
 				276850C225F947ED008A2C70 /* Spell.swift in Sources */,
+				277652E0263B01D100D6F47F /* CharacterProfileTabBarMenuVC.swift in Sources */,
 				275391EE25A9F74D00260440 /* BackgroundTableViewCell.swift in Sources */,
 				27679A0D252866E0006984FA /* CharacterListVC.swift in Sources */,
 				276D23CD252798A400242C8B /* AppDelegate.swift in Sources */,

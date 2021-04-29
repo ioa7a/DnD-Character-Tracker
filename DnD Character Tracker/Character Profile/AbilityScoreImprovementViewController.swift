@@ -43,7 +43,7 @@ class AbilityScoreImprovementViewController: UIViewController {
 
         if let firstVC = presentingViewController as? CharacterProfileViewController {
             DispatchQueue.main.async {
-                firstVC.getStats()
+          //      firstVC.getStats()
                 firstVC.addExpButton.isEnabled = true
                 firstVC.abilityScoreImprovementButton.isEnabled = false
                 firstVC.improvementAdded = true

@@ -9,7 +9,6 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-
 class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var characterListTableView: UITableView!
@@ -23,7 +22,7 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         characterListTableView.delegate = self
         characterListTableView.dataSource = self
         character = []
-     //   getCharacterList()
+        getCharacterList()
        
     }
     
@@ -32,10 +31,11 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
 //        getCharacterList()
 //    }
 //
-    override func viewDidAppear(_ animated: Bool) {
-        character = []
-        getCharacterList()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        character = []
+//        getCharacterList()
+//    }
+    
     func getCharacterList() {
         character = []
         let uid = user?.uid
@@ -101,19 +101,26 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "CharacterProfileVC") as! CharacterProfileViewController
-        vc.characterName = character[indexPath.row].name
-        vc.raceName = character[indexPath.row].race.capitalized
-        vc.className = character[indexPath.row].charClass.capitalized
-        vc.level = Int(character[indexPath.row].level) ?? 1
-        vc.stats = character[indexPath.row].stats ?? [:]
-        vc.charNumber = indexPath.row + 1
-        vc.background = character[indexPath.row].background.capitalized
-        vc.currentExp = Int(character[indexPath.row].currentExp) ?? 0
-        vc.languages = character[indexPath.row].languages
-        vc.proficiencies = character[indexPath.row].proficiencies
-        vc.equipment = character[indexPath.row].equipment
-        present(vc, animated: true, completion: nil)
+        let tabBarController = storyboard?.instantiateViewController(identifier: "CharacterProfileTabBarMenuVC") as! CharacterProfileTabBarMenuVC
+        tabBarController.selectedViewController = tabBarController.viewControllers?[0]
+        tabBarController.selectedCharacter = character[indexPath.row]
+        tabBarController.charNumber = indexPath.row
+        let navVC =  tabBarController.viewControllers![0] as! UINavigationController
+        let charProfileVC = navVC.topViewController as! CharacterProfileViewController
+        let selectedCharacter = character[indexPath.row]
+        charProfileVC.stats = selectedCharacter.stats ?? [:]
+        charProfileVC.characterName = selectedCharacter.name
+        charProfileVC.raceName = selectedCharacter.race.capitalized
+        charProfileVC.className = selectedCharacter.charClass.capitalized
+        charProfileVC.level = Int(selectedCharacter.level ) ?? 1
+        charProfileVC.charNumber = charNumber
+        charProfileVC.background = selectedCharacter.background.capitalized
+        charProfileVC.currentExp = Int(selectedCharacter.currentExp ) ?? 0
+        charProfileVC.languages = selectedCharacter.languages
+        charProfileVC.proficiencies = selectedCharacter.proficiencies
+        charProfileVC.equipment = selectedCharacter.equipment
+        //TO DO: setup stats & abilities VC
+        present(tabBarController, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

@@ -16,7 +16,6 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
     var charNumber: Int = 0
     let user = Auth.auth().currentUser
     
-    @IBOutlet weak var inventoryTextView: UITextView!
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var characterInfoLabel: UILabel!
@@ -34,9 +33,8 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
     @IBOutlet weak var abilityCollectionView: UICollectionView!
     @IBOutlet weak var proficiencyLabel: UILabel!
     @IBOutlet weak var abilityScoreImprovementButton: UIButton!
+    @IBOutlet weak var inventoryLabel: UILabel!
     
-    
-    var canImproveAbilityScore: Bool = false
     var collectionViewDataSource: [String] = ["Athletics", "Acrobatics", "Sleight of Hand", "Stealth", "Arcana", "History", "Investigation", "Nature", "Religion", "Animal Handling", "Insight", "Medicine", "Perception", "Survival", "Deception", "Intimidation", "Performance", "Persuasion"]
     
     var experienceToLevelUp: [Int] = [300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000]
@@ -53,16 +51,25 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
     var proficiencies: [String] = []
     var equipment: String = ""
     var characterName: String = ""
+    var improvementAdded: Bool = false
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if let firstVC = presentingViewController as? CharacterListVC {
+            DispatchQueue.main.async {
+                firstVC.character = []
+                firstVC.getCharacterList()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         abilityCollectionView.delegate = self
         abilityCollectionView.dataSource = self
-        inventoryTextView.delegate = self
+        inventoryLabel.text = "Inventory: \(equipment)"
         
         nameLabel.text = characterName
         characterInfoLabel.text = "\(raceName) \(className), \(background) Background"
-        inventoryTextView.text = equipment
         
         abilityScoreLabel[0].text = stats["CHA"]
         abilityScoreLabel[1].text = stats["CON"]
@@ -112,8 +119,9 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
                 proficiencyLabel.text?.append(", ")
             }
         }
-        
-        abilityScoreImprovementButton.isEnabled = canImproveAbilityScore ? true : false
+        if ([4, 8, 12, 16, 19].contains(level) && !improvementAdded){
+            abilityScoreImprovementButton.isEnabled = true
+        }
     }
     
     func getStats() {
@@ -144,14 +152,12 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
             if currentExp >= experienceToLevelUp[level-1] {
                 levelUpButton.isEnabled = true
             }
-            let user = Auth.auth().currentUser
             self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber)/exp": "\(self.currentExp)"])
             expToAddTextField.text = ""
         }
     }
     
     @IBAction func didPressLevelUp(_ sender: Any) {
-        
         level = Int(levelLabel.text!.components(separatedBy: " ")[1]) ?? 1
         levelLabel.text = "Level \(level+1)"
         
@@ -183,6 +189,8 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         case 4, 8, 12, 16, 19:
             abilityScoreImprovementButton.isEnabled = true
             levelUpButton.isEnabled = false
+            addExpButton.isEnabled = false
+            improvementAdded = false
         default:
             abilityScoreImprovementButton.isEnabled = false
         }
@@ -225,6 +233,9 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         
         self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber)/hp": "\(self.HP)", "\(self.charNumber)/ac": "\(self.AC)"])
     }
+    
+    //MARK: TEXT VIEW
+    
     
     //MARK: Collection View
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -303,7 +314,6 @@ class CharacterProfileViewController: UIViewController, UICollectionViewDelegate
         if segue.identifier == "goToAbilityImprovement",  let vc = segue.destination as? AbilityScoreImprovementViewController{
             vc.stats = self.stats
             vc.charNumber = self.charNumber
-          //  vc.charProfileVC = self
           
         }
     }

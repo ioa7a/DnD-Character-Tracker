@@ -27,7 +27,6 @@ class AbilityScoreImprovementViewController: UIViewController {
     var charNumber: Int = 0
     let user = Auth.auth().currentUser
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         totalAbilityScoreLabel[0].text = stats["CHA"]
@@ -45,6 +44,12 @@ class AbilityScoreImprovementViewController: UIViewController {
         if let firstVC = presentingViewController as? CharacterProfileViewController {
             DispatchQueue.main.async {
                 firstVC.getStats()
+                firstVC.addExpButton.isEnabled = true
+                firstVC.abilityScoreImprovementButton.isEnabled = false
+                firstVC.improvementAdded = true
+                if firstVC.currentExp >= firstVC.experienceToLevelUp[firstVC.level-1] {
+                    firstVC.levelUpButton.isEnabled = true
+                    }
             }
         }
     }
@@ -155,7 +160,6 @@ class AbilityScoreImprovementViewController: UIViewController {
                 
                 for i in 0 ..< self.wasModified.count {
                     if self.wasModified[i] > 0 {
-                        debugPrint("was modified: \(self.abilityButton[i].titleLabel?.text)")
                         self.ref.child("users").child(self.user!.uid).updateChildValues(["\(self.charNumber)/stats/\(self.abilityButton[i].titleLabel?.text ?? "nil")" : self.totalAbilityScoreLabel[i].text!])
                         self.dismiss(animated: true, completion: nil)
                     }
@@ -184,9 +188,4 @@ class AbilityScoreImprovementViewController: UIViewController {
              calculateModifier()
     }
     
-    @IBAction func didPressBackButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-
 }

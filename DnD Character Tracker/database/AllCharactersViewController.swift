@@ -116,11 +116,13 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
     @objc func messageUser(button: UIButton) {
         indexOfSelectedCell = button.tag
         selectCell = button.isSelected
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatVC") as! ChatViewController
+        let navVC = self.storyboard?.instantiateViewController(identifier: "ChatNavVC") as! UINavigationController
+        let vc = navVC.topViewController as! ChatViewController
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatVC") as! ChatViewController
         vc.user1Name = currentUserName
         vc.user2Name = allCharactersList[button.tag].userName
         vc.user2UID = allCharactersList[button.tag].userUID
-       present(vc, animated: true)
+       present(navVC, animated: true)
      }
      
     

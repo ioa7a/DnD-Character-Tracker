@@ -30,14 +30,9 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
-        self.view.addSubview(navBar)
-        navBar.backgroundColor = .clear
-        let backButton = UIBarButtonItem(title: "< BACK", style: .plain, target: self, action: #selector(onCancel))
-        self.navigationItem.leftItemsSupplementBackButton = true
-        self.navigationItem.title = user2Name ?? "Chat"
-        self.navigationItem.leftBarButtonItem = backButton
-        navBar.items?.append(navigationItem)
+        navigationItem.title = user2Name ?? "Chat"
+        let backButton = UIBarButtonItem(title: "< CHATS", style: .plain, target: self, action: #selector(onCancel))
+        navigationItem.leftBarButtonItem = backButton
         loadChat()
         
     }
@@ -217,9 +212,8 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
 
         let mutableAttributedString = NSMutableAttributedString.init(string: myString)
         mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: (isFromCurrentSender(message: message) ? UIColor.systemBlue : UIColor.systemGray2), range: range)
-        mutableAttributedString.addAttribute(NSAttributedString.Key.strokeWidth, value: 2.5, range: range)
-        
-        
+        mutableAttributedString.addAttribute(NSAttributedString.Key.strokeWidth, value: 4.0, range: range)
+        mutableAttributedString.addAttribute(NSAttributedString.Key.backgroundColor, value: UIColor.clear, range: range)
         return mutableAttributedString
     }
 

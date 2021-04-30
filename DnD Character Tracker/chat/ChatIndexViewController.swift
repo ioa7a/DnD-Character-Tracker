@@ -112,11 +112,12 @@ class ChatIndexViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatVC") as! ChatViewController
+        let navVC = self.storyboard?.instantiateViewController(identifier: "ChatNavVC") as! UINavigationController
+        let vc = navVC.topViewController as! ChatViewController
         vc.user1Name = userName
         vc.user2Name = userMessageData[indexPath.row].user.username
         vc.user2UID = userMessageData[indexPath.row].user.uid
-        present(vc, animated: true)
+        present(navVC, animated: true)
     }
     
     @IBAction func didPressBackButton(_ sender: Any) {

@@ -133,7 +133,6 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
         if !(searchBar.text?.isEmpty ?? true) {
             filter = searchBar.text ?? " "
         }
-        debugPrint(filter)
         getCharacters(filter: filter)
     }
     @IBAction func resetSearchPressed(_ sender: Any) {

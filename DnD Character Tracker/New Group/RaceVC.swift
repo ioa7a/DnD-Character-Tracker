@@ -23,6 +23,8 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     var raceIndex: Int = 0;
     var charNumber: Int = 0
     var expandCellAt: [Bool] = []
+    let user = Auth.auth().currentUser
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +70,9 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = raceTableView.dequeueReusableCell(withIdentifier: "raceCell") as? InfoSelectTableViewCell {
+            let cellBGView = UIView()
+            cellBGView.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+            cell.selectedBackgroundView = cellBGView
             cell.nameLabel?.text = races[indexPath.row].name
             cell.speedLabel?.text = "Speed: \(races[indexPath.row].speed!) feet"
             cell.sizeLabel?.text = "Size: \(races[indexPath.row].size!)"
@@ -106,14 +111,16 @@ class RaceSelectVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     @IBAction func didPressNextButton(_ sender: Any) {
         if(didSelectRace){
-            let user = Auth.auth().currentUser
-            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/race" : races[raceIndex-1].name!])
+         //   self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/race" : races[raceIndex-1].name!])
+            currentCharacter.race = races[raceIndex-1].name ?? "none"
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ClassSelectVC") as! ClassSelectVC
             vc.raceIndex = raceIndex
             present(vc, animated: true, completion: nil)
             
         } else {
             let alert = UIAlertController(title: "", message: "Please select a race for your character.", preferredStyle: .alert)
+            alert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+            alert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
             let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alert.addAction(cancelAction)
             present(alert, animated: true)

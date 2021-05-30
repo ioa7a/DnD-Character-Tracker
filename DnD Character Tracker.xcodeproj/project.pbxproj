@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		270A08FA25A48165006B3D57 /* DiceRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A08F925A48165006B3D57 /* DiceRollViewController.swift */; };
 		270A090025A49B49006B3D57 /* DiceRollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A08FF25A49B49006B3D57 /* DiceRollCollectionViewCell.swift */; };
+		2729B1082662223D0001F175 /* Charts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2729B1072662223D0001F175 /* Charts.storyboard */; };
+		2729B10B266222E90001F175 /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2729B10A266222E90001F175 /* ChartsViewController.swift */; };
 		273BD60525A5DF8300270C7A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273BD60425A5DF8300270C7A /* CustomButton.swift */; };
 		273BD60A25A655BC00270C7A /* ClassInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273BD60925A6558500270C7A /* ClassInfoTableViewCell.swift */; };
 		275391EE25A9F74D00260440 /* BackgroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275391ED25A9F74D00260440 /* BackgroundTableViewCell.swift */; };
@@ -44,6 +46,7 @@
 		277652E0263B01D100D6F47F /* CharacterProfileTabBarMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277652DF263B01D100D6F47F /* CharacterProfileTabBarMenuVC.swift */; };
 		278A8FF72620528B00B78A50 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278A8FF62620528B00B78A50 /* BackButton.swift */; };
 		278E79A025F3BFA80058EABF /* GeneralInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */; };
+		278EEC892662716A008E4DFC /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278EEC882662716A008E4DFC /* Credits.swift */; };
 		278FB4C22624D38800AE06A7 /* GeneralInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278FB4C12624D38800AE06A7 /* GeneralInfoTableViewCell.swift */; };
 		278FF5D32639EF9300496C65 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 278FF5D22639EF9300496C65 /* GoogleService-Info.plist */; };
 		27ACF66C260BCDFA002DF95B /* ChatIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ACF66B260BCDFA002DF95B /* ChatIndexViewController.swift */; };
@@ -51,14 +54,14 @@
 		27EB5D2D25AE63C200087983 /* CharacterProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */; };
 		27F0509C2639F6A80022329B /* CharacterAbilityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F0509B2639F6A80022329B /* CharacterAbilityCollectionViewCell.swift */; };
 		27FCBAAA260B5C460055A366 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FCBAA9260B5C460055A366 /* Chat.swift */; };
-		6E3D446D7ED55D9E97D8684D /* Pods_DnD_Character_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59F49253A6BCDC2FB111C1DA /* Pods_DnD_Character_Tracker.framework */; };
+		524796BD01B09FED22E8ABAB /* Pods_DnD_Character_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 589D7D204FB44281A8E1CC84 /* Pods_DnD_Character_Tracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A8E89DE57B4B224EF4C5BE4 /* Pods-DnD Character Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DnD Character Tracker.debug.xcconfig"; path = "Target Support Files/Pods-DnD Character Tracker/Pods-DnD Character Tracker.debug.xcconfig"; sourceTree = "<group>"; };
-		19F05F94CB22FF2F7D69D462 /* Pods-DnD Character Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DnD Character Tracker.release.xcconfig"; path = "Target Support Files/Pods-DnD Character Tracker/Pods-DnD Character Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		270A08F925A48165006B3D57 /* DiceRollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollViewController.swift; sourceTree = "<group>"; };
 		270A08FF25A49B49006B3D57 /* DiceRollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollCollectionViewCell.swift; sourceTree = "<group>"; };
+		2729B1072662223D0001F175 /* Charts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Charts.storyboard; sourceTree = "<group>"; };
+		2729B10A266222E90001F175 /* ChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
 		273BD60425A5DF8300270C7A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		273BD60925A6558500270C7A /* ClassInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassInfoTableViewCell.swift; sourceTree = "<group>"; };
 		275391ED25A9F74D00260440 /* BackgroundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTableViewCell.swift; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 		277652DF263B01D100D6F47F /* CharacterProfileTabBarMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfileTabBarMenuVC.swift; sourceTree = "<group>"; };
 		278A8FF62620528B00B78A50 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		278E799F25F3BFA80058EABF /* GeneralInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoTableViewController.swift; sourceTree = "<group>"; };
+		278EEC882662716A008E4DFC /* Credits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
 		278FB4C12624D38800AE06A7 /* GeneralInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralInfoTableViewCell.swift; sourceTree = "<group>"; };
 		278FF5D22639EF9300496C65 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27ACF66B260BCDFA002DF95B /* ChatIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatIndexViewController.swift; sourceTree = "<group>"; };
@@ -103,7 +107,9 @@
 		27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfileViewController.swift; sourceTree = "<group>"; };
 		27F0509B2639F6A80022329B /* CharacterAbilityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CharacterAbilityCollectionViewCell.swift; path = "DnD Character Tracker/New Group2/CharacterAbilityCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		27FCBAA9260B5C460055A366 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
-		59F49253A6BCDC2FB111C1DA /* Pods_DnD_Character_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DnD_Character_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		589D7D204FB44281A8E1CC84 /* Pods_DnD_Character_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DnD_Character_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76947212B8EA461DBFD57BB4 /* Pods-DnD Character Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DnD Character Tracker.debug.xcconfig"; path = "Target Support Files/Pods-DnD Character Tracker/Pods-DnD Character Tracker.debug.xcconfig"; sourceTree = "<group>"; };
+		D40997CD95B41A59B0E86268 /* Pods-DnD Character Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DnD Character Tracker.release.xcconfig"; path = "Target Support Files/Pods-DnD Character Tracker/Pods-DnD Character Tracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,21 +117,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E3D446D7ED55D9E97D8684D /* Pods_DnD_Character_Tracker.framework in Frameworks */,
+				524796BD01B09FED22E8ABAB /* Pods_DnD_Character_Tracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		24ADE115451CA1A0F238E7EB /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				59F49253A6BCDC2FB111C1DA /* Pods_DnD_Character_Tracker.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		273BD60625A5E16300270C7A /* Dice */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,7 +194,7 @@
 				276D23CB252798A400242C8B /* DnD Character Tracker */,
 				276D23CA252798A400242C8B /* Products */,
 				A0C2FC1D23951C28BF03D4CF /* Pods */,
-				24ADE115451CA1A0F238E7EB /* Frameworks */,
+				BC9FB39F4EACE38970A6D74B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,6 +225,7 @@
 				276D23DD252798AD00242C8B /* Info.plist */,
 				278FF5D22639EF9300496C65 /* GoogleService-Info.plist */,
 				276D23D5252798A500242C8B /* DnD_Character_Tracker.xcdatamodeld */,
+				2729B10A266222E90001F175 /* ChartsViewController.swift */,
 			);
 			path = "DnD Character Tracker";
 			sourceTree = "<group>";
@@ -264,6 +263,8 @@
 				277652D8263AEE8A00D6F47F /* CharacterCreation.storyboard */,
 				277652DB263AF0B700D6F47F /* Chats.storyboard */,
 				276D23DA252798AD00242C8B /* LaunchScreen.storyboard */,
+				2729B1072662223D0001F175 /* Charts.storyboard */,
+				278EEC882662716A008E4DFC /* Credits.swift */,
 			);
 			path = storyboards;
 			sourceTree = "<group>";
@@ -281,10 +282,18 @@
 		A0C2FC1D23951C28BF03D4CF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0A8E89DE57B4B224EF4C5BE4 /* Pods-DnD Character Tracker.debug.xcconfig */,
-				19F05F94CB22FF2F7D69D462 /* Pods-DnD Character Tracker.release.xcconfig */,
+				76947212B8EA461DBFD57BB4 /* Pods-DnD Character Tracker.debug.xcconfig */,
+				D40997CD95B41A59B0E86268 /* Pods-DnD Character Tracker.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BC9FB39F4EACE38970A6D74B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				589D7D204FB44281A8E1CC84 /* Pods_DnD_Character_Tracker.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,11 +303,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 276D23E0252798AD00242C8B /* Build configuration list for PBXNativeTarget "DnD Character Tracker" */;
 			buildPhases = (
-				E2A888E933A21A18667DF7F8 /* [CP] Check Pods Manifest.lock */,
+				70AD7F17B14A5495A1D65B46 /* [CP] Check Pods Manifest.lock */,
 				276D23C5252798A400242C8B /* Sources */,
 				276D23C6252798A400242C8B /* Frameworks */,
 				276D23C7252798A400242C8B /* Resources */,
-				9D30B1298D6FFF43BBEC3AA2 /* [CP] Embed Pods Frameworks */,
+				30BA5182CD35514F4B7E5817 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -348,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				277652DC263AF0B700D6F47F /* Chats.storyboard in Resources */,
+				2729B1082662223D0001F175 /* Charts.storyboard in Resources */,
 				277652D9263AEE8A00D6F47F /* CharacterCreation.storyboard in Resources */,
 				276D23DC252798AD00242C8B /* LaunchScreen.storyboard in Resources */,
 				278FF5D32639EF9300496C65 /* GoogleService-Info.plist in Resources */,
@@ -359,7 +369,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9D30B1298D6FFF43BBEC3AA2 /* [CP] Embed Pods Frameworks */ = {
+		30BA5182CD35514F4B7E5817 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -376,7 +386,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DnD Character Tracker/Pods-DnD Character Tracker-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E2A888E933A21A18667DF7F8 /* [CP] Check Pods Manifest.lock */ = {
+		70AD7F17B14A5495A1D65B46 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -405,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2729B10B266222E90001F175 /* ChartsViewController.swift in Sources */,
 				276850C625F96A60008A2C70 /* SpellTableViewCell.swift in Sources */,
 				27ACF66C260BCDFA002DF95B /* ChatIndexViewController.swift in Sources */,
 				278FB4C22624D38800AE06A7 /* GeneralInfoTableViewCell.swift in Sources */,
@@ -442,6 +453,7 @@
 				27679A13252868E9006984FA /* InfoSelectTableViewCell.swift in Sources */,
 				27F0509C2639F6A80022329B /* CharacterAbilityCollectionViewCell.swift in Sources */,
 				275A9A9D2604EC9C00552912 /* ChatViewController.swift in Sources */,
+				278EEC892662716A008E4DFC /* Credits.swift in Sources */,
 				276850C425F9694F008A2C70 /* SpellListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -584,7 +596,7 @@
 		};
 		276D23E1252798AD00242C8B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A8E89DE57B4B224EF4C5BE4 /* Pods-DnD Character Tracker.debug.xcconfig */;
+			baseConfigurationReference = 76947212B8EA461DBFD57BB4 /* Pods-DnD Character Tracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -603,7 +615,7 @@
 		};
 		276D23E2252798AD00242C8B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19F05F94CB22FF2F7D69D462 /* Pods-DnD Character Tracker.release.xcconfig */;
+			baseConfigurationReference = D40997CD95B41A59B0E86268 /* Pods-DnD Character Tracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

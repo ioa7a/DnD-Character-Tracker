@@ -45,6 +45,7 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        selectProficienciesButton.layer.cornerRadius = 2.5
         classSkillsPickerView.delegate = self
         classSkillsPickerView.dataSource = self
         bonusLanguagePickerView.delegate = self
@@ -163,11 +164,13 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        pickerView.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
         var pickerLabel: UILabel? = (view as? UILabel)
         if pickerLabel == nil {
             pickerLabel = UILabel()
             pickerLabel?.textAlignment = .center
-            pickerLabel?.textColor = .systemBlue
+            pickerLabel?.textColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+            pickerLabel?.backgroundColor = .clear
             pickerLabel?.lineBreakMode = .byWordWrapping;
            
             switch(pickerView.tag) {
@@ -183,7 +186,6 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
                 pickerLabel?.font = UIFont(name: "System", size: 12.0)
             default:  pickerLabel?.text =  "none"
             }
-            pickerLabel?.backgroundColor = .systemGray3
             pickerLabel?.numberOfLines = 0;
             pickerLabel?.sizeToFit()
         }
@@ -224,11 +226,12 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
             }
         }
             selectedSkills.append(contentsOf: backgroundSkills)
-        debugPrint(selectedSkills)
         hasDuplicates = (selectedLanguages.count != Set(selectedLanguages).count) || (selectedSkills.count != Set(selectedSkills).count)
         if hasDuplicates {
             let alert = UIAlertController(title: "", message: "Selected proficiencies and languages must differ.", preferredStyle: .actionSheet)
-                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            alert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+            alert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                         present(alert, animated: true)
         } else {
             selectProficienciesButton.isSelected = true
@@ -242,12 +245,17 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
         
         if !selectProficienciesButton.isSelected || hasDuplicates || selectedSkills == [] || selectedLanguages == [] {
             let alert = UIAlertController(title: "", message: "Please select your proficiencies and languages.", preferredStyle: .actionSheet)
+            alert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+            alert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                                present(alert, animated: true)
         } else {
-            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/proficiencies" : selectedSkills])
-            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/languages" : selectedLanguages])
-            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/equipment" : equipment])
+//            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/proficiencies" : selectedSkills])
+//            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/languages" : selectedLanguages])
+//            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/equipment" : equipment])
+            currentCharacter.proficiencies = selectedSkills
+            currentCharacter.languages = selectedLanguages
+            currentCharacter.equipment = equipment
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "StatsVC") as! StatsViewController
                   vc.raceIndex = raceIndex
                   present(vc, animated: true, completion: nil)

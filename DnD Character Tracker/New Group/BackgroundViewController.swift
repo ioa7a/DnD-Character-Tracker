@@ -59,17 +59,18 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func didPressNext(_ sender: Any) {
         if didSelectBg {
-            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/background" : selectedBackground!])
+          //  self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/background" : selectedBackground!])
+            currentCharacter.background = selectedBackground ?? "none"
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProficienciesVC") as! ProficienciesViewController
             vc.raceIndex = raceIndex
             vc.bgIndex = bgIndex
             vc.classIndex = classIndex
             vc.charNumber = charNumber
-            debugPrint("bg view index: \(classIndex) \(bgIndex)")
-          
             present(vc, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "", message: "Please select a background for your character.", preferredStyle: .alert)
+            alert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+            alert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
             let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alert.addAction(cancelAction)
             present(alert, animated: true)
@@ -82,6 +83,9 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = bgTableView.dequeueReusableCell(withIdentifier: "bgCell") as? BackgroundTableViewCell {
+            let cellBGView = UIView()
+            cellBGView.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+            cell.selectedBackgroundView = cellBGView
             cell.infoButton.isOpaque = true
             cell.infoButton.isHidden = false
             cell.nameLabel?.text = backgrounds[indexPath.row].name

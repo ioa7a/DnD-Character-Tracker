@@ -17,6 +17,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
     
     var ref: DatabaseReference = Database.database().reference()
     var username: String?
@@ -37,17 +38,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         emailTextField.textContentType = .none
         passwordTextField.textContentType = .none
         confirmPasswordTextField.textContentType = .none
+        signUpButton.layer.cornerRadius = 5
 
     }
     
     @IBAction func didPressSignUp(_ sender: Any) {
         if (emailTextField.text!.isEmpty) || (passwordTextField.text!.isEmpty) || (confirmPasswordTextField.text!.isEmpty) || (usernameTextField.text!.isEmpty){
             let alert = UIAlertController(title: "Error", message: "Please insert username and password", preferredStyle: .alert)
+            alert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+            alert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel))
             self.present(alert, animated: true, completion: nil)
         }
         else if(passwordTextField.text! != confirmPasswordTextField.text!){
             let alert = UIAlertController(title: "Error", message: "Passwords must match!", preferredStyle: .alert)
+            alert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+            alert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel))
             self.present(alert, animated: true, completion: nil)
         } else {
@@ -63,6 +69,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                         if let valUsername = stringValue["username"] as? String {
                             if valUsername == self.username {
                                 let alert = UIAlertController(title: nil, message: "Username is unavailable.", preferredStyle: .alert)
+                                alert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+                                alert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
                                 alert.addAction(UIAlertAction(title: "OK", style: .cancel))
                                 self.present(alert, animated: true, completion: nil)
                                 availableUser = false
@@ -75,6 +83,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                             let uid = user.uid
                             self.ref.child("users").child(uid).setValue(["email": self.email!, "character nr": "0", "username": self.username!])
                             let signUpAlert = UIAlertController(title: nil, message: "User succesfully created! Please wait...", preferredStyle: .alert)
+                            signUpAlert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+                            signUpAlert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
                             signUpAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                             self.present(signUpAlert, animated: true)
                             
@@ -100,6 +110,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                     errorMessage = "Error: \(error.localizedDescription)"
                                     
                                     let alert = UIAlertController(title: nil, message: errorMessage, preferredStyle: .alert)
+                                    alert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+                                    alert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
                                     alert.addAction(UIAlertAction(title: "OK", style: .cancel))
                                     self.present(alert, animated: true, completion: nil)
                                     self.loginSuccess = false

@@ -103,6 +103,7 @@ class AbilitiesStatsViewController: UIViewController, UICollectionViewDelegate, 
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = proficienciesCollectionView.dequeueReusableCell(withReuseIdentifier: "abilityCell", for: indexPath) as? CharacterAbilityCollectionViewCell{
+            
             cell.abilityLabel.text = collectionViewDataSource[indexPath.row]
             var score: Int = 0
             switch(cell.abilityLabel.text) {

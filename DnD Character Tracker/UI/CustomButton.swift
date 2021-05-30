@@ -15,9 +15,9 @@ class CustomButton: UIButton{
     @IBInspectable var titleText: String? {
         didSet {
             self.setTitle(titleText, for: .normal)
-            self.setTitleColor(.systemBlue,for: .normal)
-            self.setTitleColor(.systemBlue,for: .selected)
-            self.backgroundColor = .clear
+            self.setTitleColor(UIColor(red: 61, green: 90, blue: 128, alpha: 1),for: .normal)
+            self.setTitleColor(UIColor(red: 61, green: 90, blue: 128, alpha: 1),for: .selected)
+            self.backgroundColor = UIColor(red: 152, green: 193, blue: 217, alpha: 1)
         }
     }
     

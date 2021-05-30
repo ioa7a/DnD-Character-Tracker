@@ -181,7 +181,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         
         if messages.count == 0 {
-            print("No messages to display")
+          //  print("No messages to display")
             return 0
         } else {
             return messages.count

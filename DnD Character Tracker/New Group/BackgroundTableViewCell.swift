@@ -21,6 +21,7 @@ class BackgroundTableViewCell: UITableViewCell {
     var shouldShowInfo: Bool = false
     override func awakeFromNib() {
         super.awakeFromNib()
+        infoButton.layer.cornerRadius = 2.5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

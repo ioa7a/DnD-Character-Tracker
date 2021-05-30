@@ -40,28 +40,6 @@ struct Race {
     
 }
 
-class Stats {
-    var CHA: Int = 0
-    var CON: Int = 0
-    var DEX: Int = 0
-    var INT: Int = 0
-    var STR: Int = 0
-    var WIS: Int = 0
-    var other: Int = 0
-    
-    init(stats: NSDictionary){
-        self.CHA = stats["CHA"] as! Int
-        self.CON = stats["CON"] as! Int
-        self.DEX = stats["DEX"] as! Int
-        self.INT = stats["INT"] as! Int
-        self.STR = stats["STR"] as! Int
-        self.WIS = stats["WIS"] as! Int
-        self.other = stats["other"] as! Int
-
-    }
-}
-
-
 class ClassDetails  {
     var name: String?
     var hit_die: String?

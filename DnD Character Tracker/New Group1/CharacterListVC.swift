@@ -9,6 +9,8 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
+var currentCharacter = Character()
+
 class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var characterListTableView: UITableView!
@@ -16,6 +18,7 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     var ref: DatabaseReference! = Database.database().reference()
     var character: [Character] = []
     var charNumber: Int = 0
+    var username: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,25 +28,20 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         getCharacterList()
        
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        character = []
-//        getCharacterList()
-//    }
-//
-//    override func viewDidAppear(_ animated: Bool) {
-//        character = []
-//        getCharacterList()
-//    }
-    
+        
     func getCharacterList() {
         character = []
         let uid = user?.uid
         ref.child("users").child(uid ?? "none").observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
-            let chNr = Int(value?["character nr"] as! String) ?? 0
+            var chNr = 0
+            if let nr = Int(value?["character nr"] as! String) {
+                chNr = nr
+            } else {
+                chNr = 0
+            }
             self.charNumber = chNr
-            let username = value?["username"] as? String
+            self.username = value?["username"] as? String ?? "user"
             if chNr > 0 {
                 for i in 1...chNr {
                     let charData = value?["\(i)"] as? NSDictionary
@@ -68,7 +66,7 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                             profs.append(i as! String)
                         }
                     }
-                    self.character.append(Character(userName: username ?? "n/a", userUID: self.user?.uid ?? "none", name: chName, race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp, languages: langs, proficiencies: profs, equipment: equip ?? "none"))
+                    self.character.append(Character(userName: self.username , userUID: self.user?.uid ?? "none", name: chName, race: chRace, charClass: chClass, background: chBg, stats: chStats, level: chLevel, currentExp: exp, languages: langs, proficiencies: profs, equipment: equip ?? "none"))
                 }
             }
             self.characterListTableView.reloadData()
@@ -171,6 +169,8 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     @IBAction func didPressAddCharacter(_ sender: Any) {
         let characterNameAlert = UIAlertController(title: nil, message: "Choose a name for your character:", preferredStyle: .alert)
+        characterNameAlert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+        characterNameAlert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
         characterNameAlert.addTextField { (textField) in
             textField.placeholder = "Character name"
         }
@@ -185,11 +185,17 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                         }
                     }
                     if !alreadyExists {
-                    self.ref.child("users").child(self.user!.uid).updateChildValues(["\(self.charNumber+1)/name" : characterName])
+                        currentCharacter = Character()
+                        currentCharacter.userUID = self.user!.uid
+                        currentCharacter.userName = self.username
+                        currentCharacter.name = characterName
+                 //   self.ref.child("users").child(self.user!.uid).updateChildValues(["\(self.charNumber+1)/name" : characterName])
                 self.performSegue(withIdentifier: "goToCharacterCreation", sender: (Any).self)
                     }
                     else {
                         let nameAlert = UIAlertController(title: nil, message: "You already have a character with that name!", preferredStyle: .alert)
+                        nameAlert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+                        nameAlert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
                         nameAlert.addAction(UIAlertAction(title: "OK", style: .cancel , handler: nil))
                         self.present(nameAlert, animated: true, completion: nil)
                     }

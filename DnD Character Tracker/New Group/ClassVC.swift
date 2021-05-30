@@ -70,6 +70,9 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = classTableView.dequeueReusableCell(withIdentifier: "classCell") as? ClassInfoTableViewCell {
+            let cellBGView = UIView()
+            cellBGView.backgroundColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+            cell.selectedBackgroundView = cellBGView
             cell.nameLabel.text = classDetailsArray[indexPath.row].name
             cell.hitDieLabel.text = "Hit dice: " +  String(classDetailsArray[indexPath.row].hit_die!)
             cell.savingThrowsLabel.text = "Saving throws: \(classDetailsArray[indexPath.row].savingThrows ?? "none")"
@@ -98,14 +101,16 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     @IBAction func didpressNextButton(_ sender: Any) {
         if didSelectClass {
-            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/class" : charClass!.name ?? "none"])
-            
+         //   self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/class" : charClass!.name ?? "none"])
+            currentCharacter.charClass = charClass?.name ?? "none"
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "backgroundViewController") as! BackgroundViewController
             vc.raceIndex = raceIndex
             vc.classIndex = classIndex
             present(vc, animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "", message: "Please select a class for your character.", preferredStyle: .alert)
+            alert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+            alert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
             let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alert.addAction(cancelAction)
             present(alert, animated: true)

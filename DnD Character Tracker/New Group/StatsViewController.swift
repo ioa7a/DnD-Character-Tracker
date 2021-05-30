@@ -55,7 +55,6 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         ref.child("races").child(String(raceIndex)).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let name = value?["name"] as? String ?? ""
-            debugPrint(name)
             if name.lowercased() == "half-elf"{
                 self.bonusAbility1Button.isHidden = false
                 self.bonusPicker.isHidden = false
@@ -227,6 +226,8 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
 
             if bonusIndex1 == bonusIndex2 {
                 let alert = UIAlertController(title: "", message: "Abilities must be different!", preferredStyle: .alert)
+                alert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+                alert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
                 let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alert.addAction(cancelAction)
                 present(alert, animated: true)
@@ -270,6 +271,12 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             ref.child("users").child(user!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
                 let value = snapshot.value as? NSDictionary
                 self.charNumber = Int(value?["character nr"] as! String) ?? 0
+                self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/name" : currentCharacter.name])
+                self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/race" : currentCharacter.race])
+                self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/class" : currentCharacter.charClass])
+                self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/proficiencies" : currentCharacter.proficiencies])
+                self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/languages" : currentCharacter.languages])
+                self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/equipment" : currentCharacter.equipment])
                 self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/stats" : stat, "\(self.charNumber+1)/level": "1"])
                 self.ref.child("users").child(user!.uid).updateChildValues(["character nr" : "\(self.charNumber+1)"])
             })
@@ -280,6 +287,8 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
         else {
             let alert = UIAlertController(title: nil, message: "Total ability score must be 27!", preferredStyle: .alert)
+            alert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+            alert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             present(alert, animated: true)
   

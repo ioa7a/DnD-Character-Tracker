@@ -22,6 +22,7 @@ class ClassInfoTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        infoButton.layer.cornerRadius = 2.5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -14,19 +14,25 @@ class NavigationViewController: UIViewController {
     let user = Auth.auth().currentUser
     var ref: DatabaseReference! = Database.database().reference()
     
+    @IBOutlet var navigationButtons: [UIButton]!
     @IBOutlet weak var welcomeLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        for button in navigationButtons {
+            button.layer.cornerRadius = 5
+        }
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
         self.view.addSubview(navBar)
-        navBar.backgroundColor = .clear
+        navBar.backgroundColor = self.view.backgroundColor
         let logOutButton = UIBarButtonItem(title: "LOG OUT", style: .plain, target: self, action: #selector(onLogout))
         
         var image = UIImage.init(systemName: "envelope.fill")
         image = image?.withRenderingMode(.alwaysTemplate)
        image?.withTintColor(.systemBlue)
         let messageButton  = UIBarButtonItem(image: image, style:.plain, target: self, action: #selector(onMessage))
+        messageButton.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+        logOutButton.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+        navBar.barTintColor = #colorLiteral(red: 0.8784313725, green: 0.9843137255, blue: 0.9882352941, alpha: 1)
         self.navigationItem.leftBarButtonItem = logOutButton
         self.navigationItem.rightBarButtonItem = messageButton
         navBar.items?.append(navigationItem)

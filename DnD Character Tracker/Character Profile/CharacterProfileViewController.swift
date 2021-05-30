@@ -59,7 +59,16 @@ class CharacterProfileViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        abilityScoreImprovementButton.layer.cornerRadius = 2.5
+        if !abilityScoreImprovementButton.isEnabled {
+            abilityScoreImprovementButton.backgroundColor = #colorLiteral(red: 0.6691534991, green: 0.7516132072, blue: 0.7587246193, alpha: 1)
+            abilityScoreImprovementButton.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+        } else {
+            abilityScoreImprovementButton.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
+            abilityScoreImprovementButton.tintColor = #colorLiteral(red: 0.2392156863, green: 0.3529411765, blue: 0.5019607843, alpha: 1)
+        }
+        levelUpButton.layer.cornerRadius = 2.5
+        addExpButton.layer.cornerRadius = 2.5
         inventoryTextView.delegate = self
         inventoryLabel.text = "Inventory:"
         inventoryTextView.text = equipment
@@ -72,6 +81,10 @@ class CharacterProfileViewController: UIViewController, UITextViewDelegate {
         case "fighter", "paladin", "ranger": self.defaultHP = 10
         case "sorcerer", "wizard": self.defaultHP = 6
         default: self.defaultHP = 8
+            
+            inventoryTextView.layer.cornerRadius = 5
+            inventoryTextView.layer.borderColor = #colorLiteral(red: 0.1607843137, green: 0.1960784314, blue: 0.2549019608, alpha: 1)
+            inventoryTextView.layer.borderWidth = 1
         }
         
         updateHP_AC()
@@ -81,7 +94,6 @@ class CharacterProfileViewController: UIViewController, UITextViewDelegate {
             currentExperienceLabel.text = "\(currentExp)/\(experienceToLevelUp[level-1])"
             levelUpButton.isEnabled = currentExp >= experienceToLevelUp[level-1] ? true : false
             progressbar.progress = Float(currentExp)/Float(experienceToLevelUp[level-1])
-            progressbar.progressTintColor = .systemBlue
         } else {
             currentExperienceLabel.isHidden = true
             levelUpButton.isHidden = true
@@ -111,6 +123,8 @@ class CharacterProfileViewController: UIViewController, UITextViewDelegate {
         }
         if ([4, 8, 12, 16, 19].contains(level) && !improvementAdded){
             abilityScoreImprovementButton.isEnabled = true
+        } else {
+            abilityScoreImprovementButton.isEnabled = false
         }
     }
  
@@ -186,9 +200,7 @@ class CharacterProfileViewController: UIViewController, UITextViewDelegate {
     //MARK: INVENTORY
     @IBAction func didPressUpdateInventory(_ sender: Any) {
         if let inventory = inventoryTextView.text {
-            debugPrint(inventory)
         updateInventoryButton.isEnabled = false
-            debugPrint(charNumber)
         self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber)/equipment": "\(inventory)"])
         }
     }
@@ -215,6 +227,4 @@ class CharacterProfileViewController: UIViewController, UITextViewDelegate {
           
         }
     }
-    
-
 }

@@ -25,6 +25,10 @@ class DiceRollViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        for button in diceType {
+            button.layer.cornerRadius = 5
+        }
+        rollButton.layer.cornerRadius = 5
         diceNumberTextField.delegate = self
         diceResultCollectionView.delegate = self
         diceResultCollectionView.dataSource = self
@@ -66,7 +70,6 @@ class DiceRollViewController: UIViewController, UICollectionViewDelegate, UIColl
             if(diceType[i].isSelected){
                 rollOK = true
                 guard let diceNr = Int(diceNumberTextField.text!) else {
-                    debugPrint("something went wrong")
                     return
                 }
                 
@@ -79,10 +82,11 @@ class DiceRollViewController: UIViewController, UICollectionViewDelegate, UIColl
                 }
                 else {
                     let alert = UIAlertController(title: "Dice number must be greater than 0!", message: "", preferredStyle: .alert)
+                    alert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+                    alert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     present(alert, animated: true)
                 }
-                debugPrint("rolled \(rolls) ")
                 break;
             }
         }

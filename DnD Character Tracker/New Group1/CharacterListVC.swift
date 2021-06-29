@@ -208,9 +208,13 @@ class CharacterListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     @IBAction func didPressRefreshCharacterList(_ sender: Any) {
         character = []
+        characterListTableView.reloadData()
         getCharacterList()
     }
     
+    @IBAction func didPressBackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
 }
 

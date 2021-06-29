@@ -152,4 +152,8 @@ class AbilitiesStatsViewController: UIViewController, UICollectionViewDelegate, 
         }
     }
     
+    @IBAction func didPressBackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

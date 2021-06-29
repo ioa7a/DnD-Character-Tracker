@@ -48,7 +48,7 @@ class ClassSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegat
                 let armor = value?["armor"] as? String
                 let weapons = value?["weapons"] as? String
                 let tools = value?["tools"] as? String
-                let myClass = ClassDetails(name: name ?? "none", hit_die: hitDie ?? "1d8", proficiencies: proficiencies ?? [:])
+                var myClass = ClassDetails(name: name ?? "none", hit_die: hitDie ?? "1d8", proficiencies: proficiencies ?? [:])
                 myClass.savingThrows = savingThrows
                 myClass.armor = armor
                 myClass.weapons = weapons

@@ -89,7 +89,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHx-gg-Rve" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="814.49275362318849" y="-600.81521739130437"/>
+            <point key="canvasLocation" x="758" y="-602"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="fn1-ii-rgG">
@@ -107,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="knC-h3-Wl3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2669.5652173913045" y="-601.63043478260875"/>
+            <point key="canvasLocation" x="2184" y="-602"/>
         </scene>
         <!--All Characters View Controller-->
         <scene sceneID="WXG-IK-vhk">
@@ -196,6 +196,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qIp-hG-eRC">
                                 <rect key="frame" x="14.999999999999998" y="113" width="26.333333333333329" height="22"/>
+                                <color key="tintColor" red="0.93333333330000001" green="0.42352941179999998" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="arrowshape.turn.up.left" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
@@ -252,6 +253,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="characterTableView" destination="Xoa-4h-2Mu" id="d1T-Q6-uXh"/>
+                        <outlet property="resetSearchButton" destination="54G-hT-J43" id="3OZ-5Z-ROy"/>
                         <outlet property="searchBar" destination="KuO-Wi-klq" id="9F9-uX-G8i"/>
                     </connections>
                 </viewController>
@@ -281,7 +283,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uA6-zA-iPh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1762.3188405797102" y="-601.63043478260875"/>
+            <point key="canvasLocation" x="1410" y="-602"/>
         </scene>
     </scenes>
     <resources>

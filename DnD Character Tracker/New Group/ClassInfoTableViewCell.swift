@@ -11,7 +11,7 @@ import UIKit
 class ClassInfoTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var hitDieLabel: UILabel!
-    @IBOutlet weak var infoButton: CustomButton!
+    @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var savingThrowsLabel: UILabel!
     @IBOutlet weak var proficienciesLabel: UILabel!
     @IBOutlet weak var armorLabel: UILabel!

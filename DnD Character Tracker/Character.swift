@@ -40,7 +40,7 @@ struct Race {
     
 }
 
-class ClassDetails  {
+struct ClassDetails  {
     var name: String?
     var hit_die: String?
     var proficiencies: [String:String]
@@ -48,12 +48,6 @@ class ClassDetails  {
     var armor: String? = ""
     var weapons: String? = ""
     var tools:String? = ""
-    
-    init(name: String, hit_die: String, proficiencies: [String:String]){
-        self.name = name
-        self.hit_die = hit_die
-        self.proficiencies = proficiencies
-    }
 }
 
 struct Background {
@@ -64,5 +58,4 @@ struct Background {
     var languageNr: String?
     var equipment: String?
     var feature: String?
-
 }

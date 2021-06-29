@@ -38,18 +38,27 @@ class AbilityScoreImprovementViewController: UIViewController {
         calculateModifier()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        super.viewWillDisappear(true)
 
         if let firstVC = presentingViewController as? CharacterProfileViewController {
             DispatchQueue.main.async {
                 firstVC.getStats()
                 firstVC.addExpButton.isEnabled = true
                 firstVC.abilityScoreImprovementButton.isEnabled = false
-                firstVC.improvementAdded = true
                 if firstVC.currentExp >= firstVC.experienceToLevelUp[firstVC.level-1] {
                     firstVC.levelUpButton.isEnabled = true
                     }
+            }
+        }
+        
+        if let secondVC = presentingViewController as? AbilitiesStatsViewController {
+            DispatchQueue.main.async {
+                secondVC.getStats()
             }
         }
     }

@@ -164,26 +164,26 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        pickerView.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
+        pickerView.backgroundColor = #colorLiteral(red: 0.8784313725, green: 0.9843137255, blue: 0.9882352941, alpha: 1)
         var pickerLabel: UILabel? = (view as? UILabel)
         if pickerLabel == nil {
             pickerLabel = UILabel()
             pickerLabel?.textAlignment = .center
             pickerLabel?.textColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
             pickerLabel?.backgroundColor = .clear
-            pickerLabel?.lineBreakMode = .byWordWrapping;
+            pickerLabel?.lineBreakMode = .byTruncatingTail;
            
             switch(pickerView.tag) {
             case 1:
                 pickerLabel?.text = classSkillsSource[row]
                 if classSkillsNumber > 2 {
-                    pickerLabel?.font = UIFont(name: "System", size: 8.0)
+                    pickerLabel?.font = UIFont(name: "System", size: 6.0)
                 } else {
-                    pickerLabel?.font = UIFont(name: "System", size: 11.0)
+                    pickerLabel?.font = UIFont(name: "System", size: 10.0)
                 }
             case 0, 2:
                 pickerLabel?.text = languageData[row]
-                pickerLabel?.font = UIFont(name: "System", size: 12.0)
+                pickerLabel?.font = UIFont(name: "System", size: 10.0)
             default:  pickerLabel?.text =  "none"
             }
             pickerLabel?.numberOfLines = 0;
@@ -250,9 +250,6 @@ class ProficienciesViewController: UIViewController, UIPickerViewDelegate, UIPic
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                                present(alert, animated: true)
         } else {
-//            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/proficiencies" : selectedSkills])
-//            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/languages" : selectedLanguages])
-//            self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/equipment" : equipment])
             currentCharacter.proficiencies = selectedSkills
             currentCharacter.languages = selectedLanguages
             currentCharacter.equipment = equipment

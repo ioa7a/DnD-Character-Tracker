@@ -12,18 +12,16 @@ class SpellTableViewCell: UITableViewCell {
     
     @IBOutlet weak var spellNameLabel: UILabel!
     @IBOutlet weak var classesLabel: UILabel!
-    @IBOutlet weak var infoButton: CustomButton!
+    @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var descriptionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        infoButton.layer.cornerRadius = 5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     override func prepareForReuse() {

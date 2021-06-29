@@ -274,6 +274,7 @@ class StatsViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/name" : currentCharacter.name])
                 self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/race" : currentCharacter.race])
                 self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/class" : currentCharacter.charClass])
+                self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/background" : currentCharacter.background])
                 self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/proficiencies" : currentCharacter.proficiencies])
                 self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/languages" : currentCharacter.languages])
                 self.ref.child("users").child(user!.uid).updateChildValues(["\(self.charNumber+1)/equipment" : currentCharacter.equipment])

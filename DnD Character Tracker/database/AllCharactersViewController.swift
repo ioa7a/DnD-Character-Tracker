@@ -23,6 +23,7 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var characterTableView: UITableView!
+    @IBOutlet weak var resetSearchButton: UIButton!
     
     let user = Auth.auth().currentUser
     var ref: DatabaseReference! = Database.database().reference()
@@ -40,7 +41,7 @@ class AllCharactersViewController: UIViewController, UITableViewDelegate, UITabl
         characterTableView.dataSource = self
         searchBar.delegate = self
         getCharacters(filter: "")
-        
+        resetSearchButton.layer.cornerRadius = 5
     }
     
     func getCharacters(filter: String){

@@ -28,6 +28,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        usernameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        confirmPasswordTextField.delegate = self
         usernameTextField.text = ""
         emailTextField.text = ""
         passwordTextField.text = ""
@@ -85,7 +89,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                             let signUpAlert = UIAlertController(title: nil, message: "User succesfully created! Please wait...", preferredStyle: .alert)
                             signUpAlert.view.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
                             signUpAlert.view.backgroundColor = #colorLiteral(red: 0.5960784314, green: 0.7568627451, blue: 0.8509803922, alpha: 1)
-                            signUpAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                           // signUpAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                            self.emailTextField.text = ""
+                            self.usernameTextField.text = ""
+                            self.passwordTextField.text = ""
+                            self.confirmPasswordTextField.text = ""
                             self.present(signUpAlert, animated: true)
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -130,7 +138,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return true
+        return false
     }
     
     @IBAction func didPressLogin(_ sender: Any) {

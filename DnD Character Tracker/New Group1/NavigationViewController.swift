@@ -26,15 +26,20 @@ class NavigationViewController: UIViewController {
         navBar.backgroundColor = self.view.backgroundColor
         let logOutButton = UIBarButtonItem(title: "LOG OUT", style: .plain, target: self, action: #selector(onLogout))
         
-        var image = UIImage.init(systemName: "envelope.fill")
-        image = image?.withRenderingMode(.alwaysTemplate)
-       image?.withTintColor(.systemBlue)
-        let messageButton  = UIBarButtonItem(image: image, style:.plain, target: self, action: #selector(onMessage))
+        var messageImage = UIImage.init(systemName: "envelope.fill")
+        messageImage = messageImage?.withRenderingMode(.alwaysTemplate)
+        var profileImage = UIImage.init(systemName: "person.circle")
+        profileImage = profileImage?.withRenderingMode(.alwaysTemplate)
+        
+        let messageButton  = UIBarButtonItem(image: messageImage, style:.plain, target: self, action: #selector(onMessage))
+        let profileButton  = UIBarButtonItem(image: profileImage, style:.plain, target: self, action: #selector(onProfile))
+        
         messageButton.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
         logOutButton.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+        profileButton.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
         navBar.barTintColor = #colorLiteral(red: 0.8784313725, green: 0.9843137255, blue: 0.9882352941, alpha: 1)
         self.navigationItem.leftBarButtonItem = logOutButton
-        self.navigationItem.rightBarButtonItem = messageButton
+        self.navigationItem.rightBarButtonItems = [messageButton, profileButton]
         navBar.items?.append(navigationItem)
         
         ref.child("users").child(user!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -62,6 +67,10 @@ class NavigationViewController: UIViewController {
     
     @objc func onMessage(){
         performSegue(withIdentifier: "goToChatIndex", sender: self)
+    }
+    
+    @objc func onProfile(){
+        performSegue(withIdentifier: "goToUserProfile", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

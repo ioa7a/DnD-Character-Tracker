@@ -12,27 +12,34 @@ import UIKit
 class DiceRollViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var totalValLabel: UILabel!
-    @IBOutlet weak var rollButton: CustomButton!
+    @IBOutlet weak var rollButton: UIButton!
     @IBOutlet weak var diceResultCollectionView: UICollectionView!
     @IBOutlet weak var diceNumberTextField: UITextField!
     @IBOutlet var diceType: [UIButton]!
     var howManyDice: Int = 0;
     var rolls: [Int] = []
     var cellRolls: [Int] = []
-    var rollOK: Bool = false;
     var type: Int = 0;
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tapRecog = UITapGestureRecognizer()
+        tapRecog.addTarget(self, action: #selector(DiceRollViewController.didTapView))
+        self.view.addGestureRecognizer(tapRecog)
         for button in diceType {
             button.layer.cornerRadius = 5
+            button.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
         }
         rollButton.layer.cornerRadius = 5
         diceNumberTextField.delegate = self
         diceResultCollectionView.delegate = self
         diceResultCollectionView.dataSource = self
         totalValLabel.text = "0"
+    }
+    
+    @objc func didTapView(){
+        self.view.endEditing(true)
     }
     
     @IBAction func didPressD4(_ sender: Any) {
@@ -68,7 +75,6 @@ class DiceRollViewController: UIViewController, UICollectionViewDelegate, UIColl
     @IBAction func didPressRollButton(_ sender: Any) {
         for i in 0..<diceType.count {
             if(diceType[i].isSelected){
-                rollOK = true
                 guard let diceNr = Int(diceNumberTextField.text!) else {
                     return
                 }
@@ -90,8 +96,6 @@ class DiceRollViewController: UIViewController, UICollectionViewDelegate, UIColl
                 break;
             }
         }
-        if(!rollOK){
-            debugPrint("select dice type!")}
         cellRolls = rolls
         rolls = []
         updateTotal()
@@ -157,8 +161,9 @@ class DiceRollViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        diceNumberTextField.resignFirstResponder()
-        return true
+  //      diceNumberTextField.resignFirstResponder()
+        self.diceNumberTextField.endEditing(true)
+        return false
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

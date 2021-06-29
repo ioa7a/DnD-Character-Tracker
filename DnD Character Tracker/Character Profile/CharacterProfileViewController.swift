@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class CharacterProfileViewController: UIViewController, UITextViewDelegate {
+class CharacterProfileViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
     
     var ref: DatabaseReference = Database.database().reference()
     var charNumber: Int = 0
@@ -30,7 +30,6 @@ class CharacterProfileViewController: UIViewController, UITextViewDelegate {
     var proficiencies: [String] = []
     var equipment: String = ""
     var characterName: String = ""
-    var improvementAdded: Bool = false
     
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var languageLabel: UILabel!
@@ -59,6 +58,7 @@ class CharacterProfileViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        expToAddTextField.delegate = self
         abilityScoreImprovementButton.layer.cornerRadius = 2.5
         if !abilityScoreImprovementButton.isEnabled {
             abilityScoreImprovementButton.backgroundColor = #colorLiteral(red: 0.6691534991, green: 0.7516132072, blue: 0.7587246193, alpha: 1)
@@ -121,11 +121,12 @@ class CharacterProfileViewController: UIViewController, UITextViewDelegate {
                 proficiencyLabel.text?.append(", ")
             }
         }
-        if ([4, 8, 12, 16, 19].contains(level) && !improvementAdded){
-            abilityScoreImprovementButton.isEnabled = true
-        } else {
-            abilityScoreImprovementButton.isEnabled = false
-        }
+        abilityScoreImprovementButton.isEnabled = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        abilityScoreImprovementButton.isEnabled = false
     }
  
     func getStats() {
@@ -140,6 +141,11 @@ class CharacterProfileViewController: UIViewController, UITextViewDelegate {
     }
     
     //MARK: Experience/Level up
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     @IBAction func didPressAddExp(_ sender: Any) {
         if let exp = Int(expToAddTextField.text ?? "0") {
             currentExp = currentExp + exp
@@ -186,7 +192,6 @@ class CharacterProfileViewController: UIViewController, UITextViewDelegate {
             abilityScoreImprovementButton.isEnabled = true
             levelUpButton.isEnabled = false
             addExpButton.isEnabled = false
-            improvementAdded = false
         default:
             abilityScoreImprovementButton.isEnabled = false
         }

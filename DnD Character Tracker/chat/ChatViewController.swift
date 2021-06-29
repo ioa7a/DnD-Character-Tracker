@@ -23,15 +23,20 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         maintainPositionOnKeyboardFrameChanged = true
-        messageInputBar.inputTextView.tintColor = .systemBlue
-        messageInputBar.sendButton.setTitleColor(.systemBlue, for: .normal)
+        messageInputBar.inputTextView.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+        messageInputBar.sendButton.setTitleColor(#colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1), for: .normal)
+//        messageInputBar.backgroundColor = #colorLiteral(red: 0.8784313725, green: 0.9843137255, blue: 0.9882352941, alpha: 1)
+//        messageInputBar.inputTextView.backgroundColor = #colorLiteral(red: 0.8784313725, green: 0.9843137255, blue: 0.9882352941, alpha: 1)
+        messageInputBar.inputTextView.textColor = #colorLiteral(red: 0.1607843137, green: 0.1960784314, blue: 0.2549019608, alpha: 1)
         messageInputBar.delegate = self
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
+        messagesCollectionView.backgroundColor = #colorLiteral(red: 0.8784313725, green: 0.9843137255, blue: 0.9882352941, alpha: 1)
         
         navigationItem.title = user2Name ?? "Chat"
         let backButton = UIBarButtonItem(title: "< CHATS", style: .plain, target: self, action: #selector(onCancel))
+        backButton.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
         navigationItem.leftBarButtonItem = backButton
         loadChat()
         
@@ -61,8 +66,6 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
     }
     
     func loadChat() {
-        
-      
         //Fetch all the chats which has current user in it
         let db = Firestore.firestore().collection("Chats")
                 .whereField("users", arrayContains: Auth.auth().currentUser?.uid ?? "Not Found User 1")
@@ -209,18 +212,18 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
     func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         let myString = (isFromCurrentSender(message: message) ? user1Name ?? "Unknown" :  user2Name ?? "Unknown")
         let range = (myString as NSString).range(of: myString)
-
         let mutableAttributedString = NSMutableAttributedString.init(string: myString)
-        mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: (isFromCurrentSender(message: message) ? UIColor.systemBlue : UIColor.systemGray2), range: range)
+        mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: (isFromCurrentSender(message: message) ? #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1) : #colorLiteral(red: 0.1607843137, green: 0.1960784314, blue: 0.2549019608, alpha: 1)), range: range)
         mutableAttributedString.addAttribute(NSAttributedString.Key.strokeWidth, value: 4.0, range: range)
         mutableAttributedString.addAttribute(NSAttributedString.Key.backgroundColor, value: UIColor.clear, range: range)
+
         return mutableAttributedString
     }
 
  
     // MARK: - MessagesDisplayDelegate
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? .systemBlue: .systemGray2
+        return isFromCurrentSender(message: message) ?  #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1) : #colorLiteral(red: 0.1607843137, green: 0.1960784314, blue: 0.2549019608, alpha: 1)
     }
     
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {

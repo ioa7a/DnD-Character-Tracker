@@ -24,6 +24,8 @@ class LogViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         emailTextField.text = ""
         passwordTextField.text = ""
         passwordTextField.autocorrectionType = .no
@@ -66,26 +68,19 @@ class LogViewController: UIViewController, UITextFieldDelegate {
                 self.present(alert, animated: true, completion: nil)
                 }
               } else {
-                    
-                print("User signs in successfully")
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserMainScreenVC") as! NavigationViewController
-                 self.present(vc, animated: true, completion: nil)
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserMainScreenVC") as! NavigationViewController
+                     self.present(vc, animated: true, completion: nil)
               }
             }
         }
         else {
             self.present(alert, animated: true, completion: nil)
         }
-        
-       
-    
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        return true
+        self.view.endEditing(true)
+        return false
     }
     
     @IBAction func didPressSignUp(_ sender: Any) {

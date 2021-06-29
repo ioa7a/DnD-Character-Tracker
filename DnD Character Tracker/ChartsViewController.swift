@@ -19,12 +19,22 @@ class ChartsViewController: UIViewController, ChartViewDelegate {
     var classes: [String : Int] = ["Barbarian" : 0 ,"Bard" : 0 , "Cleric" : 0, "Druid" : 0, "Fighter" : 0 ,"Monk" : 0 , "Paladin" : 0, "Ranger" : 0,  "Rogue" : 0 , "Sorcerer" : 0, "Warlock" : 0, "Wizard" : 0]
     var racesPieChart = PieChartView()
     var classesPieChart = PieChartView()
-
-   
+    @IBOutlet weak var piecChartView1: UIView!
+    @IBOutlet weak var userNumberLabel: UILabel!
+    @IBOutlet weak var characterNumberLabel: UILabel!
+    @IBOutlet weak var averageNumberLabel: UILabel!
+    
+    
     var userList: [UserData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Statistics"
+        let image = UIImage(named: "arrowshape.turn.up.left")?.withRenderingMode(.alwaysOriginal)
+        let backButton = UIBarButtonItem(title: "< BACK", style: .plain, target: self, action: #selector(onCancel))
+        backButton.tintColor = #colorLiteral(red: 0.9333333333, green: 0.4235294118, blue: 0.3019607843, alpha: 1)
+        backButton.image = image
+        navigationItem.leftBarButtonItem = backButton
         //setup pie chart
         racesPieChart.delegate = self
         classesPieChart.delegate = self
@@ -32,14 +42,18 @@ class ChartsViewController: UIViewController, ChartViewDelegate {
         classesPieChart.frame = CGRect(x: 0, y: self.view.frame.height/2, width: self.view.frame.width, height: self.view.frame.height/2 - 50.0)
         racesPieChart.isUserInteractionEnabled = false
         classesPieChart.isUserInteractionEnabled = false
-        view.addSubview(racesPieChart)
-        view.addSubview(classesPieChart)
+        piecChartView1.addSubview(racesPieChart)
+        piecChartView1.addSubview(classesPieChart)
         
         //retrieve character list & count races
         getUsers{ [self] (success) in
             if success {
                 getCharacters{ [self] (success) in
                     if success {
+                        userNumberLabel.text = "Total number of users: \(self.userList.count)"
+                        characterNumberLabel.text = "Total number of characters: \(self.character.count)"
+                        averageNumberLabel.text = "Average number of characters per user: \(self.character.count/self.userList.count)"
+
                         for i in 0 ..< self.character.count {
                             self.races[self.character[i].race] =  self.races[self.character[i].race]! + 1
                             self.classes[self.character[i].charClass] =  self.classes[self.character[i].charClass]! + 1
@@ -130,6 +144,9 @@ class ChartsViewController: UIViewController, ChartViewDelegate {
             print(error.localizedDescription)
         }
     
+    }
+    @objc func onCancel() {
+        dismiss(animated: true, completion: nil)
     }
 }
 

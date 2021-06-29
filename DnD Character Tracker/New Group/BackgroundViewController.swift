@@ -59,7 +59,6 @@ class BackgroundViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func didPressNext(_ sender: Any) {
         if didSelectBg {
-          //  self.ref.child("users").child(user!.uid).updateChildValues(["\(charNumber+1)/background" : selectedBackground!])
             currentCharacter.background = selectedBackground ?? "none"
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ProficienciesVC") as! ProficienciesViewController
             vc.raceIndex = raceIndex

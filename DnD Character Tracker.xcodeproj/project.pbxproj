@@ -11,7 +11,6 @@
 		270A090025A49B49006B3D57 /* DiceRollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270A08FF25A49B49006B3D57 /* DiceRollCollectionViewCell.swift */; };
 		2729B1082662223D0001F175 /* Charts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2729B1072662223D0001F175 /* Charts.storyboard */; };
 		2729B10B266222E90001F175 /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2729B10A266222E90001F175 /* ChartsViewController.swift */; };
-		273BD60525A5DF8300270C7A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273BD60425A5DF8300270C7A /* CustomButton.swift */; };
 		273BD60A25A655BC00270C7A /* ClassInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273BD60925A6558500270C7A /* ClassInfoTableViewCell.swift */; };
 		275391EE25A9F74D00260440 /* BackgroundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275391ED25A9F74D00260440 /* BackgroundTableViewCell.swift */; };
 		275391F025AB96EB00260440 /* CharacterListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275391EF25AB96EB00260440 /* CharacterListTableViewCell.swift */; };
@@ -51,6 +50,7 @@
 		278FF5D32639EF9300496C65 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 278FF5D22639EF9300496C65 /* GoogleService-Info.plist */; };
 		27ACF66C260BCDFA002DF95B /* ChatIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ACF66B260BCDFA002DF95B /* ChatIndexViewController.swift */; };
 		27CAF1C62621CFFE0090860D /* AbilityScoreImprovementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CAF1C52621CFFE0090860D /* AbilityScoreImprovementViewController.swift */; };
+		27E0BD41268B688B003BC9E3 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27E0BD40268B688B003BC9E3 /* UserProfileViewController.swift */; };
 		27EB5D2D25AE63C200087983 /* CharacterProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */; };
 		27F0509C2639F6A80022329B /* CharacterAbilityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F0509B2639F6A80022329B /* CharacterAbilityCollectionViewCell.swift */; };
 		27FCBAAA260B5C460055A366 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FCBAA9260B5C460055A366 /* Chat.swift */; };
@@ -62,7 +62,6 @@
 		270A08FF25A49B49006B3D57 /* DiceRollCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollCollectionViewCell.swift; sourceTree = "<group>"; };
 		2729B1072662223D0001F175 /* Charts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Charts.storyboard; sourceTree = "<group>"; };
 		2729B10A266222E90001F175 /* ChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
-		273BD60425A5DF8300270C7A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		273BD60925A6558500270C7A /* ClassInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassInfoTableViewCell.swift; sourceTree = "<group>"; };
 		275391ED25A9F74D00260440 /* BackgroundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTableViewCell.swift; sourceTree = "<group>"; };
 		275391EF25AB96EB00260440 /* CharacterListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListTableViewCell.swift; sourceTree = "<group>"; };
@@ -104,6 +103,7 @@
 		278FF5D22639EF9300496C65 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		27ACF66B260BCDFA002DF95B /* ChatIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatIndexViewController.swift; sourceTree = "<group>"; };
 		27CAF1C52621CFFE0090860D /* AbilityScoreImprovementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilityScoreImprovementViewController.swift; sourceTree = "<group>"; };
+		27E0BD40268B688B003BC9E3 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		27EB5D2C25AE63C200087983 /* CharacterProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfileViewController.swift; sourceTree = "<group>"; };
 		27F0509B2639F6A80022329B /* CharacterAbilityCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CharacterAbilityCollectionViewCell.swift; path = "DnD Character Tracker/New Group2/CharacterAbilityCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		27FCBAA9260B5C460055A366 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -136,7 +136,6 @@
 		273BD60725A5E1B600270C7A /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				273BD60425A5DF8300270C7A /* CustomButton.swift */,
 				278A8FF62620528B00B78A50 /* BackButton.swift */,
 			);
 			path = UI;
@@ -159,6 +158,7 @@
 				275EC108259CA96F007A2521 /* FireBaseAuthManager.swift */,
 				2757D958259C8C5B00CFF270 /* StartUpViewController.swift */,
 				2757D95C259CA0C100CFF270 /* SignUpViewController.swift */,
+				27E0BD40268B688B003BC9E3 /* UserProfileViewController.swift */,
 			);
 			path = autentificare;
 			sourceTree = "<group>";
@@ -416,12 +416,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2729B10B266222E90001F175 /* ChartsViewController.swift in Sources */,
+				27E0BD41268B688B003BC9E3 /* UserProfileViewController.swift in Sources */,
 				276850C625F96A60008A2C70 /* SpellTableViewCell.swift in Sources */,
 				27ACF66C260BCDFA002DF95B /* ChatIndexViewController.swift in Sources */,
 				278FB4C22624D38800AE06A7 /* GeneralInfoTableViewCell.swift in Sources */,
 				275E3A79259DD0FB0045E8E8 /* Character.swift in Sources */,
 				2757D95D259CA0C100CFF270 /* SignUpViewController.swift in Sources */,
-				273BD60525A5DF8300270C7A /* CustomButton.swift in Sources */,
 				27679A1125286702006984FA /* RaceVC.swift in Sources */,
 				278A8FF72620528B00B78A50 /* BackButton.swift in Sources */,
 				275EC109259CA96F007A2521 /* FireBaseAuthManager.swift in Sources */,
@@ -609,7 +609,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibojinca.DnD-Character-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -628,7 +628,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ibojinca.DnD-Character-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

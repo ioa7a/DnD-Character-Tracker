@@ -104,9 +104,12 @@ class SpellListViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if expandCell && indexPath.row == indexOfExpandedCell {
             if let cell = spellTableView.cellForRow(at: indexPath) as? SpellTableViewCell {
-                return cell.descriptionLabel.bounds.size.height + 80.0
+                return cell.descriptionLabel.bounds.size.height + 100.0
             }
             return 300.0
+        }
+        if let cell = spellTableView.cellForRow(at: indexPath) as? SpellTableViewCell {
+            return cell.classesLabel.bounds.size.height + cell.spellNameLabel.bounds.size.height
         }
         return 70.0
     }

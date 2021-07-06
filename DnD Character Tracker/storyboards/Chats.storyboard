@@ -12,7 +12,7 @@
         <!--Chat Index View Controller-->
         <scene sceneID="5wi-A6-hsH">
             <objects>
-                <viewController storyboardIdentifier="ChatIndexVC" id="l7Z-oc-FuI" customClass="ChatIndexViewController" customModule="DnD_Character_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatIndexVC" modalPresentationStyle="fullScreen" id="l7Z-oc-FuI" customClass="ChatIndexViewController" customModule="DnD_Character_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ks8-Ju-tfq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -94,7 +94,7 @@
         <!--Chat View Controller-->
         <scene sceneID="fn1-ii-rgG">
             <objects>
-                <viewController storyboardIdentifier="ChatVC" id="0T0-QD-biB" customClass="ChatViewController" customModule="DnD_Character_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatVC" modalPresentationStyle="fullScreen" id="0T0-QD-biB" customClass="ChatViewController" customModule="DnD_Character_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WJy-MN-xNn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -112,7 +112,7 @@
         <!--All Characters View Controller-->
         <scene sceneID="WXG-IK-vhk">
             <objects>
-                <viewController storyboardIdentifier="AllCharactersListVC" id="aXv-Oi-CEW" customClass="AllCharactersViewController" customModule="DnD_Character_Tracker" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AllCharactersListVC" modalPresentationStyle="fullScreen" id="aXv-Oi-CEW" customClass="AllCharactersViewController" customModule="DnD_Character_Tracker" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZnP-0p-mog">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -264,7 +264,7 @@
         <!--Navigation Controller-->
         <scene sceneID="lXC-uo-Gxc">
             <objects>
-                <navigationController storyboardIdentifier="ChatNavVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uDy-UE-p4R" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ChatNavVC" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uDy-UE-p4R" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ht0-1C-baz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>

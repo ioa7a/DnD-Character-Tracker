@@ -20,7 +20,8 @@ on the plus button in the upper right corner of the screen) or view the profile 
 
 ### Creating a character
 
-<p> <img src="" width="220" height="400" />
+Users will select different characteristics for their new character, such as class, background and stats. After the character creation process is complete, the new character will be stored in a database (using Firebase Realtime Database). 
+<p> <img src="https://user-images.githubusercontent.com/61358172/130208603-2108e825-bd35-464c-b7c3-36e691b8b2d7.png" width="220" height="400" /> <img src="https://user-images.githubusercontent.com/61358172/130208627-27f34ed0-5b26-4272-bf42-722175f968d9.png" width="220" height="400" /> <img src="https://user-images.githubusercontent.com/61358172/130208616-2a76af26-b75a-40b3-bf3d-fb74ff505388.png" width="220" height="400" /> <img src="https://user-images.githubusercontent.com/61358172/130208624-589c6cd1-d545-4704-9c8a-9430adda4fa9.png" width="220" height="400" />
 
 ### Character profile
 
